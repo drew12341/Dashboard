@@ -52,8 +52,8 @@
 
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="entypo-menu"></i>
-                            <!--<img src="assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44">-->
-                            Welcome, <?= $this->ion_auth->user()->row()->first_name;?>
+                            <img src="assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44">
+                            <?= $this->ion_auth->user()->row()->first_name;?>
                             <?=$this->ion_auth->user()->row()->last_name;?>
                         </a>
 
