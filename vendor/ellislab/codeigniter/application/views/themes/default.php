@@ -96,8 +96,6 @@
 
                 </ul>
 
-
-
             </div>
 
 
@@ -105,11 +103,6 @@
             <div class="col-md-6 col-sm-4 clearfix hidden-xs">
 
                 <ul class="list-inline links-list pull-right">
-
-
-
-
-
 
                     <li class="sep"></li>
 

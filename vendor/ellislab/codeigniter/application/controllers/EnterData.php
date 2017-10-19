@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends Auth_Controller
+class EnterData extends Auth_Controller
 {
     function __construct()
     {
@@ -12,6 +12,6 @@ class Dashboard extends Auth_Controller
 
     function index(){
 
-        $this->load->view('dashboard/index_view');
+        $this->load->view('enterdata/index_view');
     }
 }

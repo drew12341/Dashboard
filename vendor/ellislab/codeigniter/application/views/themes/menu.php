@@ -11,7 +11,7 @@
 
                 </a>
                 <br/>
-                <h4 style="color:white">WHS Dashboard</h4>
+                <h4 style="color:rgb(170, 171, 174)">WHS Dashboard</h4>
             </div>
 
 
@@ -30,8 +30,6 @@
                 </a>
             </div>
 
-
-
         </header>
 
 
@@ -40,10 +38,32 @@
         <ul id="main-menu" class="main-menu">
             <!-- add class "multiple-expanded" to allow multiple submenus to open -->
             <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
-            <li class="has-sub">
+            <li id="defaulttab" class="">
                 <a href="<?php echo site_url('Dashboard');?>">
                     <i class="entypo-gauge"></i>
                     <span class="title">Dashboard</span>
+                </a>
+
+            </li>
+
+            <li class="">
+                <a href="<?php echo site_url('EnterData');?>">
+                    <i class="entypo-doc-text"></i>
+                    <span class="title">Enter Data</span>
+                </a>
+
+            </li>
+            <li class="">
+                <a href="<?php echo site_url('ViewData');?>">
+                    <i class="entypo-window"></i>
+                    <span class="title">View Data</span>
+                </a>
+
+            </li>
+            <li class="">
+                <a href="<?php echo site_url('Report');?>">
+                    <i class="entypo-monitor"></i>
+                    <span class="title">Reports</span>
                 </a>
 
             </li>
@@ -52,3 +72,25 @@
         <?php endif; ?>
     </div>
 </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var active_link = $('.main-menu li a[href~="<?=base_url($this->uri->segment(1))?>"]');
+        console.log(active_link.html());
+        console.log("<?=base_url($this->uri->segment(1));?>");
+        if(active_link.size() > 0){
+            console.log('active');
+            active_link.parent().addClass('active');
+
+        }
+        else{
+            $("#defaulttab").addClass('active');
+        }
+    });
+
+    //can check correct-loading of bootstrap with this
+    //console.log((typeof $().emulateTransitionEnd == 'function'));
+
+    //$('.dropdown-toggle').dropdown()
+</script>
