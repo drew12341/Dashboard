@@ -52,7 +52,9 @@
 
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="entypo-menu"></i>
-                            <img src="assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44">
+                            <?php if(isset($this->ion_auth->user()->row()->profilepic) && $this->ion_auth->user()->row()->profilepic != ''): ?>
+                            <img src="<?= base_url().'../tmp/'.$this->ion_auth->user()->row()->profilepic; ?>" alt="" class="img-circle" width="44">
+                            <?php endif ?>
                             <?= $this->ion_auth->user()->row()->first_name;?>
                             <?=$this->ion_auth->user()->row()->last_name;?>
                         </a>
@@ -69,6 +71,14 @@
                                     Edit Profile
                                 </a>
                             </li>
+                            <?php if($this->ion_auth->is_admin()): ?>
+                                <li>
+                                    <a href="<?php echo site_url('User') ?>">
+                                        <i class="entypo-users"></i>
+                                        Edit Users
+                                    </a>
+                                </li>
+                            <?php endif; ?>
                         <!--
                             <li>
                                 <a href="mailbox.html">
@@ -116,6 +126,30 @@
             </div>
             <?php endif; ?>
 
+
+            <?php if(!$this->ion_auth->logged_in()): ?>
+            <div class="col-md-6 col-sm-8 clearfix">
+
+                <ul class="user-info pull-left pull-none-xsm">
+                </ul>
+            </div>
+                <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+
+                    <ul class="list-inline links-list pull-right">
+
+                        <li class="sep"></li>
+
+                        <li>
+                            <a href="<?php echo site_url('User/login'); ?>">
+                                Log In <i class="entypo-login right"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+
+            <?php endif; ?>
 
             <?php echo $output;?>
 

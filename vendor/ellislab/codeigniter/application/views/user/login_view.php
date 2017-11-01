@@ -44,7 +44,7 @@
 
             <div class="col-sm-12">
                 <a style="text-decoration: underline !important" href="<?php echo site_url('auth/forgot_password'); ?>">Forgot your password?</a><br/>
-                <a style="text-decoration: underline !important" href="<?php echo site_url('User/register'); ?>">Create an account</a>
+                <!--<a style="text-decoration: underline !important" href="<?php echo site_url('User/register'); ?>">Create an account</a>-->
             </div>
         </div>
 

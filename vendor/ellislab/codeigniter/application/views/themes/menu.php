@@ -33,7 +33,7 @@
         </header>
 
 
-        <?php if($this->ion_auth->logged_in()): ?>
+
 
         <ul id="main-menu" class="main-menu">
             <!-- add class "multiple-expanded" to allow multiple submenus to open -->
@@ -46,6 +46,7 @@
 
             </li>
 
+            <?php if($this->ion_auth->logged_in()): ?>
             <li class="">
                 <a href="<?php echo site_url('EnterData');?>">
                     <i class="entypo-doc-text"></i>
@@ -67,9 +68,9 @@
                 </a>
 
             </li>
-
+            <?php endif; ?>
         </ul>
-        <?php endif; ?>
+
     </div>
 </div>
 

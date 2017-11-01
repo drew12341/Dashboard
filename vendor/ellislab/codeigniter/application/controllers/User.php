@@ -107,6 +107,24 @@ class User extends CI_Controller  {
 
             $dataSet['email'] = strtolower($this->input->post('email'));
 
+            $config = array();
+            $config['upload_path'] = APPPATH.'../tmp/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['file_name'] = 'user_profile_'.$id;
+            $config['overwrite'] = true;
+            $this->load->library('upload', $config);
+
+            if (isset($_FILES['userfile']['name']) && !empty($_FILES['userfile']['name'])) {
+                if (!$this->upload->do_upload()) {
+                    $_SESSION['edit_message'] = $this->upload->display_errors();
+                    $groups = $this->ion_auth->listGroups();
+                    $data = array('dataSet'=>$this->ion_auth->getUser($id),
+                        'groups'=>$groups);
+                    $this->load->view('user/edit_view', $data);
+                }
+            }
+
+            $dataSet['profilepic'] = $this->upload->data('file_name');
 
             $this->load->library('ion_auth');
             if($this->ion_auth->update($id,$dataSet))
@@ -120,17 +138,11 @@ class User extends CI_Controller  {
             //fix up groups
             $groups = $this->ion_auth->listGroups();
 
-            //$ids = array_keys($groups);
-
-
-            //$this->ion_auth->remove_from_group(false, $id);
-            //$this->ion_auth->add_to_group($this->input->post('group'), $id);
-
 
             $data = array('dataSet'=>$this->ion_auth->getUser($id),
                 'groups'=>$groups);
-            //$this->load->view('user/edit_view', $data);
-            redirect(site_url('user/edit/').$id);
+            $this->load->view('user/edit_view', $data);
+            //redirect(site_url('user/edit/').$id);
         }
 
 

@@ -36,8 +36,8 @@ class Migration_Ion_auth extends CI_Migration {
             );
         $data2 =    array(
                 "id" => 2,
-                "name" => "members",
-                "description" => "General User"
+                "name" => "orgunit",
+                "description" => "Org Unit"
             );
 
 

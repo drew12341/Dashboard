@@ -11,6 +11,11 @@
 
         <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
 
+
+        <?php if(!isset($dataSet['profilepic']) || $dataSet['profilepic'] == null){
+            $dataSet['profilepic'] = 'upload-cloud.png';
+        }
+        ?>
         <?= $this->form_builder->open_form(array('action' => site_url("User/edit/").$dataSet["user_id"]));
         echo $this->form_builder->build_form_horizontal(
             array(
@@ -34,7 +39,16 @@
                     'id' => 'email',
                     'value' => $dataSet['email'],
                 ),
+                array(
+                    'id' => 'userfile',
+                    'type' => 'file',
+                    'label' => 'Picture',
+                    'class' => 'pictureinput',
+                    'input_addons' => array(
+                        'pre' => '<img height="60px" src="'.base_url().'../tmp/'.$dataSet['profilepic'].'"/>',
+                    )
 
+                ),
 
                 array(
                     'id' => 'submit',
@@ -82,3 +96,11 @@ echo $this->form_builder->close_form();
 </div>
 </div>
 
+<style type="text/css">
+    .pictureinput{
+        height:74px;
+    }
+</style>
+<script type="text/javascript">
+    //$( "<div>Test</div>" ).insertBefore( "#userfile" );
+</script>
