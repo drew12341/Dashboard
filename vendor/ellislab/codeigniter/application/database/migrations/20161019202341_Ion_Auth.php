@@ -123,14 +123,15 @@ class Migration_Ion_auth extends CI_Migration {
                 'constraint' => '50',
                 'null' => TRUE
             ),
-            'company' => array(
+
+            'profilepic' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '100',
                 'null' => TRUE
             ),
-            'phone' => array(
+            'orgunit_name'=> array(
                 'type' => 'VARCHAR',
-                'constraint' => '20',
+                'constraint' => '200',
                 'null' => TRUE
             )
 
@@ -153,8 +154,7 @@ class Migration_Ion_auth extends CI_Migration {
             'active' => '1',
             'first_name' => 'Admin',
             'last_name' => 'istrator',
-            'company' => 'ADMIN',
-            'phone' => '0',
+            'orgunit_name'=>'Administrator'
         );
         $this->db->insert('users', $data);
 

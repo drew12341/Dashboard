@@ -55,8 +55,7 @@
                             <?php if(isset($this->ion_auth->user()->row()->profilepic) && $this->ion_auth->user()->row()->profilepic != ''): ?>
                             <img src="<?= base_url().'../tmp/'.$this->ion_auth->user()->row()->profilepic; ?>" alt="" class="img-circle" width="44">
                             <?php endif ?>
-                            <?= $this->ion_auth->user()->row()->first_name;?>
-                            <?=$this->ion_auth->user()->row()->last_name;?>
+                            <?= $this->ion_auth->user()->row()->orgunit_name;?>
                         </a>
 
                         <ul class="dropdown-menu">

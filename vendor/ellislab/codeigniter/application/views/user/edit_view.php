@@ -25,19 +25,13 @@
                     'type' => 'hidden'
                 ),
                 array(
-                    'id' => 'first_name',
-                    'value' => $dataSet['first_name'],
+                    'id' => 'username',
+                    'value' => $dataSet['username'],
                 ),
                 array(
-                    'id' => 'last_name',
-                    'value' => $dataSet['last_name'],
-                ),
-
-
-
-                array(
-                    'id' => 'email',
-                    'value' => $dataSet['email'],
+                    'id' => 'orgunit_name',
+                    'value' => $dataSet['orgunit_name'],
+                    'label'=>'OrgUnit Name'
                 ),
                 array(
                     'id' => 'userfile',

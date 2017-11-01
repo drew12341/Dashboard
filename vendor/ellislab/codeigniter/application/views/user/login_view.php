@@ -14,7 +14,7 @@
         echo $this->form_builder->build_form_horizontal(
             array(
                 array(
-                    'id' => 'email'
+                    'id' => 'username'
                 ),
                 array(
                     'id' => 'password',

@@ -83,11 +83,8 @@ class User extends CI_Controller  {
         $this->load->library('form_builder');
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('first_name', 'First name','trim|required');
-        $this->form_validation->set_rules('last_name', 'Last name','trim|required');
-
-        //$this->form_validation->set_rules('email','Email','trim|valid_email|required');
-        $this->form_validation->set_rules('email','Email', array('trim','valid_email','required','callback_email_check'));
+        $this->form_validation->set_rules('orgunit_name', 'orgunit_name','trim|required');
+        $this->form_validation->set_rules('username','Username', 'trim|required');
 
         if($this->form_validation->run()===FALSE)
         {
@@ -102,10 +99,9 @@ class User extends CI_Controller  {
             unset($_SESSION['edit_message']);
             $id = $this->input->post('id');
 
-            $dataSet['first_name'] = $this->input->post('first_name');
-            $dataSet['last_name'] = $this->input->post('last_name');
+            $dataSet['orgunit_name'] = $this->input->post('orgunit_name');
+            $dataSet['username'] = $this->input->post('username');
 
-            $dataSet['email'] = strtolower($this->input->post('email'));
 
             $config = array();
             $config['upload_path'] = APPPATH.'../tmp/';
@@ -175,9 +171,9 @@ class User extends CI_Controller  {
 
         $this->load->library('form_builder');
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('first_name', 'First name','trim|required');
-        $this->form_validation->set_rules('last_name', 'Last name','trim|required');
-        $this->form_validation->set_rules('email','Email', array('trim','valid_email','required','is_unique[users.email]','callback_email_check'));
+        $this->form_validation->set_rules('orgunit_name', 'OrgUnit Name','trim|required');
+        $this->form_validation->set_rules('username', 'username','trim|required|is_unique[users.username]');
+
         $this->form_validation->set_rules('password','Password','trim|min_length[8]|max_length[20]|required');
         $this->form_validation->set_rules('confirm_password','Confirm password','trim|matches[password]|required');
         //$this->form_validation->set_rules('email', 'Email', 'callback_email_check');
@@ -241,7 +237,7 @@ class User extends CI_Controller  {
         $this->data['title'] = "Login";
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'required');
         if ($this->form_validation->run() === FALSE)
         {
@@ -252,7 +248,7 @@ class User extends CI_Controller  {
         else
         {
             $remember = (bool) $this->input->post('remember');
-            if ($this->ion_auth->login(strtolower($this->input->post('email')), $this->input->post('password'), $remember))
+            if ($this->ion_auth->login(strtolower($this->input->post('username')), $this->input->post('password'), $remember))
             {
                 redirect('dashboard');
             }
