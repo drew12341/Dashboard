@@ -10,8 +10,7 @@
         <thead>
         <tr>
             <th>&nbsp;</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Username</th>
             <th>Email</th>
             <th>Last Login</th>
 
@@ -38,8 +37,7 @@
 
         </td>
 
-        <td><?=$i['first_name']?></td>
-        <td><?=$i['last_name']?></td>
+        <td><?=$i['username']?></td>
         <td><?=$i['email']?></td>
         <td><?= isset($i['last_login']) ? date("Y-m-d H:i:s", $i['last_login']) : ''; ?></td>
 
@@ -50,11 +48,9 @@
         <tfoot>
         <tr>
             <th>&nbsp;</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Username</th>
             <th>Email</th>
             <th>Last Login</th>
-
 
             <th>Group</th>
         </tr>

@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 
 <div class="row">
-    <div class="col-md-12 col-lg-8">
+    <div class="col-lg-12">
     <h1>Register</h1>
 
         <?php if (isset($_SESSION['register_message'])) : ?>
@@ -16,15 +16,16 @@
     echo $this->form_builder->build_form_horizontal(
     array(
         array(
-            'id' => 'first_name'
+            'id' => 'username'
         ),
-        array(
-            'id' => 'last_name'
-        ),
-
-
         array(
             'id' => 'email'
+        ),
+
+
+        array(
+            'id' => 'orgunit_name',
+            'label'=>'OrgUnit Name'
         ),
         array(
             'id' => 'password',

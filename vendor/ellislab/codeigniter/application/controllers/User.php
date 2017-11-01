@@ -85,6 +85,7 @@ class User extends CI_Controller  {
 
         $this->form_validation->set_rules('orgunit_name', 'orgunit_name','trim|required');
         $this->form_validation->set_rules('username','Username', 'trim|required');
+        $this->form_validation->set_rules('email','Email', 'trim');
 
         if($this->form_validation->run()===FALSE)
         {
@@ -101,6 +102,7 @@ class User extends CI_Controller  {
 
             $dataSet['orgunit_name'] = $this->input->post('orgunit_name');
             $dataSet['username'] = $this->input->post('username');
+            $dataSet['email'] = $this->input->post('email');
 
 
             $config = array();
@@ -185,27 +187,26 @@ class User extends CI_Controller  {
         }
         else
         {
-            $first_name = $this->input->post('first_name');
-            $last_name = $this->input->post('last_name');
+            $username = $this->input->post('username');
+            $orgunit_name = $this->input->post('orgunit_name');
 
             $email = strtolower($this->input->post('email'));
             $password = $this->input->post('password');
 
             $additional_data = array(
-                'first_name' => $first_name,
-                'last_name' => $last_name,
+                'orgunit_name' => $orgunit_name,
                 'active'=>true,
 
             );
 
             $this->load->library('ion_auth');
             $group = array('2');
-            $userid = $this->ion_auth->register($email,$password,$email,$additional_data, $group);
+            $userid = $this->ion_auth->register($username,$password,$email,$additional_data, $group);
             if($userid)
             {
 
 
-                $_SESSION['register_message'] = 'The user: '.$first_name.' '.$last_name .' has been created.';
+                $_SESSION['register_message'] = 'The user: '.$username .' has been created.';
                 $this->session->mark_as_flash('register_message');
 
                 //redirect('user/edit/'.$userid);

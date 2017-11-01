@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-lg-12">
         <h1>Log In</h1>
 
         <?php if (isset($_SESSION['auth_message'])) : ?>

@@ -29,6 +29,10 @@
                     'value' => $dataSet['username'],
                 ),
                 array(
+                    'id' => 'email',
+                    'value' => $dataSet['email'],
+                ),
+                array(
                     'id' => 'orgunit_name',
                     'value' => $dataSet['orgunit_name'],
                     'label'=>'OrgUnit Name'
