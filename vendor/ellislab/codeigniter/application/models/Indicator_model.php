@@ -27,13 +27,26 @@ class Indicator_model extends CI_Model
     }
 
     public function addIndicator($record){
+        if($this->ion_auth->is_admin()){
+            $record['category'] = 'standard';
+        }
+        else{
+            $record['category'] = 'local';
+        }
+
         $this->db->insert('indicators', $record);
+
         return $this->db->insert_id();
     }
 
     public function updateIndicator($record){
         $id = $record['id'];
         unset($record['id']);
+
+
+        if(!isset($record['visible'])){
+            $record['visible'] = 0;
+        }
         $this->db->update('indicators', $record, array('id'=>$id));
         return $this->db->insert_id();
     }

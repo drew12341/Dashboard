@@ -29,6 +29,10 @@ class Migration_indicators extends CI_Migration {
             ),
             'value'=>array(
                 'type'=>'float',
+            ),
+            'category'=>array(
+                'type'=>'varchar',
+                'constraint'=>'50'
             )
 
 

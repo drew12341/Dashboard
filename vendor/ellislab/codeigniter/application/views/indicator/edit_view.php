@@ -25,12 +25,18 @@
                     'id' => 'description',
                     'value'=>$dataSet['description']
                 ),
-                array(
-                    'id' => 'type',
-                    'value'=>$dataSet['type'],
-                    'type' => 'dropdown',
-                    'options' => $types,
-                ),
+//                array(
+//                    'id' => 'type',
+//                    'value'=>$dataSet['type'],
+//                    'type' => 'dropdown',
+//                    'options' => $types,
+//                    'readonly'=>true
+//                ),
+           array(
+               'id'=>'type',
+               'readonly'=>true,
+               'value'=>$dataSet['type'],
+           )
 
             );
         if($dataSet['type'] == 'True/False'){
@@ -56,6 +62,23 @@
             );
         }
 
+        $items[] = array(
+            'id' => 'visible',
+            'type' => 'checkbox',
+            'label'=>'Visible',
+
+            'options' => array(
+
+                array(
+                    'id' => 'visible',
+                    'value' => 1,
+                    'label' => '&nbsp;',
+                    'checked' => $dataSet['visible'],
+
+                )
+            )
+        );
+
         $items[] =   array(
                 'id' => 'submit',
                 'type' => 'submit',
@@ -69,14 +92,18 @@
 <script type="text/javascript">
     $("#type").change(function(){
         if($( this ).val() == 'True/False'){
-            var combo = $("<select></select>").attr("id", 'value').attr("name", 'value').attr('class', 'valid form-control'));
+            var combo = $("<select></select>").attr("id", 'value').attr("name", 'value').attr('class', 'valid form-control');
 
             combo.append("<option>True</option>");
             combo.append("<option>False</option>");
             $('#value').replaceWith(combo);
         }
-        else{
-            var input = $("<input/>").attr("id", 'value').attr("name", 'value').attr('class', 'valid form-control');
+        else if($( this ).val() == 'Percentage'){
+            var input = $("<input/>").attr("id", 'value').attr("name", 'value').attr('class', 'valid form-control').attr('placeholder', 'Target:90');
+            $('#value').replaceWith(input);
+        }
+        else if($( this ).val() == 'Absolute') {
+            var input = $("<input/>").attr("id", 'value').attr("name", 'value').attr('class', 'valid form-control').attr('placeholder', 'Target:50');
             $('#value').replaceWith(input);
         }
     })

@@ -23,7 +23,9 @@
             'id' => 'type',
             'type' => 'dropdown',
             'options' => $types,
+
         ),
+
         array(
             'id' => 'value',
         ),
@@ -48,11 +50,14 @@
             combo.append("<option>False</option>");
             $('#value').replaceWith(combo);
         }
-        else{
-            var input = $("<input/>").attr("id", 'value').attr("name", 'value').attr('class', 'valid form-control');
+        else if($( this ).val() == 'Percentage'){
+            var input = $("<input/>").attr("id", 'value').attr("name", 'value').attr('class', 'valid form-control').attr('placeholder', 'Target:90');
+            $('#value').replaceWith(input);
+        }
+        else if($( this ).val() == 'Absolute') {
+            var input = $("<input/>").attr("id", 'value').attr("name", 'value').attr('class', 'valid form-control').attr('placeholder', 'Target:50');
             $('#value').replaceWith(input);
         }
     })
 
 </script>
-
