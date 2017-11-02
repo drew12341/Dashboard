@@ -70,6 +70,12 @@
                                     Edit Profile
                                 </a>
                             </li>
+                            <li>
+                                <a href="<?php echo site_url('Indicator') ?>">
+                                    <i class="entypo-adjust"></i>
+                                    Indicators
+                                </a>
+                            </li>
                             <?php if($this->ion_auth->is_admin()): ?>
                                 <li>
                                     <a href="<?php echo site_url('User') ?>">
