@@ -1,4 +1,8 @@
+
+
+<?php if($this->ion_auth->logged_in()) : ?>
 <h4>Dashboard report for: <?=$this->ion_auth->user()->row()->orgunit_name;?></h4>
+<?php endif; ?>
 
 <script type="text/javascript">
 

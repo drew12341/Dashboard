@@ -41,7 +41,7 @@
                     'id' => 'userfile',
                     'type' => 'file',
                     'label' => 'Picture',
-                    'class' => 'pictureinput',
+                    'class' => 'pictureinput file2 inline btn btn-primary',
                     'input_addons' => array(
                         'pre' => '<img height="60px" src="'.base_url().'../tmp/'.$dataSet['profilepic'].'"/>',
                     )

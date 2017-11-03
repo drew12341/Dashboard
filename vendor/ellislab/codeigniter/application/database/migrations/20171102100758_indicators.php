@@ -33,6 +33,16 @@ class Migration_indicators extends CI_Migration {
             'category'=>array(
                 'type'=>'varchar',
                 'constraint'=>'50'
+            ),
+            'heading'=>array(
+                'type'=>'varchar',
+                'constraint'=>'50',
+                'null'=>true
+            ),
+            'sort_order'=>array(
+                'type'=>'int',
+                'constraint'=>'3',
+                'null'=>true
             )
 
 
