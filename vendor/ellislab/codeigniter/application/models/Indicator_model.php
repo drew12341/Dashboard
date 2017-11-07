@@ -75,4 +75,51 @@ class Indicator_model extends CI_Model
         return $aggregated;
 
     }
+
+    public function getMeasures($user, $period){
+        $this->db->where('userid', $user);
+        $this->db->where('period', $period);
+        $query = $this->db->get('indicator_measures');
+        $results = $query->result_array();
+
+        $aggregated = array();
+        foreach($results as $res){
+            $aggregated[$res['indicatorid']] = $res['value'];
+        }
+        return $aggregated;
+    }
+
+    public function getMeasuresStatus($user, $period){
+        $this->db->where('userid', $user);
+        $this->db->where('period', $period);
+        $this->db->group_by('committed');
+        $query = $this->db->get('indicator_measures');
+        $results = $query->result_array();
+
+        if(count($results) == 0){
+            return '-';
+        }
+        $res = $results[0];
+        if($res['committed'] == 1){
+            return 'Committed';
+        }
+        return 'Draft';
+    }
+
+    public function upsertmeasure($measure){
+        $this->db->where('userid', $measure['userid']);
+        $this->db->where('indicatorid', $measure['indicatorid']);
+        $this->db->where('period', $measure['period']);
+        $query = $this->db->get('indicators');
+        $results = $query->result_array();
+        if(count($results) > 0){
+            //Update
+            $existing = $results[0];
+            $this->db->update('indicator_measures', $measure, array('id'=>$existing['id']));
+        }
+        else{
+            //Insert
+            $this->db->insert('indicator_measures', $measure);
+        }
+    }
 }

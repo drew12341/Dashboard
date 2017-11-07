@@ -3,80 +3,41 @@
 <br/>
 <div class="row">
     <div class="col-lg-12">
+
+        <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
+
         <form class="form-horizontal col-sm-12" autocomplete="on" method="post" accept-charset="utf-8">
             <div class="form-group">
 
                 <label class="col-lg-1 control-label" for="year">Year</label>
 
                 <div class="col-lg-2">
-                    <select id="year" class="form-control col-lg-2">
-                        <option><?= date("Y"); ?></option>
-                        <option><?= date("Y", strtotime("-1 year")); ?></option>
+                    <select id="year" name="year" class="form-control col-lg-2">
+                        <option>--</option>
+                        <option value="<?= date("Y"); ?>"><?= date("Y"); ?></option>
+                        <option value="<?= date("Y", strtotime("-1 year")); ?>"><?= date("Y", strtotime("-1 year")); ?></option>
                     </select>
                 </div>
 
                 <label class="col-lg-1 control-label" for="period">Period</label>
 
                 <div class="col-lg-2">
-                    <select id="period" class="form-control col-lg-2">
+                    <select id="period" name="period" class="form-control col-lg-2">
+                        <option>--</option>
                         <?php
-                        $count = 1;
-                        foreach ($periods as $p): ?>
-                            <option value="<?= $count; ?>"><?= $p ?></option>
-                            <?php $count++; ?>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
 
-                <label class="col-lg-1 control-label" for="status">Status</label>
-                <div class="col-lg-2">
-                    <select id="status" class="form-control col-lg-2">
-                        <option><?= date("Y"); ?></option>
-                        <option><?= date("Y", strtotime("-1 year")); ?></option>
+                        foreach ($periods as $key=>$value): ?>
+                            <option value="<?= $key; ?>"><?= $value ?></option>
+
+                        <?php endforeach; ?>
                     </select>
                 </div>
 
 
             </div>
 
-
+            <input type="submit" class="btn btn-primary" value="Next"/>
         </form>
     </div>
 </div>
 
-
-<!---- render page from array ---->
-<?php foreach ($sections as $key => $value): ?>
-    <div class="row">
-        <div class="col-lg-12">
-
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th><?= $this->config->item($key) ?></th>
-                    <th class="col-lg-2">Previous</th>
-                    <th class="col-lg-2">Current</th>
-                </tr>
-
-                </thead>
-                <tbody>
-                    <?php foreach($value as $row): ?>
-                        <tr>
-                            <td>
-                                <?= $row['description']; ?>
-                            </td>
-                            <td>
-                                2
-                            </td>
-                            <td>
-                                <input class="form-control"/>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-
-        </div>
-    </div>
-
-<?php endforeach; ?>
