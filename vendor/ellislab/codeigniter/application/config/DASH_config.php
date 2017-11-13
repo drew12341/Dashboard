@@ -2,6 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['indicator_types']  = 'True/False,Percentage,Absolute';
+$config['indicator_threshold'] = 10;
+
+
+
 $config['dash_periods']     = 'Feb-Mar,Apr-May,Jun-Jul,Aug-Sep,Oct-Nov,Dec-Jan';
 
 $config['1_minimise_injuries_maximise_wellbeing'] = 'Minimise Injuries / Maximise Wellbeing';

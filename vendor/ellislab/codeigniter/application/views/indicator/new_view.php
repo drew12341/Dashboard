@@ -28,6 +28,7 @@
 
         array(
             'id' => 'value',
+            'label'=>'target'
         ),
         array(
             'id' => 'submit',

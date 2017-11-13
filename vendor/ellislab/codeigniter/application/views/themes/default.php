@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/custom.css">
 
     <script src="<?php echo base_url(); ?>assets/js/jquery-1.11.3.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/morris.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/raphael-min.js"></script>
 
     <!--[if lt IE 9]><script src="<?php echo base_url(); ?>assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 

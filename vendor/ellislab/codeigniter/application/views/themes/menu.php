@@ -78,10 +78,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var active_link = $('.main-menu li a[href~="<?=base_url($this->uri->segment(1))?>"]');
-        console.log(active_link.html());
-        console.log("<?=base_url($this->uri->segment(1));?>");
+        //console.log(active_link.html());
+        //console.log("<?=base_url($this->uri->segment(1));?>");
         if(active_link.size() > 0){
-            console.log('active');
+            //console.log('active');
             active_link.parent().addClass('active');
 
         }

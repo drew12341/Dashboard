@@ -89,6 +89,80 @@ class Indicator_model extends CI_Model
         return $aggregated;
     }
 
+    public function getFullMeasures($user, $thisperiod){
+        $d = explode('-', $thisperiod);
+        $period = $d[1];
+        $year = $d[0];
+        //calculate previous value (year then base 6)
+        if($period > 1){
+            $previousyear = $year;
+            $previousperiod = $period - 1;
+        }
+        else{
+            $previousyear = $year - 1;
+            $previousperiod = 6;
+        }
+        $previousperiod = $previousyear.'-'.$previousperiod;
+
+
+        $SQL = "select heading from indicators where userid = $user or category = 'standard'
+                  group by heading";
+
+        $query = $this->db->query($SQL);
+        $results = $query->result_array();
+
+        //Aggregate for ease of display (group into sections)
+        $aggregated = array();
+        foreach($results as $res){
+            $heading = $res['heading'];
+
+            $SQL = "select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current, 
+curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value
+from indicator_measures curr
+  left outer join indicator_measures prev on curr.indicatorid = prev.indicatorid
+  INNER JOIN indicators ind on ind.id = curr.indicatorid
+where curr.period = '$thisperiod' and prev.period = '$previousperiod' and curr.userid = $user and ind.heading = '$heading'
+ORDER BY ind.heading, ind.sort_order";
+
+            $query1 = $this->db->query($SQL);
+            $results1 = $query1->result_array();
+            $aggregated[$heading] = $results1;
+        }
+
+        return $aggregated;
+    }
+
+    public function getMeasuresChartData($user, $period){
+        //first get measures that are percentage based
+        $SQL = "select heading from indicators where (userid = $user or category = 'standard')
+and type = 'Percentage' group by heading";
+
+        $query = $this->db->query($SQL);
+        $results = $query->result_array();
+
+        //Aggregate for ease of display (group into sections)
+        $aggregated = array();
+        foreach($results as $res){
+            $heading = $res['heading'];
+
+
+            //TODO: Tuesday
+            $SQL = "select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current, 
+curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value
+from indicator_measures curr
+  left outer join indicator_measures prev on curr.indicatorid = prev.indicatorid
+  INNER JOIN indicators ind on ind.id = curr.indicatorid
+where curr.userid = $user and ind.heading = '$heading'
+ORDER BY ind.heading, ind.sort_order";
+
+            $query1 = $this->db->query($SQL);
+            $results1 = $query1->result_array();
+            $aggregated[$heading] = $results1;
+        }
+
+        return $aggregated;
+    }
+
     public function getMeasuresStatus($user, $period){
         $this->db->where('userid', $user);
         $this->db->where('period', $period);

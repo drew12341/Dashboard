@@ -44,21 +44,22 @@
                 'id' => 'value',
                 'value'=>$dataSet['value'],
                 'type'=>'dropdown',
-                'options'=>array('True','False')
+                'options'=>array('True','False'),
+                'label'=>'target'
             );
         }
         if($dataSet['type'] == 'Absolute'){
             $items[] = array(
                 'id' => 'value',
                 'value'=>$dataSet['value'],
-
+                'label'=>'target'
             );
         }
         if($dataSet['type'] == 'Percentage'){
             $items[] = array(
                 'id' => 'value',
                 'value'=>$dataSet['value'],
-
+                'label'=>'target'
             );
         }
 

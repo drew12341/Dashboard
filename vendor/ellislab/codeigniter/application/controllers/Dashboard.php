@@ -7,11 +7,24 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
         $this->output->set_template('default');
-
+        $this->load->model('Indicator_model');
     }
 
     function index(){
+        $data = array();
+        $wh = explode(",", $this->config->item('dash_periods'));
+        $types = array();
+        $count = 1;
+        foreach($wh as $w){
+            $types[$count++] = $w;
+        }
 
-        $this->load->view('dashboard/index_view');
+        $userid = 4;
+        $year = 2017;
+        $period = 2;
+
+        $data['periods'] = $types;
+        $data['sections'] = $this->Indicator_model->getFullMeasures($userid, $year.'-'.$period);
+        $this->load->view('dashboard/index_view', $data);
     }
 }
