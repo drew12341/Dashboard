@@ -26,4 +26,9 @@ class Ajax extends Auth_Controller
         $data['currentmeasures']    = $this->Indicator_model->getFullMeasures($userid, $year.'-'.$period);
         echo json_encode($data);
     }
+
+    function getMeasuresChartData(){
+        $ret = $this->Indicator_model->getMeasuresChartData(4, '2017-2');
+        echo json_encode($ret);
+    }
 }

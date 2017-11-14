@@ -145,19 +145,37 @@ and type = 'Percentage' group by heading";
         foreach($results as $res){
             $heading = $res['heading'];
 
-
-            //TODO: Tuesday
-            $SQL = "select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current, 
-curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value
-from indicator_measures curr
-  left outer join indicator_measures prev on curr.indicatorid = prev.indicatorid
-  INNER JOIN indicators ind on ind.id = curr.indicatorid
-where curr.userid = $user and ind.heading = '$heading'
-ORDER BY ind.heading, ind.sort_order";
+            //get items that are percentage
+            $SQL = "select id, description from indicators where heading = '$heading' and type = 'Percentage'";
 
             $query1 = $this->db->query($SQL);
             $results1 = $query1->result_array();
-            $aggregated[$heading] = $results1;
+
+            $agg = array();
+            foreach($results1 as $res1){
+                $id = $res1['id'];
+                $description = $res1['description'];
+                $SQL = "select period, value from indicator_measures 
+where indicatorid = $id and userid = $user and period <= '$period' order by period asc limit 6";
+                $query2 = $this->db->query($SQL);
+                $results2 = $query2->result_array();
+
+                foreach($results2 as $res2){
+                    $row = array();
+                    if(isset($agg[$res2['period']])){
+                        $row = $agg[$res2['period']];
+                    }
+                    else{
+                        $row['period'] = $res2['period'];
+                    }
+                    $row[$description] = $res2['value'];
+                    $agg[$res2['period']] = $row;
+                }
+
+            }
+
+
+            $aggregated[$heading] = array_values($agg);
         }
 
         return $aggregated;

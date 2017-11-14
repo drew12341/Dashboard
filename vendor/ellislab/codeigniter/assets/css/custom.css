@@ -23,3 +23,18 @@ body {
 
     line-height: 14px;
 }
+
+.yKeyButton{
+    padding-left:20px;
+    float: left;
+    clear: left;
+}
+
+.panel > .panel-body.with-chart {
+
+    position: relative;
+    padding: 0;
+    padding-bottom: 5px;
+    margin: -1px;
+    border: 0;
+}

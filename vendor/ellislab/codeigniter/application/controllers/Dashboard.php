@@ -25,6 +25,7 @@ class Dashboard extends CI_Controller
 
         $data['periods'] = $types;
         $data['sections'] = $this->Indicator_model->getFullMeasures($userid, $year.'-'.$period);
+        $data['chartData'] = $this->Indicator_model->getMeasuresChartData($userid, $year.'-'.$period);
         $this->load->view('dashboard/index_view', $data);
     }
 }
