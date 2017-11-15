@@ -68,14 +68,17 @@ class EnterData extends Auth_Controller
 
         //TODO validation
         $validations = array();
+        //$this->form_validation->set_rules('year', 'Year','trim|required');
         $this->form_validation->set_rules('year', 'Year','trim|required');
-        foreach ($data['sections'] as $key => $value){
-            foreach($value as $row){
-                $validations[] = array('field' => 'data['.$row['id'].']',
-                                    'label' => $row['description'],
-                                    'rules' => 'required');
-            }
-        }
+        $this->form_validation->set_rules('period', 'Period','trim|required');
+
+//        foreach ($data['sections'] as $key => $value){
+//            foreach($value as $row){
+//                $validations[] = array('field' => 'data['.$row['id'].']',
+//                                    'label' => $row['description'],
+//                                    'rules' => 'required');
+//            }
+//        }
 
         $this->form_validation->set_rules($validations);
 
@@ -97,6 +100,7 @@ class EnterData extends Auth_Controller
                 $this->Indicator_model->upsertmeasure($measure);
             }
             $data['current_values'] = $this->Indicator_model->getMeasures($this->ion_auth->user()->row()->id, $year.'-'.$period);
+            $data['status'] = $this->Indicator_model->getMeasuresStatus($this->ion_auth->user()->row()->id, $year.'-'.$period);
 
             $this->load->view('enterdata/data_view', $data);
         }

@@ -23,6 +23,10 @@ class Migration_indicators extends CI_Migration {
                 'default'=>1
 
             ),
+            'mandatory'=>array(
+                'type'=>'tinyint',
+                'default'=>0
+            ),
             'type'=>array(
                 'type'=>'varchar',
                 'constraint'=>10

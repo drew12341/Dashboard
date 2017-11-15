@@ -45,23 +45,41 @@
                 'value'=>$dataSet['value'],
                 'type'=>'dropdown',
                 'options'=>array('True','False'),
-                'label'=>'target'
+                'label'=>'Target'
             );
         }
         if($dataSet['type'] == 'Absolute'){
             $items[] = array(
                 'id' => 'value',
                 'value'=>$dataSet['value'],
-                'label'=>'target'
+                'label'=>'Target'
             );
         }
         if($dataSet['type'] == 'Percentage'){
             $items[] = array(
                 'id' => 'value',
                 'value'=>$dataSet['value'],
-                'label'=>'target'
+                'label'=>'Target'
             );
         }
+
+        $items[] = array(
+            'id' => 'mandatory',
+            'type' => 'checkbox',
+            'label'=>'Mandatory',
+
+            'options' => array(
+
+                array(
+                    'id' => 'mandatory',
+                    'value' => 1,
+                    'label' => '&nbsp;',
+                    'checked' => $dataSet['mandatory'],
+
+                )
+            )
+        );
+
 
         $items[] = array(
             'id' => 'visible',

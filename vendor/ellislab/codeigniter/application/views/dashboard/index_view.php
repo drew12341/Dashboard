@@ -14,9 +14,9 @@
                 <div class="col-lg-2">
                     <select id="year" name="year" class="form-control col-lg-2">
                         <option>--</option>
-                        <option value="<?= date("Y"); ?>"><?= date("Y"); ?></option>
+                        <option value="<?=date("Y");?>" <?= ($year == date("Y")) ? 'selected' : '';  ?> ><?= date("Y");?></option>
                         <option
-                            value="<?= date("Y", strtotime("-1 year")); ?>"><?= date("Y", strtotime("-1 year")); ?></option>
+                            value="<?=date("Y", strtotime("-1 year"));?>" <?= ($year ==date("Y", strtotime("-1 year"))) ? 'selected' : '';  ?>  ><?=date("Y", strtotime("-1 year"));?></option>
                     </select>
                 </div>
 
@@ -28,7 +28,7 @@
                         <?php
 
                         foreach ($periods as $key => $value): ?>
-                            <option value="<?= $key; ?>"><?= $value ?></option>
+                            <option value="<?= $key; ?>" <?= ($key == $period) ? 'selected' : '';  ?>  ><?= $value ?></option>
 
                         <?php endforeach; ?>
                     </select>
@@ -69,6 +69,10 @@
                 </thead>
 
                 <tbody>
+
+                <?php if(count($value) == 0) :?>
+                <tr><td>No Data for this period</td></tr>
+                <?php endif; ?>
 
                 <?php foreach ($value as $row):
                     $arrow = '';
@@ -126,7 +130,7 @@
             </table>
         </div>
         <!-- Chart -->
-        <?php if (isset($chartData[$key])): ?>
+        <?php if (isset($chartData[$key]) && count($chartData[$key]) > 0 ): ?>
 
             <div id="<?= $key; ?>_chart" class="panel panel-primary">
 
@@ -138,12 +142,7 @@
                 </div>
                 <div class="panel-body with-chart">
 
-
                             <div style="height:150px" id="<?=preg_replace('/[0-9]+/', '', $key);?>"></div>
-
-
-
-
                 </div>
             </div>
 
@@ -152,7 +151,7 @@
                 var counter = <?=$counter;?>;
 
                 var d = <?=json_encode($chartData[$key]);?>;
-                //console.log(d);
+                console.log(d);
                 var keys = Object.keys(d[0]);
                 keys.splice(0, 1);
 
@@ -169,6 +168,7 @@
                     postUnits: '%',
                     parseTime: false,
                     hideHover:true,
+
 
                 },
                 true);
@@ -191,4 +191,23 @@
     </div>
 </div>
 
+<script type="text/javascript">
+
+    $("#year").change(function(){
+        url = '<?php echo site_url('Dashboard/index');?>';
+        year = $.trim($("#year").val());
+        period = $.trim($("#period").val());
+        window.location.href = url+'/'+year+'/'+period;
+
+    });
+
+    $("#period").change(function(){
+        url = '<?php echo site_url('Dashboard/index');?>';
+        year = $.trim($("#year").val());
+        period = $.trim($("#period").val());
+        window.location.href = url+'/'+year+'/'+period;
+    });
+
+
+</script>
 

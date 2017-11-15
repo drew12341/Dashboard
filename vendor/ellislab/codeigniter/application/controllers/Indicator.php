@@ -85,6 +85,7 @@ class Indicator extends Auth_Controller
             $record['userid'] = $this->ion_auth->user()->row()->id;
             $this->Indicator_model->updateIndicator($record);
 
+            $data['dataSet'] = $this->Indicator_model->getIndicator($id);
             $_SESSION['message'] = 'Indicator updated';
             $this->load->view('indicator/edit_view', $data);
 

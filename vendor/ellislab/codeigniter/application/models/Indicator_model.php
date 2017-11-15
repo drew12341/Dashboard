@@ -49,6 +49,9 @@ class Indicator_model extends CI_Model
         if(!isset($record['visible'])){
             $record['visible'] = 0;
         }
+        if(!isset($record['mandatory'])){
+            $record['mandatory'] = 0;
+        }
         $this->db->update('indicators', $record, array('id'=>$id));
         return $this->db->insert_id();
     }
@@ -155,7 +158,7 @@ and type = 'Percentage' group by heading";
             foreach($results1 as $res1){
                 $id = $res1['id'];
                 $description = $res1['description'];
-                $SQL = "select period, value from indicator_measures 
+                $SQL = "select period, ifnull(indicator_measures.value, 0) as value from indicator_measures 
 where indicatorid = $id and userid = $user and period <= '$period' order by period asc limit 6";
                 $query2 = $this->db->query($SQL);
                 $results2 = $query2->result_array();
@@ -182,6 +185,7 @@ where indicatorid = $id and userid = $user and period <= '$period' order by peri
     }
 
     public function getMeasuresStatus($user, $period){
+        //echo $user.' '.$period;
         $this->db->where('userid', $user);
         $this->db->where('period', $period);
         $this->db->group_by('committed');
@@ -189,7 +193,7 @@ where indicatorid = $id and userid = $user and period <= '$period' order by peri
         $results = $query->result_array();
 
         if(count($results) == 0){
-            return '-';
+            return 'No Data';
         }
         $res = $results[0];
         if($res['committed'] == 1){
@@ -202,7 +206,7 @@ where indicatorid = $id and userid = $user and period <= '$period' order by peri
         $this->db->where('userid', $measure['userid']);
         $this->db->where('indicatorid', $measure['indicatorid']);
         $this->db->where('period', $measure['period']);
-        $query = $this->db->get('indicators');
+        $query = $this->db->get('indicator_measures');
         $results = $query->result_array();
         if(count($results) > 0){
             //Update

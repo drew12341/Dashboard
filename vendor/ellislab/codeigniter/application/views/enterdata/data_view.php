@@ -13,7 +13,7 @@ function set_value_AA($field, $current_values) {
 <h3>Enter Data for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h3>
 <br/>
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-8">
 
         <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
 
@@ -43,8 +43,8 @@ function set_value_AA($field, $current_values) {
 </div>
 
 
-
-<form class="form-horizontal col-sm-12" id="mainform" autocomplete="on" method="post" accept-charset="utf-8">
+<div class="row">
+<form role="form" class="form-horizontal col-lg-8 validate" id="mainform" autocomplete="on" method="post" accept-charset="utf-8">
 
     <input type="hidden" name="year"    value="<?= $year; ?>"/>
     <input type="hidden" name="period"  value="<?= $period; ?>"/>
@@ -61,7 +61,7 @@ function set_value_AA($field, $current_values) {
                     <tr>
                         <th><?= $this->config->item($key) ?></th>
                         <th class="col-lg-2">Previous</th>
-                        <th class="col-lg-2">Current</th>
+                        <th class="col-lg-4">Current</th>
                     </tr>
 
                     </thead>
@@ -80,11 +80,36 @@ function set_value_AA($field, $current_values) {
                                 }
                                 ?>
                             </td>
-                            <td>
+
+                            <td class="input-group" style="width:100%">
+
+
+                                <?php if($row['type'] != 'True/False'): ?>
                                 <input class="form-control"
                                        <?= ($status == 'Committed') ? 'readonly' : ''; ?>
                                        name="data[<?=$row['id'];?>]"
+                                       type="text"
                                        value="<?= set_value_AA($row['id'], $current_values); ?>"
+
+                                       <?php if($row['mandatory']): ?>
+                                           data-validate="required"
+                                           data-message-required="Please provide a value"
+                                           placeholder="Required Field"
+                                        <?php endif; ?>
+                                >
+                                <?php else: ?>
+                                    <select class="form-control" data-first-option="false" name="data[<?=$row['id'];?>]" >
+                                        <option value="1">True</option>
+                                        <option value="0">False</option>
+                                    </select>
+                                <?php endif; ?>
+
+                                <?php if($row['type'] == 'Percentage'): ?>
+                                    <span class="input-group-addon">%</span>
+                                <?php endif; ?>
+                                <?php if($row['type'] == 'Absolute'): ?>
+                                    <span class="input-group-addon"><i class="entypo-target">:<?=$row['value'];?></i></span>
+                                <?php endif; ?>
 
                             </td>
                         </tr>
@@ -99,13 +124,13 @@ function set_value_AA($field, $current_values) {
 
     <a href="<?= site_url('EnterData/');?>" class="btn btn-primary" >Back </a>
 
-    <input type="button" id="draftbtn" class="btn btn-primary" value="Save as Draft"/>
+    <input type="button" id="draftbtn" class="btn btn-primary" <?= ($status == 'Committed') ? 'disabled' : ''; ?> value="Save as Draft"/>
     <input type="submit" class="btn btn-primary" <?= ($status == 'Committed') ? 'disabled' : ''; ?>
            value="Commit"/>
 
     <br/>
 </form>
-
+</div>
 <style type="text/css">
     .label-value{
         padding: 7px 12px;

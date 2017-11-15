@@ -11,6 +11,7 @@ class Migration_import_indicators extends CI_Migration {
             'visible' => true,
             'type' => 'Absolute',
             'value' => '90',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '1_minimise_injuries_maximise_wellbeing',
             'sort_order'=>1
@@ -24,7 +25,8 @@ class Migration_import_indicators extends CI_Migration {
             'description' => 'Lost-time Injuries reported',
             'visible' => true,
             'type' => 'Absolute',
-            'value' => '90',
+            'value' => '0',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '1_minimise_injuries_maximise_wellbeing',
             'sort_order'=>2
@@ -38,7 +40,8 @@ class Migration_import_indicators extends CI_Migration {
             'description' => 'Near Misses Reported',
             'visible' => true,
             'type' => 'Absolute',
-            'value' => '90',
+            'value' => '0',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '1_minimise_injuries_maximise_wellbeing',
             'sort_order'=>3
@@ -52,7 +55,8 @@ class Migration_import_indicators extends CI_Migration {
             'description' => 'Wellbeing Participation',
             'visible' => true,
             'type' => 'Absolute',
-            'value' => '90',
+            'value' => '0',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '1_minimise_injuries_maximise_wellbeing',
             'sort_order'=>4
@@ -69,6 +73,7 @@ class Migration_import_indicators extends CI_Migration {
             'visible' => true,
             'type' => 'Percentage',
             'value' => '90',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '2_safe_workplace',
             'sort_order'=>1
@@ -82,7 +87,8 @@ class Migration_import_indicators extends CI_Migration {
             'description' => 'Hazards Reported',
             'visible' => true,
             'type' => 'Absolute',
-            'value' => '90',
+            'value' => '0',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '2_safe_workplace',
             'sort_order'=>2
@@ -95,8 +101,9 @@ class Migration_import_indicators extends CI_Migration {
             'userid' => '1',
             'description' => 'Hazards Actioned',
             'visible' => true,
-            'type' => 'Absolute',
-            'value' => '90',
+            'type' => 'Percentage',
+            'value' => '100',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '2_safe_workplace',
             'sort_order'=>3
@@ -113,6 +120,7 @@ class Migration_import_indicators extends CI_Migration {
             'visible' => true,
             'type' => 'Percentage',
             'value' => '90',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '3_informed_and_engaged',
             'sort_order'=>1
@@ -127,6 +135,7 @@ class Migration_import_indicators extends CI_Migration {
             'visible' => true,
             'type' => 'Percentage',
             'value' => '90',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '3_informed_and_engaged',
             'sort_order'=>2
@@ -142,6 +151,7 @@ class Migration_import_indicators extends CI_Migration {
             'visible' => true,
             'type' => 'Percentage',
             'value' => '90',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '3_informed_and_engaged',
             'sort_order'=>3
@@ -157,6 +167,7 @@ class Migration_import_indicators extends CI_Migration {
             'visible' => true,
             'type' => 'Percentage',
             'value' => '90',
+            'mandatory'=>0,
             'category' => 'standard',
             'heading' => '3_informed_and_engaged',
             'sort_order'=>4
@@ -170,7 +181,8 @@ class Migration_import_indicators extends CI_Migration {
             'description' => 'H&S Working Group Meetings',
             'visible' => true,
             'type' => 'Absolute',
-            'value' => '90',
+            'value' => '1',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '3_informed_and_engaged',
             'sort_order'=>5
@@ -187,6 +199,7 @@ class Migration_import_indicators extends CI_Migration {
             'visible' => true,
             'type' => 'True/False',
             'value' => 'true',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '4_proactive_approach',
             'sort_order'=>1
@@ -201,6 +214,7 @@ class Migration_import_indicators extends CI_Migration {
             'visible' => true,
             'type' => 'True/False',
             'value' => 'true',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '4_proactive_approach',
             'sort_order'=>2
@@ -215,6 +229,7 @@ class Migration_import_indicators extends CI_Migration {
             'visible' => true,
             'type' => 'Percentage',
             'value' => '90',
+            'mandatory'=>1,
             'category' => 'standard',
             'heading' => '4_proactive_approach',
             'sort_order'=>3
@@ -229,6 +244,7 @@ class Migration_import_indicators extends CI_Migration {
             'visible' => true,
             'type' => 'Percentage',
             'value' => '90',
+            'mandatory'=>0,
             'category' => 'standard',
             'heading' => '4_proactive_approach',
             'sort_order'=>4

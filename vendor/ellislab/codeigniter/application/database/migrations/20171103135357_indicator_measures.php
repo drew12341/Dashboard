@@ -23,6 +23,7 @@ class Migration_indicator_measures extends CI_Migration {
             ),
             'value' => array(
                 'type'=>'float',
+                'default'=>0
             ),
 
             'committed' => array(

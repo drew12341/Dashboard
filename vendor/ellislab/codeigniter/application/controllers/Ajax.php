@@ -28,7 +28,7 @@ class Ajax extends Auth_Controller
     }
 
     function getMeasuresChartData(){
-        $ret = $this->Indicator_model->getMeasuresChartData(4, '2017-2');
+        $ret = $this->Indicator_model->getMeasuresChartData(4, '2017-4');
         echo json_encode($ret);
     }
 }

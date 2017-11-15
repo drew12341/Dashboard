@@ -23,12 +23,23 @@
             'id' => 'type',
             'type' => 'dropdown',
             'options' => $types,
-
         ),
 
         array(
             'id' => 'value',
-            'label'=>'target'
+            'label'=>'Target'
+        ),
+        array(
+            'id' => 'mandatory',
+            'type'=>'checkbox',
+            'options' => array(
+                array(
+                    'id' => 'mandatory',
+                    'value' => 1,
+                    'label' => '&nbsp;',
+
+                )
+            )
         ),
         array(
             'id' => 'submit',
