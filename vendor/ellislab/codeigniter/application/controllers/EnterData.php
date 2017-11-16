@@ -113,4 +113,11 @@ class EnterData extends Auth_Controller
             $this->load->view('enterdata/data_view', $data);
         }
     }
+
+    function remove($period, $userid){
+        $this->db->where('period', $period);
+        $this->db->where('userid', $userid);
+        $this->db->delete('indicator_measures');
+        redirect(site_url('EnterData'));
+    }
 }

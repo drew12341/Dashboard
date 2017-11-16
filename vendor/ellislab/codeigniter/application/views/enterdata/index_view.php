@@ -60,8 +60,13 @@
         });
 
         // Initalize Select Dropdown after DataTables is created
-        table1.closest( '.dataTables_wrapper' ).find( 'select' ).select2( {
-            minimumResultsForSearch: -1
+//        table1.closest( '.dataTables_wrapper' ).find( 'select' ).select2( {
+//            minimumResultsForSearch: -1
+//        });
+
+        $('[data-toggle=confirmation]').confirmation({
+            rootSelector: '[data-toggle=confirmation]',
+            // other options
         });
     } );
 </script>
@@ -104,7 +109,17 @@
                             $status = ($measure['committed'])? 'Committed' : 'Draft';
                             ?>
                             <tr>
-                                <td><a href="<?=site_url('EnterData/data/').$year.'/'.$period;?>" class="btn btn-primary">View</a></td>
+                                <td><a href="<?=site_url('EnterData/data/').$year.'/'.$period;?>" class="btn btn-primary">Open</a>
+
+                                    <a
+                                        class="btn btn-primary" data-toggle="confirmation"
+                                        data-btn-ok-label="Delete" data-btn-ok-icon="glyphicon glyphicon-share-alt"
+                                        data-btn-ok-class="btn-success"
+                                        data-btn-cancel-label="Cancel" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+                                        data-btn-cancel-class="btn-danger"
+                                        data-title="Warning" data-content="This will remove these records"
+                                        href="<?=site_url('EnterData/remove/').$measure['period'].'/'.$measure['userid']?>">Delete</a>
+                                </td>
                                 <td><?=$measure['id'];?></td>
                                 <td><?=$year;?> </td>
                                 <td><?=$period;?> (<?= $periodtext; ?>)</td>

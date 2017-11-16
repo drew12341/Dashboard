@@ -87,28 +87,7 @@
                                     </a>
                                 </li>
                             <?php endif; ?>
-                        <!--
-                            <li>
-                                <a href="mailbox.html">
-                                    <i class="entypo-mail"></i>
-                                    Inbox
-                                </a>
-                            </li>
 
-                            <li>
-                                <a href="extra-calendar.html">
-                                    <i class="entypo-calendar"></i>
-                                    Calendar
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <i class="entypo-clipboard"></i>
-                                    Tasks
-                                </a>
-                            </li>
-                            -->
                         </ul>
                     </li>
 
@@ -164,8 +143,7 @@
             <!-- Footer -->
             <footer class="main">
 
-                &copy; 2015 <strong>Neon</strong> Admin Theme by <a href="http://laborator.co" target="_blank">Laborator</a>
-
+                Copyright &copy; 2017 <a target="_blank" href="http://www.uts.edu.au">uts.edu.au</a>
             </footer>
         </div>
 
@@ -174,13 +152,10 @@
     </div>
     <!-- Imported styles on this page -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/datatables/datatables.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/select2/select2-bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/select2/select2.css">
 
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/rickshaw/rickshaw.min.css">
-
-
     <!-- Bottom scripts (common) -->
+
     <script src="<?php echo base_url(); ?>assets/js/gsap/TweenMax.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap.js"></script>
@@ -191,13 +166,11 @@
 
 
     <!-- Imported scripts on this page -->
-    <script src="<?php echo base_url(); ?>assets/js/datatables/datatables.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/datatables_noconf.js"></script>
+
+    <script src="<?php echo base_url(); ?>assets/js/bootstrap-confirmation.js"></script>
 
     <script src="<?php echo base_url(); ?>assets/js/jquery.sparkline.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/rickshaw/vendor/d3.v3.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/rickshaw/rickshaw.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/toastr.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/neon-chat.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/select2/select2.min.js"></script>
 
     <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
@@ -213,4 +186,4 @@
     <!-- Demo Settings -->
     <script src="<?php echo base_url(); ?>assets/js/neon-demo.js"></script>
 
-</body>
+    </body>
