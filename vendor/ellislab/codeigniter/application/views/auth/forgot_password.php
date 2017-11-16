@@ -3,7 +3,7 @@
     <div class="col-md-12">
 
         <h1>Forgot Password</h1>
-        <h4>Please enter in your email address to receive a password reset link.</h4>
+        <h4>Please enter in your username to receive a password reset link.</h4>
         <?php
         echo isset($_SESSION['auth_message']) ? $_SESSION['auth_message'] : FALSE;
         ?>

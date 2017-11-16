@@ -25,9 +25,13 @@ class Migration_indicator_measures extends CI_Migration {
                 'type'=>'float',
                 'default'=>0
             ),
-
+            'date_committed' => array(
+                'type'=>'datetime',
+                'null'=>true
+            ),
             'committed' => array(
-                'type' => 'int'
+                'type' => 'int',
+                'default'=>0
             ),
         ));
         $this->dbforge->add_key('id', TRUE);

@@ -1,5 +1,8 @@
 <?php if ($this->ion_auth->logged_in()) : ?>
     <h4>Dashboard report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
+
+    <?php else: ?>
+    <h4>Dashboard report for: UTS Wide</h4>
 <?php endif; ?>
 
 
@@ -96,8 +99,8 @@
 
                     if ($row['type'] == 'True/False') {
                         $badge = ($row['current']) ? 'badge-success' : 'badge-danger';
-                        $row['previous'] = ($row['previous'] ? 'Yes' : 'No');
-                        $row['current'] = ($row['current'] ? 'Yes' : 'No');
+                        if(isset($row['previous'])) { $row['previous'] = ($row['previous'] ? 'Yes' : 'No');}
+                        if(isset($row['current'])){ $row['current'] = ($row['current'] ? 'Yes' : 'No');}
                     }
                     if ($row['type'] == 'Absolute') {
                         $badge = ($row['current'] > $row['value']) ? 'badge-success' : 'badge-danger';
@@ -118,8 +121,8 @@
                     <tr>
 
                         <td><?= $row['description']; ?></td>
-                        <td><?= $row['previous'] . $percent; ?></td>
-                        <td><?= $row['current'] . $percent; ?></td>
+                        <td><?= $row['previous'] ?> <?= isset($row['previous']) ? $percent : '' ;?></td>
+                        <td><?= $row['current']  ?> <?= isset($row['current']) ? $percent : '' ;?></td>
                         <td class="text-center"><i class="badge <?= $badge; ?>">&nbsp;</i></td>
                         <td class="text-center"><i class="<?= $arrow; ?> dashboard-icon <?= $button; ?>"></i></td>
                     </tr>
@@ -151,7 +154,7 @@
                 var counter = <?=$counter;?>;
 
                 var d = <?=json_encode($chartData[$key]);?>;
-                console.log(d);
+                //console.log(d);
                 var keys = Object.keys(d[0]);
                 keys.splice(0, 1);
 
@@ -180,7 +183,7 @@
 
 
 
-    <?php if ($counter == floor(count($sections) / 2)): ?>
+    <?php if ($counter == floor(count($sections) / 2.0)): ?>
         </div>
         <div class="col-sm-6">
     <?php endif;

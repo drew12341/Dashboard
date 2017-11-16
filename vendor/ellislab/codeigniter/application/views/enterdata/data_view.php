@@ -91,11 +91,15 @@ function set_value_AA($field, $current_values) {
                                        type="text"
                                        value="<?= set_value_AA($row['id'], $current_values); ?>"
 
-                                       <?php if($row['mandatory']): ?>
-                                           data-validate="required"
-                                           data-message-required="Please provide a value"
+                                       <?php if($row['mandatory']){ ?>
+                                           data-validate="required,number"
+                                           data-message-required="Please provide a number"
                                            placeholder="Required Field"
-                                        <?php endif; ?>
+
+                                           <?php } else{ ?>
+                                           data-validate="number"
+                                           data-message-required="Must be numeric"
+                                        <?php }; ?>
                                 >
                                 <?php else: ?>
                                     <select class="form-control" data-first-option="false" name="data[<?=$row['id'];?>]" >
@@ -108,7 +112,14 @@ function set_value_AA($field, $current_values) {
                                     <span class="input-group-addon">%</span>
                                 <?php endif; ?>
                                 <?php if($row['type'] == 'Absolute'): ?>
-                                    <span class="input-group-addon"><i class="entypo-target">:<?=$row['value'];?></i></span>
+                                    <?php if($row['description'] == 'No-lost-time injuries reported'): ?>
+                                        <span class="input-group-addon"><i class="entypo-target">:
+                                                <?=(isset($previous_values[$row['id']]))?
+                                                     $previous_values[$row['id']] : 'N/A';
+                                                ?></i></span>
+                                    <?php else: ?>
+                                        <span class="input-group-addon"><i class="entypo-target">:<?=$row['value'];?></i></span>
+                                    <?php endif; ?>
                                 <?php endif; ?>
 
                             </td>

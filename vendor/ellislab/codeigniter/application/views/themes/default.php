@@ -173,7 +173,10 @@
 
     </div>
     <!-- Imported styles on this page -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/jvectormap/jquery-jvectormap-1.2.2.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/datatables/datatables.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/select2/select2-bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/select2/select2.css">
+
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/rickshaw/rickshaw.min.css">
 
 
@@ -184,20 +187,25 @@
     <script src="<?php echo base_url(); ?>assets/js/joinable.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/resizeable.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/neon-api.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+
 
 
     <!-- Imported scripts on this page -->
-    <script src="<?php echo base_url(); ?>assets/js/jvectormap/jquery-jvectormap-europe-merc-en.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/datatables/datatables.js"></script>
+
     <script src="<?php echo base_url(); ?>assets/js/jquery.sparkline.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/rickshaw/vendor/d3.v3.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/rickshaw/rickshaw.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/toastr.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/neon-chat.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/select2/select2.min.js"></script>
 
     <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/moment.min.js"></script>
 
 
+
+    <script src="<?php echo base_url(); ?>assets/js/dataTable.moment.js"></script>
     <!-- JavaScripts initializations and stuff -->
     <script src="<?php echo base_url(); ?>assets/js/neon-custom.js"></script>
 

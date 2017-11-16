@@ -50,17 +50,17 @@
             <li class="">
                 <a href="<?php echo site_url('EnterData');?>">
                     <i class="entypo-doc-text"></i>
-                    <span class="title">Enter Data</span>
+                    <span class="title">Enter/View Data</span>
                 </a>
 
             </li>
-            <li class="">
+            <!--<li class="">
                 <a href="<?php echo site_url('ViewData');?>">
                     <i class="entypo-window"></i>
                     <span class="title">View Data</span>
                 </a>
 
-            </li>
+            </li>-->
             <li class="">
                 <a href="<?php echo site_url('Report');?>">
                     <i class="entypo-monitor"></i>

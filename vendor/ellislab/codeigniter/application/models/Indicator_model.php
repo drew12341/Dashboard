@@ -92,7 +92,7 @@ class Indicator_model extends CI_Model
         return $aggregated;
     }
 
-    public function getFullMeasures($user, $thisperiod){
+    public function getFullMeasures($user, $thisperiod, $utswide = false){
         $d = explode('-', $thisperiod);
         $period = $d[1];
         $year = $d[0];
@@ -108,8 +108,14 @@ class Indicator_model extends CI_Model
         $previousperiod = $previousyear.'-'.$previousperiod;
 
 
+        //if UTS wide, then we change the queries
+
         $SQL = "select heading from indicators where userid = $user or category = 'standard'
                   group by heading";
+        if($utswide){
+            $SQL = "select heading from indicators where category = 'standard'
+                  group by heading";
+        }
 
         $query = $this->db->query($SQL);
         $results = $query->result_array();
@@ -122,10 +128,20 @@ class Indicator_model extends CI_Model
             $SQL = "select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current, 
 curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value
 from indicator_measures curr
-  left outer join indicator_measures prev on curr.indicatorid = prev.indicatorid
   INNER JOIN indicators ind on ind.id = curr.indicatorid
-where curr.period = '$thisperiod' and prev.period = '$previousperiod' and curr.userid = $user and ind.heading = '$heading'
+  left outer join indicator_measures prev on curr.indicatorid = prev.indicatorid and curr.userid = prev.userid and prev.period = '$previousperiod'
+where curr.period = '$thisperiod'  and curr.userid = $user and ind.heading = '$heading'
 ORDER BY ind.heading, ind.sort_order";
+
+            if($utswide){
+                $SQL = "select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current, 
+ ind.description, ind.type, ind.heading, ind.sort_order, ind.value
+from indicator_measures_aggregate curr
+  INNER JOIN indicators ind on ind.id = curr.indicatorid
+  left outer join indicator_measures_aggregate prev on curr.indicatorid = prev.indicatorid and prev.period = '$previousperiod'
+where curr.period = '$thisperiod' and ind.heading = '$heading'
+ORDER BY ind.heading, ind.sort_order";
+            }
 
             $query1 = $this->db->query($SQL);
             $results1 = $query1->result_array();
@@ -135,10 +151,15 @@ ORDER BY ind.heading, ind.sort_order";
         return $aggregated;
     }
 
-    public function getMeasuresChartData($user, $period){
+    public function getMeasuresChartData($user, $period, $utswide = false){
         //first get measures that are percentage based
         $SQL = "select heading from indicators where (userid = $user or category = 'standard')
 and type = 'Percentage' group by heading";
+
+        if($utswide){
+            $SQL = "select heading from indicators where category = 'standard'
+and type = 'Percentage' group by heading";
+        }
 
         $query = $this->db->query($SQL);
         $results = $query->result_array();
@@ -160,6 +181,12 @@ and type = 'Percentage' group by heading";
                 $description = $res1['description'];
                 $SQL = "select period, ifnull(indicator_measures.value, 0) as value from indicator_measures 
 where indicatorid = $id and userid = $user and period <= '$period' order by period asc limit 6";
+
+                if($utswide){
+                    $SQL = "select period, ifnull(indicator_measures_aggregate.value, 0) as value from indicator_measures_aggregate 
+where indicatorid = $id and period <= '$period' order by period asc limit 6";
+                }
+
                 $query2 = $this->db->query($SQL);
                 $results2 = $query2->result_array();
 
@@ -202,7 +229,25 @@ where indicatorid = $id and userid = $user and period <= '$period' order by peri
         return 'Draft';
     }
 
+
+    public function getAllMeasures($user){
+        //echo $user.' '.$period;
+        $this->db->where('userid', $user);
+        $this->db->group_by('period');
+        $this->db->order_by('period', 'desc');
+        $query = $this->db->get('indicator_measures');
+        $results = $query->result_array();
+
+
+        return $results;
+    }
+
     public function upsertmeasure($measure){
+
+        if($measure['committed']){
+            $measure['date_committed'] = date("Y-m-d H:i:s");
+        }
+
         $this->db->where('userid', $measure['userid']);
         $this->db->where('indicatorid', $measure['indicatorid']);
         $this->db->where('period', $measure['period']);

@@ -20,6 +20,14 @@ class EnterData extends Auth_Controller
             $types[$count++] = $w;
         }
         $data['periods'] = $types;
+        $year = date("Y");
+
+        $period = month_to_period(date('n'));
+
+        $data['year'] = $year;
+        $data['period'] = $period;
+
+        $data['measures'] = $this->Indicator_model->getAllMeasures($this->ion_auth->user()->row()->id);
 
         $this->form_validation->set_rules('year', 'Year','trim|required');
         $this->form_validation->set_rules('period', 'Period','trim|required');
@@ -66,7 +74,7 @@ class EnterData extends Auth_Controller
         $data['previous_values'] = $this->Indicator_model->getMeasures($this->ion_auth->user()->row()->id, $previousyear.'-'.$previousperiod);
         $data['status'] = $this->Indicator_model->getMeasuresStatus($this->ion_auth->user()->row()->id, $year.'-'.$period);
 
-        //TODO validation
+
         $validations = array();
         //$this->form_validation->set_rules('year', 'Year','trim|required');
         $this->form_validation->set_rules('year', 'Year','trim|required');
