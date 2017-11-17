@@ -186,4 +186,10 @@
     <!-- Demo Settings -->
     <script src="<?php echo base_url(); ?>assets/js/neon-demo.js"></script>
 
+
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/tableExportjqueryplugin-master/libs/FileSaver/FileSaver.min.js"></script>
+
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/tableExportjqueryplugin-master/tableExport.js"></script>
+
+
     </body>

@@ -263,4 +263,53 @@ where indicatorid = $id and period <= '$period' order by period asc limit 6";
             $this->db->insert('indicator_measures', $measure);
         }
     }
+
+    public function getYearlyMeasures($user, $year ){
+
+        $y1 = $year.'-1';
+        $y2 = $year.'-2';
+        $y3 = $year.'-3';
+        $y4 = $year.'-4';
+        $y5 = $year.'-5';
+        $y6 = $year.'-6';
+
+
+        //if UTS wide, then we change the queries
+
+        $SQL = "select heading from indicators where userid = $user or category = 'standard'
+                  group by heading";
+
+
+        $query = $this->db->query($SQL);
+        $results = $query->result_array();
+
+        //Aggregate for ease of display (group into sections)
+        $aggregated = array();
+        foreach($results as $res){
+            $heading = $res['heading'];
+
+
+
+            $SQL = "select y1.period as y1period, y2.period as y2period, y3.period as y3period, y4.period as y4period, y5.period as y5period, y6.period as y6period, 
+y1.value as y1value, y2.value as y2value, y3.value as y3value, y4.value as y4value, y5.value as y5value, y6.value as y6value,  
+y1.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value
+from indicators ind
+  left outer join indicator_measures y1 on ind.id = y1.indicatorid and y1.userid = $user and y1.period = '$y1'
+  left outer join indicator_measures y2 on ind.id = y2.indicatorid and y2.userid = $user and y2.period = '$y2'
+  left outer join indicator_measures y3 on ind.id = y3.indicatorid and y3.userid = $user and y3.period = '$y3'
+  left outer join indicator_measures y4 on ind.id = y4.indicatorid and y4.userid = $user and y4.period = '$y4'
+  left outer join indicator_measures y5 on ind.id = y5.indicatorid and y5.userid = $user and y5.period = '$y5'
+  left outer join indicator_measures y6 on ind.id = y6.indicatorid and y6.userid = $user and y6.period = '$y6'
+where ind.heading = '$heading' 
+ORDER BY ind.heading, ind.sort_order";
+
+
+            $query1 = $this->db->query($SQL);
+            $results1 = $query1->result_array();
+            $aggregated[$heading] = $results1;
+        }
+
+        return $aggregated;
+    }
+
 }

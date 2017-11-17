@@ -38,3 +38,11 @@ body {
     margin: -1px;
     border: 0;
 }
+
+tr.header{
+    background-color: #c9c9c9 !important;
+}
+.header td {
+    border: 1px solid black;
+    font-weight: bold;
+}
