@@ -1,4 +1,4 @@
-**iAuditor Action Tracker**
+**Dashboard App**
 
 Codeigniter/PHP5.3/Bootstrap
 
@@ -14,13 +14,8 @@ or alternatively, hit the URL: `[baseurl]/tools/migrate`
 
 This will create the table structure and also a super-user:
 
-`Email: admin@admin.com
+`Email: administrator
 Password: password`
-
-Sign in with the admin account, and then navigate to the administrator menu function
-'Reload Audits'
-
-This will trigger a reload of all template and audit data from the iAuditor system (may take 2-3 minutes).
 
 
 

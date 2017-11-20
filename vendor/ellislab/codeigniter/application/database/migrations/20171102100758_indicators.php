@@ -53,11 +53,11 @@ class Migration_indicators extends CI_Migration {
 
         ));
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('indicator');
+        $this->dbforge->create_table('indicators');
     }
 
     public function down() {
-        $this->dbforge->drop_table('indicator');
+        $this->dbforge->drop_table('indicators');
     }
 
 }

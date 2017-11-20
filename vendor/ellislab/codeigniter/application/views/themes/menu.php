@@ -78,8 +78,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var active_link = $('.main-menu li a[href~="<?=base_url($this->uri->segment(1))?>"]');
-        //console.log(active_link.html());
-        //console.log("<?=base_url($this->uri->segment(1));?>");
+
         if(active_link.size() > 0){
             //console.log('active');
             active_link.parent().addClass('active');
@@ -88,10 +87,12 @@
         else{
             $("#defaulttab").addClass('active');
         }
+
+        //can check correct-loading of bootstrap with this
+        //console.log((typeof $().emulateTransitionEnd == 'function'));
+
+        $('.dropdown-toggle').dropdown()
     });
 
-    //can check correct-loading of bootstrap with this
-    //console.log((typeof $().emulateTransitionEnd == 'function'));
 
-    //$('.dropdown-toggle').dropdown()
 </script>

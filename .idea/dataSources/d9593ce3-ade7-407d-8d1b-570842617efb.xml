@@ -33,25 +33,28 @@
     </column>
     <column id="16" parent="3" name="userid">
       <mandatory>1</mandatory>
-      <data-type>INTEGER(0,-1)|4</data-type>
+      <data-type>INT(0,-1)|4</data-type>
     </column>
     <column id="17" parent="3" name="indicatorid">
-      <data-type>INTEGER(0,-1)|4</data-type>
+      <mandatory>1</mandatory>
+      <data-type>INT(0,-1)|4</data-type>
     </column>
     <column id="18" parent="3" name="period">
-      <data-type>TEXT(0,-1)|12</data-type>
-    </column>
-    <column id="19" parent="3" name="committed">
-      <data-type>INTEGER(0,-1)|4</data-type>
-      <default-expression>1</default-expression>
-    </column>
-    <column id="20" parent="3" name="value">
       <mandatory>1</mandatory>
-      <data-type>REAL(0,-1)|6</data-type>
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="19" parent="3" name="value">
+      <mandatory>1</mandatory>
+      <data-type>FLOAT(0,-1)|6</data-type>
       <default-expression>0</default-expression>
     </column>
-    <column id="21" parent="3" name="date_committed">
+    <column id="20" parent="3" name="date_committed">
       <data-type>DATETIME(0,-1)|12</data-type>
+    </column>
+    <column id="21" parent="3" name="committed">
+      <mandatory>1</mandatory>
+      <data-type>INT(0,-1)|4</data-type>
+      <default-expression>0</default-expression>
     </column>
     <key id="22" parent="3">
       <columns>id</columns>
@@ -73,26 +76,28 @@
       <data-type>TINYINT(0,-1)|4</data-type>
       <default-expression>1</default-expression>
     </column>
-    <column id="27" parent="4" name="type">
+    <column id="27" parent="4" name="mandatory">
+      <mandatory>1</mandatory>
+      <data-type>TINYINT(0,-1)|4</data-type>
+      <default-expression>0</default-expression>
+    </column>
+    <column id="28" parent="4" name="type">
       <mandatory>1</mandatory>
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="28" parent="4" name="value">
+    <column id="29" parent="4" name="value">
       <mandatory>1</mandatory>
       <data-type>FLOAT(0,-1)|6</data-type>
     </column>
-    <column id="29" parent="4" name="category">
-      <data-type>VARCHAR(50)(0,-1)|12</data-type>
+    <column id="30" parent="4" name="category">
+      <mandatory>1</mandatory>
+      <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="30" parent="4" name="heading">
-      <data-type>VARCHAR(200)(0,-1)|12</data-type>
+    <column id="31" parent="4" name="heading">
+      <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="31" parent="4" name="sort_order">
+    <column id="32" parent="4" name="sort_order">
       <data-type>INT(0,-1)|4</data-type>
-    </column>
-    <column id="32" parent="4" name="mandatory">
-      <data-type>INT(0,-1)|4</data-type>
-      <default-expression>0</default-expression>
     </column>
     <key id="33" parent="4">
       <columns>id</columns>
@@ -177,50 +182,44 @@
     <column id="56" parent="8" name="last_name">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="57" parent="8" name="company">
+    <column id="57" parent="8" name="profilepic">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="58" parent="8" name="phone">
+    <column id="58" parent="8" name="orgunit_name">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="59" parent="8" name="profilepic">
-      <data-type>VARCHAR(100)(0,-1)|12</data-type>
-    </column>
-    <column id="60" parent="8" name="orgunit_name">
-      <data-type>VARCHAR(200)(0,-1)|12</data-type>
-    </column>
-    <key id="61" parent="8">
+    <key id="59" parent="8">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="62" parent="9" name="id">
+    <column id="60" parent="9" name="id">
       <data-type>INTEGER(0,-1)|4</data-type>
     </column>
-    <column id="63" parent="9" name="user_id">
+    <column id="61" parent="9" name="user_id">
       <mandatory>1</mandatory>
       <data-type>MEDIUMINT(0,-1)|4</data-type>
     </column>
-    <column id="64" parent="9" name="group_id">
+    <column id="62" parent="9" name="group_id">
       <mandatory>1</mandatory>
       <data-type>MEDIUMINT(0,-1)|4</data-type>
     </column>
-    <key id="65" parent="9">
+    <key id="63" parent="9">
       <columns>id</columns>
       <primary>1</primary>
     </key>
-    <column id="66" parent="10" name="period">
-      <data-type>TEXT(0,-1)|12</data-type>
-    </column>
-    <column id="67" parent="10" name="indicatorid">
-      <data-type>INTEGER(0,-1)|4</data-type>
-    </column>
-    <column id="68" parent="10" name="description">
+    <column id="64" parent="10" name="period">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="69" parent="10" name="type">
+    <column id="65" parent="10" name="indicatorid">
+      <data-type>INT(0,-1)|4</data-type>
+    </column>
+    <column id="66" parent="10" name="description">
       <data-type>VARCHAR(0,-1)|12</data-type>
     </column>
-    <column id="70" parent="10" name="value">
+    <column id="67" parent="10" name="type">
+      <data-type>VARCHAR(0,-1)|12</data-type>
+    </column>
+    <column id="68" parent="10" name="value">
       <data-type>(0,-1)|12</data-type>
     </column>
   </database-model>
