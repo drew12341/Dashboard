@@ -26,37 +26,7 @@
 </div>
 
 
-<table id="example" class="display nowrap" width="100%" cellspacing="0">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
-    </tr>
-    </thead>
-    <tfoot>
-    <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
-    </tr>
-    </tfoot>
-    <tbody>
-    <tr>
-        <td>Tiger Nixon</td>
-        <td>System Architect</td>
-        <td>Edinburgh</td>
-        <td>61</td>
-        <td>2011/04/25</td>
-        <td>$320,800</td>
-    </tr>
-    </table>
+
 
 
 <div class="row">
@@ -65,24 +35,26 @@
 
             <div class="panel-body with-table">
                 <table class="table datatables table-striped table-bordered" id="table1">
+                    <thead>
+                    <tr>
+                        <th>Group</th>
+                        <th>Group Sorting</th>
+                        <th>Row Sorting</th>
+                        <th>Description</th>
 
+                        <th>Feb-Mar</th>
+                        <th>Apr-May</th>
+                        <th>Jun-Jul</th>
+                        <th>Aug-Sept</th>
+                        <th>Oct-Nov</th>
+                        <th>Dec-Jan</th>
+
+
+                    </tr>
+                    </thead>
 
                     <tbody>
                 <?php foreach ($sections as $key => $value): ?>
-
-
-                        <tr class="header">
-
-
-                            <td><?= $this->config->item($key) ?></td>
-                            <td>Feb-Mar</td>
-                            <td>Apr-May</td>
-                            <td>Jun-Jul</td>
-                            <td>Aug-Sept</td>
-                            <td>Oct-Nov</td>
-                            <td>Dec-Jan</td>
-                        </tr>
-
 
 
                         <?php foreach($value as $row):
@@ -94,6 +66,9 @@
                             <?php if($row['type'] == 'True/False'): ?>
                             <tr>
 
+                                <td><?= $this->config->item($key) ?></td>
+                                <td><?=$key;?></td>
+                                <td><?=$row['sort_order'];?></td>
                                 <td class="col-lg-4"><?=$row['description'];?></td>
                                 <td><?=(isset($row['y1value'])) ? ($row['y1value']) ? 'Yes' : 'No' : '';?> </td>
                                 <td><?=(isset($row['y2value'])) ? ($row['y2value']) ? 'Yes' : 'No' : '';?> </td>
@@ -105,7 +80,9 @@
                             </tr>
                             <?php else: ?>
                             <tr>
-
+                                <td><?= $this->config->item($key) ?></td>
+                                <td><?=$key;?></td>
+                                <td><?=$row['sort_order'];?></td>
                                 <td class="col-lg-4"><?=$row['description'];?></td>
                                 <td><?=(isset($row['y1value']))? $row['y1value'].$percent : '' ;?></td>
                                 <td><?=(isset($row['y2value']))? $row['y2value'].$percent : '' ;?></td>
@@ -130,7 +107,7 @@
     </div>
 </div>
 
-<button type="button" id="mybtn"/>PRINT</button>
+
 
 <script type="text/javascript">
 
@@ -140,14 +117,35 @@
         window.location.href = url+'/'+year;
 
     });
-    </script>
 
 
-
-<script type="text/javascript">
     $(document).ready(function() {
-        $("#mybtn").click(function() {
-            $('#table1').tableExport({type: 'csv'});
-        });
-    });
+        $('#table1').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'pdf', 'print'
+            ],
+            "order": [[1, "asc"],[2, "asc"]],
+            rowGroup: {
+                dataSrc: 0
+            },
+            columnDefs: [
+                {
+                    targets: [0, 1, 2],
+                    visible: false,
+                    searchable: false
+                },
+
+            ],
+            paging: false
+
+        } );
+    } );
+
 </script>
+
+<style type="text/css">
+    #table1_info{
+        display:none;
+    }
+</style>
