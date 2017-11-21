@@ -103,7 +103,7 @@
                             $period = $d[1];
 
                             $dashperiods =    explode(',', $this->config->item('dash_periods'));
-                            $periodtext = $dashperiods[$period];
+                            $periodtext = $dashperiods[$period-1];
 
 
                             $status = ($measure['committed'])? 'Committed' : 'Draft';
