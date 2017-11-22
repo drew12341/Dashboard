@@ -7,7 +7,7 @@
             <div class="alert alert-warning"><?=$_SESSION['auth_message'];?>
             </div>
         <?php endif; ?>
-        <?= json_encode($users); ?>
+
 
         <div id="infoMessage"><?php if (isset($message)){ echo $message; }?></div>
         <?= $this->form_builder->open_form(array('action' => ''));
