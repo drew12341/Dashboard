@@ -24,10 +24,7 @@
                     'value' => $dataSet['user_id'],
                     'type' => 'hidden'
                 ),
-                array(
-                    'id' => 'username',
-                    'value' => $dataSet['username'],
-                ),
+
                 array(
                     'id' => 'email',
                     'value' => $dataSet['email'],

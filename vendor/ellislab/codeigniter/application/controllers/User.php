@@ -240,10 +240,14 @@ class User extends CI_Controller  {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('username', 'Username', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'required');
+
+        $data = array();
+        $data['users'] = $this->ion_auth->get_all();
+
         if ($this->form_validation->run() === FALSE)
         {
             $this->load->helper('form');
-            $this->load->view('user/login_view');
+            $this->load->view('user/login_view', $data);
             //$this->render('user/login_view');
         }
         else

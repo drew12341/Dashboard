@@ -7,19 +7,25 @@
             <div class="alert alert-warning"><?=$_SESSION['auth_message'];?>
             </div>
         <?php endif; ?>
-
+        <?= json_encode($users); ?>
 
         <div id="infoMessage"><?php if (isset($message)){ echo $message; }?></div>
         <?= $this->form_builder->open_form(array('action' => ''));
         echo $this->form_builder->build_form_horizontal(
             array(
+//                array(
+//                    'id' => 'username'
+//                ),
                 array(
-                    'id' => 'username'
+                    'id'=>'username',
+                    'type'=>'dropdown',
+                    'options'=>$users,
                 ),
                 array(
                     'id' => 'password',
                     'type' => 'password',
                 ),
+
                 array(
                     'id' => 'remember',
                     'type' => 'checkbox',
