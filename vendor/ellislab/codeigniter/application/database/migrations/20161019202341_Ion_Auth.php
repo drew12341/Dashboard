@@ -154,7 +154,7 @@ class Migration_Ion_auth extends CI_Migration {
             'active' => '1',
             'first_name' => 'Admin',
             'last_name' => 'istrator',
-            'orgunit_name'=>'Facilities Management Office '
+            'orgunit_name'=>'Administrator'
         );
         $this->db->insert('users', $data);
 

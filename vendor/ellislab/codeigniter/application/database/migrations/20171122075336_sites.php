@@ -5,7 +5,7 @@ class Migration_sites extends CI_Migration {
     public function up() {
         $data = array(
             'ip_address' => '127.0.0.1',
-            'username' => 'fass',
+            'username' => 'fmo',
             'password' => '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36',
             'salt' => '',
             'email' => 'admin@admin.com',
@@ -16,8 +16,12 @@ class Migration_sites extends CI_Migration {
             'active' => '1',
             'first_name' => '',
             'last_name' => '',
-            'orgunit_name'=>'Faculty of Arts and Social Sciences '
+            'orgunit_name'=>'Facilities Management Office'
         );
+        $this->db->insert('users', $data);
+
+        $data['username'] = 'fass';
+        $data['orgunit_name'] = 'Faculty of Arts and Social Sciences ';
         $this->db->insert('users', $data);
 
         $data['username'] = 'fdab';

@@ -18,7 +18,15 @@ class Report extends Auth_Controller
         else{
             $data['year'] = $year;
         }
-        $data['sections'] = $this->Indicator_model->getYearlyMeasures($this->ion_auth->user()->row()->id, $data['year']);
+
+        $userid = $this->ion_auth->user()->row()->id;
+        if($this->ion_auth->is_admin()){
+            if(isset($_SESSION['emulate'])){
+                $userid = isset($_SESSION['emulate']);
+            }
+        }
+
+        $data['sections'] = $this->Indicator_model->getYearlyMeasures($userid, $data['year']);
         $this->load->view('report/index_view', $data);
     }
 }

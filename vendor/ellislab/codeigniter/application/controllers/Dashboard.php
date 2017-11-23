@@ -36,6 +36,12 @@ class Dashboard extends CI_Controller
         if($this->ion_auth->logged_in()) {
             $userid = $this->ion_auth->user()->row()->id;
             $utswide = false;
+
+            if($this->ion_auth->is_admin()){
+                if(isset($_SESSION['emulate'])){
+                    $userid = isset($_SESSION['emulate']);
+                }
+            }
         }
 
         $data['year'] = $year;

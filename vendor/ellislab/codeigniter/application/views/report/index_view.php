@@ -1,7 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 
-<h3> Reports</h3>
+<?php if($this->ion_auth->is_admin() && isset($_SESSION['emulated_name'])): ?>
+    <h4>Report for: <?= urldecode($_SESSION['emulated_name']); ?></h4>
+
+<?php else:?>
+    <h4>Report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
+<?php endif; ?>
+
 
 
 <div class="row">

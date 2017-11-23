@@ -2287,4 +2287,15 @@ class Ion_auth_model extends CI_Model
         }
         return $agg;
     }
+
+    public function get_all_id(){
+        $query = $this->db->get('users');
+
+        $results = $query->result_array();
+        $agg = array();
+        foreach($results as $res){
+            $agg[$res['id']] = $res['orgunit_name'];
+        }
+        return $agg;
+    }
 }

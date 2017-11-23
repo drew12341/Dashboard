@@ -31,4 +31,10 @@ class Ajax extends Auth_Controller
         $ret = $this->Indicator_model->getMeasuresChartData(4, '2017-4');
         echo json_encode($ret);
     }
+
+    function setSession($id, $desc){
+        $_SESSION['emulate'] = $id;
+        $_SESSION['emulated_name'] = $desc;
+        echo json_encode(array('success'=>true));
+    }
 }
