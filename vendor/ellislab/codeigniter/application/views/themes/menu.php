@@ -47,13 +47,15 @@
             </li>
 
             <?php if($this->ion_auth->logged_in()): ?>
-            <li class="">
-                <a href="<?php echo site_url('EnterData');?>">
-                    <i class="entypo-doc-text"></i>
-                    <span class="title">Enter/View Data</span>
-                </a>
+                <?php if(!$this->ion_auth->is_admin()) :?>
+                    <li class="">
+                        <a href="<?php echo site_url('EnterData');?>">
+                            <i class="entypo-doc-text"></i>
+                            <span class="title">Enter/View Data</span>
+                        </a>
 
-            </li>
+                    </li>
+                    <?php endif; ?>
             <!--<li class="">
                 <a href="<?php echo site_url('ViewData');?>">
                     <i class="entypo-window"></i>

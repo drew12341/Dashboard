@@ -255,6 +255,7 @@ class User extends CI_Controller  {
             $remember = (bool) $this->input->post('remember');
             if ($this->ion_auth->login(strtolower($this->input->post('username')), $this->input->post('password'), $remember))
             {
+                $_SESSION['emulate'] = '1';
                 redirect('dashboard');
             }
             else
