@@ -130,7 +130,7 @@ curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value
 from indicator_measures curr
   INNER JOIN indicators ind on ind.id = curr.indicatorid
   left outer join indicator_measures prev on curr.indicatorid = prev.indicatorid and curr.userid = prev.userid and prev.period = '$previousperiod'
-where curr.period = '$thisperiod'  and curr.userid = $user and ind.heading = '$heading'
+where curr.period = '$thisperiod'  and curr.userid = $user and ind.heading = '$heading' and prev.committed = 1 and curr.committed = 1
 ORDER BY ind.heading, ind.sort_order";
 
             if($utswide){
@@ -139,7 +139,7 @@ ORDER BY ind.heading, ind.sort_order";
 from indicator_measures_aggregate curr
   INNER JOIN indicators ind on ind.id = curr.indicatorid
   left outer join indicator_measures_aggregate prev on curr.indicatorid = prev.indicatorid and prev.period = '$previousperiod'
-where curr.period = '$thisperiod' and ind.heading = '$heading'
+where curr.period = '$thisperiod' and ind.heading = '$heading' and prev.committed = 1 and curr.committed = 1
 ORDER BY ind.heading, ind.sort_order";
             }
 
@@ -180,11 +180,11 @@ and type = 'Percentage' group by heading";
                 $id = $res1['id'];
                 $description = $res1['description'];
                 $SQL = "select period, ifnull(indicator_measures.value, 0) as value from indicator_measures 
-where indicatorid = $id and userid = $user and period <= '$period' order by period asc limit 6";
+where indicatorid = $id and userid = $user and period <= '$period' and committed = 1 order by period asc limit 6";
 
                 if($utswide){
                     $SQL = "select period, ifnull(indicator_measures_aggregate.value, 0) as value from indicator_measures_aggregate 
-where indicatorid = $id and period <= '$period' order by period asc limit 6";
+where indicatorid = $id and period <= '$period' and committed = 1 order by period asc limit 6";
                 }
 
                 $query2 = $this->db->query($SQL);
@@ -294,12 +294,12 @@ where indicatorid = $id and period <= '$period' order by period asc limit 6";
 y1.value as y1value, y2.value as y2value, y3.value as y3value, y4.value as y4value, y5.value as y5value, y6.value as y6value,  
 y1.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value
 from indicators ind
-  left outer join indicator_measures y1 on ind.id = y1.indicatorid and y1.userid = $user and y1.period = '$y1'
-  left outer join indicator_measures y2 on ind.id = y2.indicatorid and y2.userid = $user and y2.period = '$y2'
-  left outer join indicator_measures y3 on ind.id = y3.indicatorid and y3.userid = $user and y3.period = '$y3'
-  left outer join indicator_measures y4 on ind.id = y4.indicatorid and y4.userid = $user and y4.period = '$y4'
-  left outer join indicator_measures y5 on ind.id = y5.indicatorid and y5.userid = $user and y5.period = '$y5'
-  left outer join indicator_measures y6 on ind.id = y6.indicatorid and y6.userid = $user and y6.period = '$y6'
+  left outer join indicator_measures y1 on ind.id = y1.indicatorid and y1.userid = $user and y1.period = '$y1' and y1.committed = 1
+  left outer join indicator_measures y2 on ind.id = y2.indicatorid and y2.userid = $user and y2.period = '$y2' and y2.committed = 1
+  left outer join indicator_measures y3 on ind.id = y3.indicatorid and y3.userid = $user and y3.period = '$y3' and y3.committed = 1
+  left outer join indicator_measures y4 on ind.id = y4.indicatorid and y4.userid = $user and y4.period = '$y4' and y4.committed = 1
+  left outer join indicator_measures y5 on ind.id = y5.indicatorid and y5.userid = $user and y5.period = '$y5' and y5.committed = 1
+  left outer join indicator_measures y6 on ind.id = y6.indicatorid and y6.userid = $user and y6.period = '$y6' and y6.committed = 1
 where ind.heading = '$heading' 
 ORDER BY ind.heading, ind.sort_order";
 

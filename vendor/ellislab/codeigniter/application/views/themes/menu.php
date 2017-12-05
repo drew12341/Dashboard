@@ -6,7 +6,7 @@
 
             <!-- logo -->
             <div class="logo">
-                <a href="index.html">
+                <a href="<?php echo base_url(); ?>">
                     <img src="<?php echo base_url(); ?>assets/images/UTS-logo.png" width="80" alt="" />
 
                 </a>

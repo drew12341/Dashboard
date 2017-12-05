@@ -91,12 +91,16 @@ function set_value_AA($field, $current_values) {
                                        type="text"
                                        value="<?= set_value_AA($row['id'], $current_values); ?>"
 
-                                       <?php if($row['mandatory']){ ?>
-                                           data-validate="required,number"
-                                           data-message-required="Please provide a number"
+                                       <?php if($row['mandatory'] && $row['type'] == 'Percentage'){ ?>
+                                           data-validate="required,number,max[100],min[0]"
+                                           data-message-required="Please provide a number < 100"
                                            placeholder="Required Field"
 
-                                           <?php } else{ ?>
+                                           <?php } else if($row['mandatory']){ ?>
+                                               data-validate="required,number"
+                                               data-message-required="Please provide a number"
+                                               placeholder="Required Field"
+                                       <?php } else{ ?>
                                            data-validate="number"
                                            data-message-required="Must be numeric"
                                         <?php }; ?>
@@ -111,16 +115,20 @@ function set_value_AA($field, $current_values) {
                                 <?php if($row['type'] == 'Percentage'): ?>
                                     <span class="input-group-addon">%</span>
                                 <?php endif; ?>
-                                <?php if($row['type'] == 'Absolute'): ?>
-                                    <?php if($row['description'] == 'No-lost-time injuries reported'): ?>
-                                        <span class="input-group-addon"><i class="entypo-target">:
-                                                <?=(isset($previous_values[$row['id']]))?
-                                                     $previous_values[$row['id']] : 'N/A';
-                                                ?></i></span>
-                                    <?php else: ?>
-                                        <span class="input-group-addon"><i class="entypo-target">:<?=$row['value'];?></i></span>
+
+                                <!-- can display previous values, targets etc in this annotation box.  commented out for now (remove this 'false' condition to enable) -->
+
+                                    <?php if(false && $row['type'] == 'Absolute'): ?>
+                                        <?php if($row['description'] == 'No-lost-time injuries reported'): ?>
+                                            <span class="input-group-addon"><i class="entypo-target">:
+                                                    <?=(isset($previous_values[$row['id']]))?
+                                                         $previous_values[$row['id']] : 'N/A';
+                                                    ?></i></span>
+                                        <?php else: ?>
+                                            <span class="input-group-addon"><i class="entypo-target">:<?=$row['value'];?></i></span>
+                                        <?php endif; ?>
                                     <?php endif; ?>
-                                <?php endif; ?>
+
 
                             </td>
                         </tr>

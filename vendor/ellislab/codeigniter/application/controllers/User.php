@@ -119,10 +119,13 @@ class User extends CI_Controller  {
                     $data = array('dataSet'=>$this->ion_auth->getUser($id),
                         'groups'=>$groups);
                     $this->load->view('user/edit_view', $data);
+
+
                 }
+                $dataSet['profilepic'] = $this->upload->data('file_name');
             }
 
-            $dataSet['profilepic'] = $this->upload->data('file_name');
+
 
             $this->load->library('ion_auth');
             if($this->ion_auth->update($id,$dataSet))

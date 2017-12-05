@@ -22,7 +22,7 @@ class Report extends Auth_Controller
         $userid = $this->ion_auth->user()->row()->id;
         if($this->ion_auth->is_admin()){
             if(isset($_SESSION['emulate'])){
-                $userid = isset($_SESSION['emulate']);
+                $userid = $_SESSION['emulate'];
             }
         }
 

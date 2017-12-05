@@ -22,12 +22,19 @@
                 array(
                     'id' => 'id',
                     'value' => $dataSet['user_id'],
-                    'type' => 'hidden'
+                    'label' => 'Org Unit Id',
+                    'readonly'=>true
                 ),
-
                 array(
                     'id' => 'email',
                     'value' => $dataSet['email'],
+                    'type' => 'hidden'
+                ),
+                array(
+                    'id' => 'username',
+
+                    'value' => $dataSet['username'],
+                    'type' => 'hidden'
                 ),
                 array(
                     'id' => 'orgunit_name',
@@ -38,7 +45,7 @@
                     'id' => 'userfile',
                     'type' => 'file',
                     'label' => 'Picture',
-                    'class' => 'pictureinput file2 inline btn btn-primary',
+                    'class' => 'pictureinput inline btn',
                     'input_addons' => array(
                         'pre' => '<img height="60px" src="'.base_url().'../tmp/'.$dataSet['profilepic'].'"/>',
                     )
@@ -95,6 +102,7 @@ echo $this->form_builder->close_form();
 <style type="text/css">
     .pictureinput{
         height:74px;
+        text-align: left;
     }
 </style>
 <script type="text/javascript">

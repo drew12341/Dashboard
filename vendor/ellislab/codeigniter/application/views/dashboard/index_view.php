@@ -1,3 +1,11 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+
+<?php if($this->ion_auth->is_admin() && (!isset($_SESSION['emulate']) || $this->ion_auth->user()->row()->id == $_SESSION['emulate']))  : ?>
+    <span>&nbsp;</span>
+<?php else : ?>
+
+
 <?php if ($this->ion_auth->logged_in()) : ?>
 
     <?php if($this->ion_auth->is_admin() && isset($_SESSION['emulated_name'])): ?>
@@ -6,9 +14,12 @@
         <?php else:?>
             <h4>Dashboard report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
     <?php endif; ?>
+
     <?php else: ?>
     <h4>Dashboard report for: UTS Wide</h4>
 <?php endif; ?>
+
+
 
 
 <div class="row">
@@ -71,7 +82,7 @@
                     <th></th>
                     <th>Previous</th>
                     <th>Current</th>
-                    <th>Score</th>
+                    <th>Target</th>
                     <th>Trend</th>
                 </tr>
                 </thead>
@@ -219,3 +230,4 @@
 
 </script>
 
+<?php endif; ?>

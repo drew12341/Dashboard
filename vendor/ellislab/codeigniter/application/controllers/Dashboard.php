@@ -39,7 +39,8 @@ class Dashboard extends CI_Controller
 
             if($this->ion_auth->is_admin()){
                 if(isset($_SESSION['emulate'])){
-                    $userid = isset($_SESSION['emulate']);
+                    $userid = $_SESSION['emulate'];
+                    //echo "<b>EMULATING".$userid."</b>";
                 }
             }
         }

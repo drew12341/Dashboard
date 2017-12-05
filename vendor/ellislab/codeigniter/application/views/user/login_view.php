@@ -49,7 +49,11 @@
         <div class="form-group">
 
             <div class="col-sm-12">
-                <a style="text-decoration: underline !important" href="<?php echo site_url('auth/forgot_password'); ?>">Forgot your password?</a><br/>
+                <label class="col-sm-2 control-label">&nbsp;</label>
+
+                <span class="col-sm-9">Contact Safety and Wellbeing on ext 1063 if password forgotten</span>
+                <!-- the below forgot password link (and create account!) works - just uncomment if needed in future -->
+                <!--<a style="text-decoration: underline !important" href="<?php echo site_url('auth/forgot_password'); ?>">Forgot your password?</a><br/>
                 <!--<a style="text-decoration: underline !important" href="<?php echo site_url('User/register'); ?>">Create an account</a>-->
             </div>
         </div>

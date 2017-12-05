@@ -10,10 +10,12 @@
         <thead>
         <tr>
             <th>&nbsp;</th>
+            <th>Heading</th>
+            <th>Sort Order</th>
             <th>Description</th>
             <th>Type</th>
-            <th>Value</th>
-
+            <th>Target</th>
+            <th>Mandatory</th>
             <th>Visible</th>
         </tr>
         </thead>
@@ -25,22 +27,25 @@
         <td style="width:130px"><a class="btn btn-primary" style="float:left" href="Indicator/editIndicator/<?=$i['id']?>">Edit</a>
 
         </td>
-
+        <td><?=$i['heading']?></td>
+        <td><?=$i['sort_order']?></td>
         <td><?=$i['description']?></td>
         <td><?=$i['type']?></td>
         <td><?=  $i['value']; ?></td>
-
-        <td><?=$i['visible']?></td>
+        <td><?=  ($i['mandatory']) ? 'Yes' : 'No'; ?></td>
+        <td><?=  ($i['visible']) ? 'Yes' : 'No'; ?></td>
     </tr>
     <?php endforeach; ?>
         </tbody>
         <tfoot>
         <tr>
             <th>&nbsp;</th>
+            <th>Heading</th>
+            <th>Sort Order</th>
             <th>Description</th>
             <th>Type</th>
-            <th>Value</th>
-
+            <th>Target</th>
+            <th>Mandatory</th>
             <th>Visible</th>
         </tr>
         </tfoot>
@@ -51,16 +56,21 @@
     $(document).ready(function() {
 
         $('.table').DataTable({
-            "order": [[1, "desc"]],
+            "order": [[1, "asc"], [2,"asc"]],
+            columnDefs: [
+                {
+                    targets: [1, 2],
+                    visible: false,
+                    searchable: false
+                },
 
+            ],
+            "pageLength": 20,
 
         });
 
     });
 
-    $('[data-toggle=confirmation]').confirmation({
-        rootSelector: '[data-toggle=confirmation]',
-        // other options
-    });
+
 
 </script>

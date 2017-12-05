@@ -10,8 +10,8 @@
         <thead>
         <tr>
             <th>&nbsp;</th>
-            <th>Username</th>
-            <th>Email</th>
+            <th>Org Unit Id</th>
+            <th>Org Unit Name</th>
             <th>Last Login</th>
 
             <th>Group</th>
@@ -22,7 +22,7 @@
 <?php foreach($dataSet as $i): ?>
 
     <tr>
-        <td style="width:130px"><a class="btn btn-primary" style="float:left" href="User/edit/<?=$i['user_id']?>">Edit</a>
+        <td style="width:130px"><a class="btn btn-primary" style="float:left" href="User/edit/<?=$i['user_id']?>">Edit</a> &nbsp;
 
 
             <a
@@ -37,8 +37,8 @@
 
         </td>
 
-        <td><?=$i['username']?></td>
-        <td><?=$i['email']?></td>
+        <td><?=$i['user_id']?></td>
+        <td><?=$i['orgunit_name']?></td>
         <td><?= isset($i['last_login']) ? date("Y-m-d H:i:s", $i['last_login']) : ''; ?></td>
 
         <td><?=$i['description']?></td>
@@ -48,7 +48,7 @@
         <tfoot>
         <tr>
             <th>&nbsp;</th>
-            <th>Username</th>
+            <th>Org Unit Id</th>
             <th>Email</th>
             <th>Last Login</th>
 
@@ -62,7 +62,7 @@
     $(document).ready(function() {
 
         $('.table').DataTable({
-            "order": [[1, "desc"]],
+            "order": [[1, "asc"]],
 
 
         });

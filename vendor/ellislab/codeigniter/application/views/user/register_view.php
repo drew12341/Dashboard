@@ -19,10 +19,14 @@
             'id' => 'username'
         ),
         array(
-            'id' => 'email'
+            'id' => 'username',
+            'label'=>'Username'
         ),
-
-
+        array(
+            'id' => 'email',
+            'value' => 'test@email.com',
+            'type' => 'hidden'
+        ),
         array(
             'id' => 'orgunit_name',
             'label'=>'OrgUnit Name'

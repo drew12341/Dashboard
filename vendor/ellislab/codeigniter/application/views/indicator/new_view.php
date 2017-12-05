@@ -32,6 +32,7 @@
         array(
             'id' => 'mandatory',
             'type'=>'checkbox',
+            'label'=>'Mandatory',
             'options' => array(
                 array(
                     'id' => 'mandatory',
