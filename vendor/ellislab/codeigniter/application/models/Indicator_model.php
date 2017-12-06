@@ -127,7 +127,7 @@ class Indicator_model extends CI_Model
             $heading = $res['heading'];
 
             $SQL = "select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current, 
-curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value
+curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light
 from indicator_measures curr
   INNER JOIN indicators ind on ind.id = curr.indicatorid
   left outer join indicator_measures prev on curr.indicatorid = prev.indicatorid and curr.userid = prev.userid and prev.period = '$previousperiod' and prev.committed = 1
@@ -136,11 +136,11 @@ ORDER BY ind.heading, ind.sort_order";
 
             if($utswide){
                 $SQL = "select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current, 
- ind.description, ind.type, ind.heading, ind.sort_order, ind.value
+ ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light
 from indicator_measures_aggregate curr
   INNER JOIN indicators ind on ind.id = curr.indicatorid
-  left outer join indicator_measures_aggregate prev on curr.indicatorid = prev.indicatorid and prev.period = '$previousperiod' and prev.committed = 1
-where curr.period = '$thisperiod' and ind.heading = '$heading'  and curr.committed = 1
+  left outer join indicator_measures_aggregate prev on curr.indicatorid = prev.indicatorid and prev.period = '$previousperiod'
+where curr.period = '$thisperiod' and ind.heading = '$heading'
 ORDER BY ind.heading, ind.sort_order";
             }
 
@@ -185,7 +185,7 @@ where indicatorid = $id and userid = $user and period <= '$period' and committed
 
                 if($utswide){
                     $SQL = "select period, ifnull(indicator_measures_aggregate.value, 0) as value from indicator_measures_aggregate 
-where indicatorid = $id and period <= '$period' and committed = 1 order by period desc limit 6";
+where indicatorid = $id and period <= '$period' order by period desc limit 6";
                 }
 
                 $query2 = $this->db->query($SQL);

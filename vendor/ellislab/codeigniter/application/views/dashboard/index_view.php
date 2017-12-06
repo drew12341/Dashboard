@@ -100,6 +100,7 @@
                     $indicator_threshold = $this->config->item('indicator_threshold');
                     $percent = '';
 
+
                     if ($row['current'] > $row['previous']) {
                         $arrow = 'entypo-up';
                         $button = 'btn-green';
@@ -112,6 +113,8 @@
                         $arrow = 'entypo-switch';
                         $button = 'btn-gold';
                     }
+
+
 
                     if ($row['type'] == 'True/False') {
                         $badge = ($row['current']) ? 'badge-success' : 'badge-danger';
@@ -132,6 +135,10 @@
                         }
                     }
 
+                    if(!$row['traffic_light']) {
+                        $button = 'btn-grey';
+                        $badge = '';
+                    }
 
                     ?>
                     <tr>

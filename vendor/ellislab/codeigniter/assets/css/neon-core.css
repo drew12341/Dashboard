@@ -4159,6 +4159,14 @@ fieldset[disabled] .btn-orange.focus {
   line-height: 1.5;
   border-radius: 2px;
 }
+
+.btn-grey {
+  color: #c9c9c9;
+  background-color: #959595;
+  border-color: #959595;
+}
+
+
 .btn-gold {
   color: #846e20;
   background-color: #fcd036;
