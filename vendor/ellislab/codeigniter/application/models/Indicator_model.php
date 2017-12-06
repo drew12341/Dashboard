@@ -107,6 +107,7 @@ class Indicator_model extends CI_Model
         }
         $previousperiod = $previousyear.'-'.$previousperiod;
 
+        //echo $thisperiod;
 
         //if UTS wide, then we change the queries
 
@@ -129,8 +130,8 @@ class Indicator_model extends CI_Model
 curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value
 from indicator_measures curr
   INNER JOIN indicators ind on ind.id = curr.indicatorid
-  left outer join indicator_measures prev on curr.indicatorid = prev.indicatorid and curr.userid = prev.userid and prev.period = '$previousperiod'
-where curr.period = '$thisperiod'  and curr.userid = $user and ind.heading = '$heading' and prev.committed = 1 and curr.committed = 1
+  left outer join indicator_measures prev on curr.indicatorid = prev.indicatorid and curr.userid = prev.userid and prev.period = '$previousperiod' and prev.committed = 1
+where curr.period = '$thisperiod'  and curr.userid = $user and ind.heading = '$heading'  and curr.committed = 1 
 ORDER BY ind.heading, ind.sort_order";
 
             if($utswide){
@@ -138,8 +139,8 @@ ORDER BY ind.heading, ind.sort_order";
  ind.description, ind.type, ind.heading, ind.sort_order, ind.value
 from indicator_measures_aggregate curr
   INNER JOIN indicators ind on ind.id = curr.indicatorid
-  left outer join indicator_measures_aggregate prev on curr.indicatorid = prev.indicatorid and prev.period = '$previousperiod'
-where curr.period = '$thisperiod' and ind.heading = '$heading' and prev.committed = 1 and curr.committed = 1
+  left outer join indicator_measures_aggregate prev on curr.indicatorid = prev.indicatorid and prev.period = '$previousperiod' and prev.committed = 1
+where curr.period = '$thisperiod' and ind.heading = '$heading'  and curr.committed = 1
 ORDER BY ind.heading, ind.sort_order";
             }
 
@@ -147,7 +148,7 @@ ORDER BY ind.heading, ind.sort_order";
             $results1 = $query1->result_array();
             $aggregated[$heading] = $results1;
         }
-
+        //echo json_encode($aggregated);
         return $aggregated;
     }
 
@@ -180,11 +181,11 @@ and type = 'Percentage' group by heading";
                 $id = $res1['id'];
                 $description = $res1['description'];
                 $SQL = "select period, ifnull(indicator_measures.value, 0) as value from indicator_measures 
-where indicatorid = $id and userid = $user and period <= '$period' and committed = 1 order by period asc limit 6";
+where indicatorid = $id and userid = $user and period <= '$period' and committed = 1 order by period desc limit 6";
 
                 if($utswide){
                     $SQL = "select period, ifnull(indicator_measures_aggregate.value, 0) as value from indicator_measures_aggregate 
-where indicatorid = $id and period <= '$period' and committed = 1 order by period asc limit 6";
+where indicatorid = $id and period <= '$period' and committed = 1 order by period desc limit 6";
                 }
 
                 $query2 = $this->db->query($SQL);
@@ -205,7 +206,7 @@ where indicatorid = $id and period <= '$period' and committed = 1 order by perio
             }
 
 
-            $aggregated[$heading] = array_values($agg);
+            $aggregated[$heading] = array_reverse(array_values($agg));
         }
 
         return $aggregated;
@@ -247,10 +248,15 @@ where indicatorid = $id and period <= '$period' and committed = 1 order by perio
         if($measure['committed']){
             $measure['date_committed'] = date("Y-m-d H:i:s");
         }
+        if(!isset($measure['value'])){
+            $measure['value'] = 0;
+        }
 
         $this->db->where('userid', $measure['userid']);
         $this->db->where('indicatorid', $measure['indicatorid']);
         $this->db->where('period', $measure['period']);
+
+
         $query = $this->db->get('indicator_measures');
         $results = $query->result_array();
         if(count($results) > 0){
