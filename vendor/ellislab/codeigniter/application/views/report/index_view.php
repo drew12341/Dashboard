@@ -52,7 +52,6 @@
                         <th>Group Sorting</th>
                         <th>Row Sorting</th>
                         <th>Description</th>
-
                         <th>Feb-Mar</th>
                         <th>Apr-May</th>
                         <th>Jun-Jul</th>
@@ -134,7 +133,30 @@
         $('#table1').DataTable( {
             dom: 'Bfrtip',
             buttons: [
-                'copy', 'csv', 'pdf', 'print'
+                {
+                    extend: 'print',
+                    exportOptions: {
+                        columns: [0, 3, 4, 5, 6, 7, 8, 9],
+                        decodeEntities: true,
+                        stripHtml: false
+                    },
+                },
+                {
+                    extend: 'csv',
+                    exportOptions: {
+                        columns: [0, 3, 4, 5, 6, 7, 8, 9],
+                        decodeEntities: true,
+                        stripHtml: false
+                    },
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: [0, 3, 4, 5, 6, 7, 8, 9],
+                        decodeEntities: true,
+                        stripHtml: false
+                    },
+                },
             ],
             "order": [[1, "asc"],[2, "asc"]],
             rowGroup: {

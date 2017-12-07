@@ -17,6 +17,7 @@
             <th>Target</th>
             <th>Mandatory</th>
             <th>Visible</th>
+            <th>Traffic Light</th>
         </tr>
         </thead>
         <tbody>
@@ -34,6 +35,7 @@
         <td><?=  $i['value']; ?></td>
         <td><?=  ($i['mandatory']) ? 'Yes' : 'No'; ?></td>
         <td><?=  ($i['visible']) ? 'Yes' : 'No'; ?></td>
+        <td><?=  ($i['traffic_light']) ? 'Yes' : 'No'; ?></td>
     </tr>
     <?php endforeach; ?>
         </tbody>
@@ -47,6 +49,7 @@
             <th>Target</th>
             <th>Mandatory</th>
             <th>Visible</th>
+            <th>Traffic Light</th>
         </tr>
         </tfoot>
     </table>

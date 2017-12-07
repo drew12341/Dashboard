@@ -321,6 +321,7 @@ var _exportData = function ( dt, config )
 
 	for ( var i=0, ien=data.body.length ; i<ien ; i++ ) {
 		body.push( join( data.body[i] ) );
+
 	}
 
 	return {

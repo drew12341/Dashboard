@@ -98,6 +98,23 @@
             )
         );
 
+        $items[] = array(
+            'id' => 'traffic_light',
+            'type' => 'checkbox',
+            'label'=>'Traffic Light',
+
+            'options' => array(
+
+                array(
+                    'id' => 'traffic_light',
+                    'value' => 1,
+                    'label' => '&nbsp;',
+                    'checked' => $dataSet['traffic_light'],
+
+                )
+            )
+        );
+
         $items[] =   array(
                 'id' => 'submit',
                 'type' => 'submit',

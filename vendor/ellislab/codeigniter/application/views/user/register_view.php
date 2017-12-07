@@ -15,7 +15,7 @@
     <?= $this->form_builder->open_form(array('action' => ''));
     echo $this->form_builder->build_form_horizontal(
     array(
-        
+
         array(
             'id' => 'username',
             'label'=>'Username'

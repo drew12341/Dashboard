@@ -43,6 +43,36 @@
             )
         ),
         array(
+            'id' => 'visible',
+            'type' => 'checkbox',
+            'label'=>'Visible',
+
+            'options' => array(
+
+                array(
+                    'id' => 'visible',
+                    'value' => 1,
+                    'label' => '&nbsp;',
+                    'checked'=>true
+                )
+            )
+        ),
+        array(
+            'id' => 'traffic_light',
+            'type' => 'checkbox',
+            'label'=>'Traffic Light',
+
+            'options' => array(
+
+                array(
+                    'id' => 'traffic_light',
+                    'value' => 1,
+                    'label' => '&nbsp;',
+                    'checked'=>true
+                )
+            )
+        ),
+        array(
             'id' => 'submit',
             'type' => 'submit',
             'label'=>'Save'

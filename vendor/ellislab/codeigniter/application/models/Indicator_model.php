@@ -52,6 +52,9 @@ class Indicator_model extends CI_Model
         if(!isset($record['mandatory'])){
             $record['mandatory'] = 0;
         }
+        if(!isset($record['traffic_light'])){
+            $record['traffic_light'] = 0;
+        }
         $this->db->update('indicators', $record, array('id'=>$id));
         return $this->db->insert_id();
     }
