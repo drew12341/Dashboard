@@ -235,18 +235,18 @@
 
 
 
-    <script src="<?php echo base_url(); ?>assets/js/datatables/DataTables-1.10.9/js/jquery.dataTables.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/datatables/Buttons-1.0.3/js/dataTables.buttons.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/datatables/Buttons-1.0.3/js/buttons.flash.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/DataTables-2/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/DataTables-2/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/DataTables-2/Buttons-1.4.2/js/buttons.flash.js"></script>
 
-    <script src="<?php echo base_url(); ?>assets/js/datatables/JSZip-2.5.0/jszip.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/datatables/pdfmake-0.1.18/build/pdfmake.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/datatables/pdfmake-0.1.18/build/vfs_fonts.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/DataTables-2/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/DataTables-2/pdfmake-0.1.32/pdfmake.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/DataTables-2/pdfmake-0.1.32/vfs_fonts.js"></script>
 
 
 
-    <script src="<?php echo base_url(); ?>assets/js/datatables/Buttons-1.0.3/js/buttons.html5.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/datatables/Buttons-1.0.3/js/buttons.print.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/datatables/rowGroup.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/DataTables-2/Buttons-1.4.2/js/buttons.html5.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/DataTables-2/Buttons-1.4.2/js/buttons.print.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/DataTables-2/RowGroup-1.0.2/js/dataTables.rowGroup.js"></script>
 
     </body>

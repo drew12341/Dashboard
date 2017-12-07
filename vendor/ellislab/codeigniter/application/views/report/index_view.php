@@ -137,24 +137,18 @@
                     extend: 'print',
                     exportOptions: {
                         columns: [0, 3, 4, 5, 6, 7, 8, 9],
-                        decodeEntities: true,
-                        stripHtml: false
                     },
                 },
                 {
                     extend: 'csv',
                     exportOptions: {
                         columns: [0, 3, 4, 5, 6, 7, 8, 9],
-                        decodeEntities: true,
-                        stripHtml: false
                     },
                 },
                 {
                     extend: 'pdf',
                     exportOptions: {
                         columns: [0, 3, 4, 5, 6, 7, 8, 9],
-                        decodeEntities: true,
-                        stripHtml: false
                     },
                 },
             ],
