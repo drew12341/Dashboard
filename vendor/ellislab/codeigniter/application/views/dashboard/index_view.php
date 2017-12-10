@@ -1,240 +1,275 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 
-<?php if($this->ion_auth->is_admin() && (!isset($_SESSION['emulate']) || $this->ion_auth->user()->row()->id == $_SESSION['emulate']))  : ?>
+<?php if ($this->ion_auth->is_admin() && (!isset($_SESSION['emulate']) || $this->ion_auth->user()->row()->id == $_SESSION['emulate']))  : ?>
     <span>&nbsp;</span>
 <?php else : ?>
 
 
-<?php if ($this->ion_auth->logged_in()) : ?>
+    <?php if ($this->ion_auth->logged_in()) : ?>
 
-    <?php if($this->ion_auth->is_admin() && isset($_SESSION['emulated_name'])): ?>
-        <h4>Dashboard report for: <?= urldecode($_SESSION['emulated_name']); ?></h4>
+        <?php if ($this->ion_auth->is_admin() && isset($_SESSION['emulated_name'])): ?>
+            <h4>Dashboard report for: <?= urldecode($_SESSION['emulated_name']); ?></h4>
 
-        <?php else:?>
+        <?php else: ?>
             <h4>Dashboard report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
-    <?php endif; ?>
+        <?php endif; ?>
 
     <?php else: ?>
-    <h4>Dashboard report for: UTS Wide</h4>
-<?php endif; ?>
+        <h4>Dashboard report for: UTS Wide</h4>
+    <?php endif; ?>
 
 
+    <div class="row">
+        <div class="col-lg-12">
 
+            <form class="form-horizontal col-sm-12" autocomplete="on" method="post" accept-charset="utf-8">
+                <div class="form-group">
 
-<div class="row">
-    <div class="col-lg-12">
+                    <label class="col-lg-1 control-label" for="year">Year</label>
 
-        <form class="form-horizontal col-sm-12" autocomplete="on" method="post" accept-charset="utf-8">
-            <div class="form-group">
+                    <div class="col-lg-2">
+                        <select id="year" name="year" class="form-control col-lg-2">
+                            <option>--</option>
+                            <option
+                                value="<?= date("Y"); ?>" <?= ($year == date("Y")) ? 'selected' : ''; ?> ><?= date("Y"); ?></option>
+                            <option
+                                value="<?= date("Y", strtotime("-1 year")); ?>" <?= ($year == date("Y", strtotime("-1 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-1 year")); ?></option>
+                        </select>
+                    </div>
 
-                <label class="col-lg-1 control-label" for="year">Year</label>
+                    <label class="col-lg-1 control-label" for="period">Period</label>
 
-                <div class="col-lg-2">
-                    <select id="year" name="year" class="form-control col-lg-2">
-                        <option>--</option>
-                        <option value="<?=date("Y");?>" <?= ($year == date("Y")) ? 'selected' : '';  ?> ><?= date("Y");?></option>
-                        <option
-                            value="<?=date("Y", strtotime("-1 year"));?>" <?= ($year ==date("Y", strtotime("-1 year"))) ? 'selected' : '';  ?>  ><?=date("Y", strtotime("-1 year"));?></option>
-                    </select>
+                    <div class="col-lg-2">
+                        <select id="period" name="period" class="form-control col-lg-2">
+                            <option>--</option>
+                            <?php
+
+                            foreach ($periods as $key => $value): ?>
+                                <option
+                                    value="<?= $key; ?>" <?= ($key == $period) ? 'selected' : ''; ?> ><?= $value ?></option>
+
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                 </div>
-
-                <label class="col-lg-1 control-label" for="period">Period</label>
-
-                <div class="col-lg-2">
-                    <select id="period" name="period" class="form-control col-lg-2">
-                        <option>--</option>
-                        <?php
-
-                        foreach ($periods as $key => $value): ?>
-                            <option value="<?= $key; ?>" <?= ($key == $period) ? 'selected' : '';  ?>  ><?= $value ?></option>
-
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-
-
-<div class="row">
-    <div class="col-sm-6">
-
-    <?php
-    $counter = 0;
-    foreach ($sections as $key => $value) : ?>
-
-
-        <div id="<?= $key; ?>_panel" class="panel panel-primary">
-            <div class="panel-heading">
-                <div class="panel-title"><?= $this->config->item($key) ?></div>
-
-                <div class="panel-options">
-                    <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
-                </div>
-            </div>
-            <table class="table table-bordered table-responsive">
-                <thead>
-                <tr>
-
-                    <th></th>
-                    <th>Previous</th>
-                    <th>Current</th>
-                    <th>Target</th>
-                    <th>Trend</th>
-                </tr>
-                </thead>
-
-                <tbody>
-
-                <?php if(count($value) == 0) :?>
-                <tr><td>No Data for this period</td></tr>
-                <?php endif; ?>
-
-                <?php foreach ($value as $row):
-                    $arrow = '';
-                    $button = '';
-                    $badge = '';
-                    $indicator_threshold = $this->config->item('indicator_threshold');
-                    $percent = '';
-
-
-                    if ($row['current'] > $row['previous']) {
-                        $arrow = 'entypo-up';
-                        $button = 'btn-green';
-                    }
-                    if ($row['current'] < $row['previous']) {
-                        $arrow = 'entypo-down';
-                        $button = 'btn-red';
-                    }
-                    if ($row['current'] == $row['previous']) {
-                        $arrow = 'entypo-switch';
-                        $button = 'btn-gold';
-                    }
-
-
-
-                    if ($row['type'] == 'True/False') {
-                        $badge = ($row['current']) ? 'badge-success' : 'badge-danger';
-                        if(isset($row['previous'])) { $row['previous'] = ($row['previous'] ? 'Yes' : 'No');}
-                        if(isset($row['current'])){ $row['current'] = ($row['current'] ? 'Yes' : 'No');}
-                    }
-                    if ($row['type'] == 'Absolute') {
-                        $badge = ($row['current'] > $row['value']) ? 'badge-success' : 'badge-danger';
-                    }
-                    if ($row['type'] == 'Percentage') {
-                        $percent = '%';
-                        if ($row['current'] > $row['value']) {
-                            $badge = 'badge-success';
-                        } else if ($row['current'] > $row['value'] - $indicator_threshold) {
-                            $badge = 'badge-warning';
-                        } else {
-                            $badge = 'badge-danger';
-                        }
-                    }
-
-                    if(!$row['traffic_light']) {
-                        $button = 'btn-grey';
-                        $badge = '';
-                    }
-
-                    ?>
-                    <tr>
-
-                        <td><?= $row['description']; ?></td>
-                        <td><?= $row['previous'] ?> <?= isset($row['previous']) ? $percent : '' ;?></td>
-                        <td><?= $row['current']  ?> <?= isset($row['current']) ? $percent : '' ;?></td>
-                        <td class="text-center"><i class="badge <?= $badge; ?>">&nbsp;</i></td>
-                        <td class="text-center"><i class="<?= $arrow; ?> dashboard-icon <?= $button; ?>"></i></td>
-                    </tr>
-
-                <?php endforeach; ?>
-
-                </tbody>
-            </table>
+            </form>
         </div>
-        <!-- Chart -->
-        <?php if (isset($chartData[$key]) && count($chartData[$key]) > 0 ): ?>
+    </div>
 
-            <div id="<?= $key; ?>_chart" class="panel panel-primary">
 
+
+
+    <div class="row">
+        <div class="col-sm-6">
+             <div class="panel panel-primary">
+                    <div class="panel-body with-table">
+                        <table class="table table-bordered table-responsive">
+                            <tr>
+                                <td><i class="badge badge-success">&nbsp;</i> &nbsp;On Track</td>
+                                <td><i class="entypo-up dashboard-icon btn-green">&nbsp;</i>&nbsp;Performance Improving</td>
+                            </tr>
+                            <tr>
+                                <td><i class="badge badge-warning">&nbsp;</i> &nbsp;Needs Improvement</td>
+                                <td><i class="entypo-down dashboard-icon btn-red">&nbsp;</i>&nbsp;Performance Declining</td>
+                            </tr>
+                            <tr>
+                                <td><i class="badge badge-danger">&nbsp;</i> &nbsp;Further Work Required</td>
+                                <td><i class="entypo-switch dashboard-icon btn-gold">&nbsp;</i>&nbsp;Performance Improving</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            <?php
+            $counter = 1;
+            foreach ($sections as $key => $value) : ?>
+
+
+            <div id="<?= $key; ?>_panel" class="panel panel-primary">
                 <div class="panel-heading">
-                    <div class="panel-title"><?= $this->config->item($key) ?> Chart</div>
+                    <div class="panel-title"><?= $this->config->item($key) ?></div>
+
                     <div class="panel-options">
                         <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
                     </div>
                 </div>
-                <div class="panel-body with-chart">
+                <table class="table table-bordered table-responsive">
+                    <thead>
+                    <tr>
 
-                            <div style="height:150px" id="<?=preg_replace('/[0-9]+/', '', $key);?>"></div>
-                </div>
+                        <th></th>
+                        <th>Previous</th>
+                        <th>Current</th>
+                        <th>Target</th>
+                        <th>Trend</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <?php if (count($value) == 0) : ?>
+                        <tr>
+                            <td>No Data for this period</td>
+                        </tr>
+                    <?php endif; ?>
+
+                    <?php foreach ($value as $row):
+                        $arrow = '';
+                        $button = '';
+                        $badge = '';
+                        $indicator_threshold = $this->config->item('indicator_threshold');
+                        $percent = '';
+
+
+                        if ($row['current'] > $row['previous']) {
+                            $arrow = 'entypo-up';
+                            $button = 'btn-green';
+                        }
+                        if ($row['current'] < $row['previous']) {
+                            $arrow = 'entypo-down';
+                            $button = 'btn-red';
+                        }
+                        if ($row['current'] == $row['previous']) {
+                            $arrow = 'entypo-switch';
+                            $button = 'btn-gold';
+                        }
+
+
+                        if ($row['type'] == 'True/False') {
+                            $badge = ($row['current']) ? 'badge-success' : 'badge-danger';
+                            if (isset($row['previous'])) {
+                                $row['previous'] = ($row['previous'] ? 'Yes' : 'No');
+                            }
+                            if (isset($row['current'])) {
+                                $row['current'] = ($row['current'] ? 'Yes' : 'No');
+                            }
+                        }
+                        if ($row['type'] == 'Absolute') {
+                            $badge = ($row['current'] > $row['value']) ? 'badge-success' : 'badge-danger';
+                        }
+                        if ($row['type'] == 'Percentage') {
+                            $percent = '%';
+                            if ($row['current'] > $row['value']) {
+                                $badge = 'badge-success';
+                            } else if ($row['current'] > $row['value'] - $indicator_threshold) {
+                                $badge = 'badge-warning';
+                            } else {
+                                $badge = 'badge-danger';
+                            }
+                        }
+
+                        if (!$row['traffic_light']) {
+                            $button = 'btn-grey';
+                            $badge = '';
+                        }
+
+                        ?>
+                        <tr>
+
+                            <td><?= $row['description']; ?></td>
+                            <td><?= $row['previous'] ?> <?= isset($row['previous']) ? $percent : ''; ?></td>
+                            <td><?= $row['current'] ?> <?= isset($row['current']) ? $percent : ''; ?></td>
+                            <td class="text-center"><i class="badge <?= $badge; ?>">&nbsp;</i></td>
+                            <td class="text-center"><i class="<?= $arrow; ?> dashboard-icon <?= $button; ?>"></i></td>
+                        </tr>
+
+                    <?php endforeach; ?>
+
+                    </tbody>
+                </table>
             </div>
+            <!-- Chart -->
+            <?php if (isset($chartData[$key]) && count($chartData[$key]) > 0): ?>
 
-            <script type="text/javascript">
+                <div id="<?= $key; ?>_chart" class="panel panel-primary">
 
-                var counter = <?=$counter;?>;
+                    <div class="panel-heading">
+                        <div class="panel-title"><?= $this->config->item($key) ?> Chart</div>
+                        <div class="panel-options">
+                            <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
+                        </div>
+                    </div>
+                    <div class="panel-body with-chart">
 
-                var d = <?=json_encode($chartData[$key]);?>;
-                //console.log(d);
-                var keys = Object.keys(d[0]);
-                keys.splice(0, 1);
+                        <div style="height:150px" id="<?= preg_replace('/[0-9]+/', '', $key); ?>"></div>
+                    </div>
+                </div>
 
+                <script type="text/javascript">
 
+                    var counter = <?=$counter;?>;
 
-                var line_chart = MTA.Line({
-                    element: '<?=preg_replace('/[0-9]+/', '', $key);?>',
-                    data: d,
-                    xkey: 'period',
-                    ykeys: keys,
-                    labels: keys,
-                    redraw: true,
-                    ymax: 100,
-                    postUnits: '%',
-                    parseTime: false,
-                    hideHover:true,
-
-
-                },
-                true);
+                    var d = <?=json_encode($chartData[$key]);?>;
+                    //console.log(d);
+                    var keys = Object.keys(d[0]);
+                    keys.splice(0, 1);
 
 
+                    var line_chart = MTA.Line({
+                            element: '<?=preg_replace('/[0-9]+/', '', $key);?>',
+                            data: d,
+                            xkey: 'period',
+                            ykeys: keys,
+                            labels: keys,
+                            redraw: true,
+                            ymax: 100,
+                            postUnits: '%',
+                            parseTime: false,
+                            hideHover: true,
 
-            </script>
-        <?php endif; ?>
+
+                        },
+                        true);
+
+
+                </script>
+            <?php endif; ?>
 
 
 
-    <?php if ($counter == floor(count($sections) / 2.0)): ?>
+            <?php if ($counter == floor(count($sections) / 2.0)): ?>
         </div>
         <div class="col-sm-6">
-    <?php endif;
+            <?php endif;
 
-    $counter++; ?>
+            $counter++; ?>
 
-    <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
     </div>
-</div>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    $("#year").change(function(){
-        url = '<?php echo site_url('Dashboard/index');?>';
-        year = $.trim($("#year").val());
-        period = $.trim($("#period").val());
-        window.location.href = url+'/'+year+'/'+period;
+        $("#year").change(function () {
+            url = '<?php echo site_url('Dashboard/index');?>';
+            year = $.trim($("#year").val());
+            period = $.trim($("#period").val());
+            window.location.href = url + '/' + year + '/' + period;
 
-    });
+        });
 
-    $("#period").change(function(){
-        url = '<?php echo site_url('Dashboard/index');?>';
-        year = $.trim($("#year").val());
-        period = $.trim($("#period").val());
-        window.location.href = url+'/'+year+'/'+period;
-    });
+        $("#period").change(function () {
+            url = '<?php echo site_url('Dashboard/index');?>';
+            year = $.trim($("#year").val());
+            period = $.trim($("#period").val());
+            window.location.href = url + '/' + year + '/' + period;
+        });
 
 
-</script>
+    </script>
+
+<?php endif; ?>
+
+<?php if(!$utswide): ?>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-primary">
+            <div class="panel-body ">
+        Dashboard report for <?=$period_txt;?> <?=$year;?> committed on <?=date("g:i a d/m/Y", strtotime($date_committed)); ?>
+            </div>
+            </div>
+        </div>
+    </div>
 
 <?php endif; ?>

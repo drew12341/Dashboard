@@ -225,13 +225,6 @@
 
 
 
-    <script src="<?php echo base_url(); ?>assets/js/dataTable.moment.js"></script>
-    <!-- JavaScripts initializations and stuff -->
-    <script src="<?php echo base_url(); ?>assets/js/neon-custom.js"></script>
-
-
-    <!-- Demo Settings -->
-    <script src="<?php echo base_url(); ?>assets/js/neon-demo.js"></script>
 
 
 
@@ -248,5 +241,15 @@
     <script src="<?php echo base_url(); ?>assets/js/DataTables-2/Buttons-1.4.2/js/buttons.html5.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/DataTables-2/Buttons-1.4.2/js/buttons.print.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/DataTables-2/RowGroup-1.0.2/js/dataTables.rowGroup.js"></script>
+
+
+    <script src="<?php echo base_url(); ?>assets/js/dataTable.moment.js"></script>
+    <!-- JavaScripts initializations and stuff -->
+    <script src="<?php echo base_url(); ?>assets/js/neon-custom.js"></script>
+
+
+    <!-- Demo Settings -->
+    <script src="<?php echo base_url(); ?>assets/js/neon-demo.js"></script>
+
 
     </body>

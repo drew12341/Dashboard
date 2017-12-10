@@ -19,10 +19,6 @@ class Dashboard extends CI_Controller
             $types[$count++] = $w;
         }
 
-//        $userid = 4;
-//        $year = 2017;
-//        $period = 2;
-
         if($year == ''){
             $year = date("Y");
         }
@@ -47,10 +43,15 @@ class Dashboard extends CI_Controller
 
         $data['year'] = $year;
         $data['period'] = $period;
+        $data['period_txt'] = $types[$period];
+        $data['utswide'] = $utswide;
 
         $data['periods'] = $types;
         $data['sections'] = $this->Indicator_model->getFullMeasures($userid, $year.'-'.$period, $utswide);
         $data['chartData'] = $this->Indicator_model->getMeasuresChartData($userid, $year.'-'.$period, $utswide);
+        if(!$utswide){
+            $data['date_committed'] = $this->Indicator_model->getCommittedDate($userid, $year . '-' . $period);
+        }
         $this->load->view('dashboard/index_view', $data);
     }
 }

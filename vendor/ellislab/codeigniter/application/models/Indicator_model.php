@@ -321,4 +321,16 @@ ORDER BY ind.heading, ind.sort_order";
         return $aggregated;
     }
 
+
+    public function getCommittedDate($userid, $period){
+        $this->db->where('userid', $userid);
+        $this->db->where('period', $period);
+        $query = $this->db->get('indicator_measures');
+        $results = $query->result_array();
+
+        if(count($results) > 0){
+            $res = $results[0];
+            return $res['date_committed'];
+        }
+    }
 }
