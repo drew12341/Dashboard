@@ -255,15 +255,13 @@
             period = $.trim($("#period").val());
             window.location.href = url + '/' + year + '/' + period;
         });
-
-
     </script>
 
 <?php endif; ?>
 
 <?php if(!$utswide): ?>
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
         <div class="panel panel-primary">
             <div class="panel-body ">
         Dashboard report for <?=$period_txt;?> <?=$year;?> committed on <?=date("g:i a d/m/Y", strtotime($date_committed)); ?>
@@ -271,5 +269,13 @@
             </div>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-body ">
+                   Comments:  <?=$comments;?>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php endif; ?>

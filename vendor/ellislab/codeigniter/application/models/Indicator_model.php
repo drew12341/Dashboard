@@ -272,6 +272,34 @@ where indicatorid = $id and period <= '$period' order by period desc limit 6";
             $this->db->insert('indicator_measures', $measure);
         }
     }
+    public function upsert_measure_meta($measuremeta){
+        $this->db->where('userid', $measuremeta['userid']);
+        $this->db->where('period', $measuremeta['period']);
+        $query = $this->db->get('indicator_measures_meta');
+        $results = $query->result_array();
+        if(count($results) > 0){
+            //Update
+            $existing = $results[0];
+            $this->db->update('indicator_measures_meta', $measuremeta, array('id'=>$existing['id']));
+        }
+        else{
+            //Insert
+            $this->db->insert('indicator_measures_meta', $measuremeta);
+        }
+    }
+    public function get_measure_meta($userid, $period){
+        $this->db->where('userid', $userid);
+        $this->db->where('period', $period);
+        $query = $this->db->get('indicator_measures_meta');
+        $results = $query->result_array();
+        if(count($results) > 0) {
+            return $results[0];
+        }
+        else{
+            //meta is a new feature - handle any records that may not have an entry in the 'meta'table.
+            return array('comments'=>'');
+        }
+    }
 
     public function getYearlyMeasures($user, $year ){
 

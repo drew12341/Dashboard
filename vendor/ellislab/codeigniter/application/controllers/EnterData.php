@@ -74,19 +74,13 @@ class EnterData extends Auth_Controller
         $data['previous_values'] = $this->Indicator_model->getMeasures($this->ion_auth->user()->row()->id, $previousyear.'-'.$previousperiod);
         $data['status'] = $this->Indicator_model->getMeasuresStatus($this->ion_auth->user()->row()->id, $year.'-'.$period);
 
+        $measuremeta = $this->Indicator_model->get_measure_meta($this->ion_auth->user()->row()->id, $year.'-'.$period);
+        $data['comments'] = $measuremeta['comments'];
 
         $validations = array();
         //$this->form_validation->set_rules('year', 'Year','trim|required');
         $this->form_validation->set_rules('year', 'Year','trim|required');
         $this->form_validation->set_rules('period', 'Period','trim|required');
-
-//        foreach ($data['sections'] as $key => $value){
-//            foreach($value as $row){
-//                $validations[] = array('field' => 'data['.$row['id'].']',
-//                                    'label' => $row['description'],
-//                                    'rules' => 'required');
-//            }
-//        }
 
         $this->form_validation->set_rules($validations);
 
@@ -107,8 +101,16 @@ class EnterData extends Auth_Controller
                 $measure['committed'] = $record['committed'];
                 $this->Indicator_model->upsertmeasure($measure);
             }
+            $measuremeta = array();
+            $measuremeta['userid'] = $this->ion_auth->user()->row()->id;
+            $measuremeta['period'] = $year.'-'.$period;
+            $measuremeta['comments'] = $record['comments'];
+            $this->Indicator_model->upsert_measure_meta($measuremeta);
+
             $data['current_values'] = $this->Indicator_model->getMeasures($this->ion_auth->user()->row()->id, $year.'-'.$period);
             $data['status'] = $this->Indicator_model->getMeasuresStatus($this->ion_auth->user()->row()->id, $year.'-'.$period);
+            $measuremeta = $this->Indicator_model->get_measure_meta($this->ion_auth->user()->row()->id, $year.'-'.$period);
+            $data['comments'] = $measuremeta['comments'];
 
             $this->load->view('enterdata/data_view', $data);
         }
