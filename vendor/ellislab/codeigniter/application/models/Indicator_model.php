@@ -297,7 +297,7 @@ where indicatorid = $id and period <= '$period' order by period desc limit 6";
         }
         else{
             //meta is a new feature - handle any records that may not have an entry in the 'meta'table.
-            return array('comments'=>'');
+            return array('comments'=>null);
         }
     }
 

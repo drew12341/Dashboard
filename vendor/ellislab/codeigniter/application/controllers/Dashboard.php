@@ -52,7 +52,7 @@ class Dashboard extends CI_Controller
         if(!$utswide){
             $data['date_committed'] = $this->Indicator_model->getCommittedDate($userid, $year . '-' . $period);
 
-            $measuremeta = $this->Indicator_model->get_measure_meta($this->ion_auth->user()->row()->id, $year.'-'.$period);
+            $measuremeta = $this->Indicator_model->get_measure_meta($userid, $year.'-'.$period);
             $data['comments'] = $measuremeta['comments'];
         }
         $this->load->view('dashboard/index_view', $data);

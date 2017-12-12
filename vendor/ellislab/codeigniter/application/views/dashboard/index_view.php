@@ -259,7 +259,7 @@
 
 <?php endif; ?>
 
-<?php if(!$utswide): ?>
+<?php if(!$utswide && isset($date_committed)): ?>
 <div class="row">
     <div class="col-sm-12">
         <div class="panel panel-primary">
@@ -269,6 +269,8 @@
             </div>
         </div>
     </div>
+    <?php endif;?>
+<?php if(!$utswide && isset($comments)): ?>
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-primary">

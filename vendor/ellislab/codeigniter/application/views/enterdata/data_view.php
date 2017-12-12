@@ -98,6 +98,11 @@ function set_value_AA($field, $current_values) {
                                                 data-message-required="Please provide a number < 100"
                                                 placeholder="Required Field"
 
+                                            <?php }else if($row['type'] == 'Percentage'){ ?>
+                                                data-validate="number,max[100],min[0]"
+                                                data-message-required="Please provide a number < 100"
+
+
                                             <?php } else if($row['mandatory']){ ?>
                                                 data-validate="required,number"
                                                 data-message-required="Please provide a number"
