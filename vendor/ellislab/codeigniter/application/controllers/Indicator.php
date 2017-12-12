@@ -20,10 +20,14 @@ class Indicator extends Auth_Controller
     function newIndicator(){
         $this->load->library('form_builder');
         $this->load->library('form_validation');
+
+        if($this->ion_auth->is_admin()){
+            $this->form_validation->set_rules('heading', 'heading','trim|required');
+        }
         $this->form_validation->set_rules('description', 'Description','trim|required');
         $this->form_validation->set_rules('type', 'Type','trim|required|is_unique[users.username]');
 
-        $this->form_validation->set_rules('value','Value','trim|required');
+        $this->form_validation->set_rules('value','Target','trim|required');
 
         $wh = explode(",", $this->config->item('indicator_types'));
         $types = array(''=>'None');
@@ -32,6 +36,14 @@ class Indicator extends Auth_Controller
         }
         $data['types'] = $types;
 
+
+
+        $wh = explode(",", $this->config->item('indicator_headings'));
+        $types = array(''=>'None');
+        foreach($wh as $w){
+            $types[$w] = $this->config->item($w);
+        }
+        $data['standard_types'] = $types;
 
         if($this->form_validation->run()===FALSE)
         {
@@ -58,21 +70,29 @@ class Indicator extends Auth_Controller
     function editIndicator($id){
         $this->load->library('form_builder');
         $this->load->library('form_validation');
+        if($this->ion_auth->is_admin()){
+            $this->form_validation->set_rules('heading', 'heading','trim|required');
+        }
         $this->form_validation->set_rules('description', 'Description','trim|required');
         $this->form_validation->set_rules('type', 'Type','trim|required');
 
-        $this->form_validation->set_rules('value','Value','trim|required');
+        $this->form_validation->set_rules('value','Target','trim|required');
 
         $data['dataSet'] = $this->Indicator_model->getIndicator($id);
 
         $wh = explode(",", $this->config->item('indicator_types'));
-
-
         $types = array(''=>'None');
         foreach($wh as $w){
             $types[$w] = $w;
         }
         $data['types'] = $types;
+
+        $wh = explode(",", $this->config->item('indicator_headings'));
+        $types = array(''=>'None');
+        foreach($wh as $w){
+            $types[$w] = $this->config->item($w);
+        }
+        $data['standard_types'] = $types;
 
         if($this->form_validation->run()===FALSE)
         {

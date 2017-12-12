@@ -13,23 +13,35 @@
 
 
     <?= $this->form_builder->open_form(array('action' => ''));
-    echo $this->form_builder->build_form_horizontal(
-    array(
 
-        array(
-            'id' => 'description'
-        ),
-        array(
-            'id' => 'type',
+
+
+    $items = array();
+
+    if($this->ion_auth->is_admin()) {
+        $items[] = array(
+            'id' => 'heading',
             'type' => 'dropdown',
-            'options' => $types,
-        ),
+            'options' => $standard_types,
+            'label' => 'Heading'
+        );
+    }
 
-        array(
+    $items[] = array(
+        'id' => 'description'
+    );
+
+    $items[] = array(
+        'id' => 'type',
+        'type' => 'dropdown',
+        'options' => $types,
+    );
+
+     $items[] =    array(
             'id' => 'value',
             'label'=>'Target'
-        ),
-        array(
+        );
+    $items[] = array(
             'id' => 'mandatory',
             'type'=>'checkbox',
             'label'=>'Mandatory',
@@ -41,8 +53,8 @@
 
                 )
             )
-        ),
-        array(
+        );
+        $items[] = array(
             'id' => 'visible',
             'type' => 'checkbox',
             'label'=>'Visible',
@@ -56,8 +68,8 @@
                     'checked'=>true
                 )
             )
-        ),
-        array(
+        );
+        $items[] = array(
             'id' => 'traffic_light',
             'type' => 'checkbox',
             'label'=>'Traffic Light',
@@ -71,15 +83,24 @@
                     'checked'=>true
                 )
             )
-        ),
-        array(
+        );
+
+
+        $submit = array(
             'id' => 'submit',
             'type' => 'submit',
             'label'=>'Save'
+        );
 
-        )
-    )
-    );
+        if(isset($_SESSION['message']) && $_SESSION['message'] != ''){
+            $submit['disabled'] = true;
+        }
+        $items[] = $submit;
+
+
+
+
+    echo $this->form_builder->build_form_horizontal($items);
 
     ?>
     </div>

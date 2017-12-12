@@ -19,26 +19,34 @@
                     'id'=>'id',
                     'value'=>$dataSet['id'],
                     'type'=>'hidden'
-                ),
+                )
 
-                array(
-                    'id' => 'description',
-                    'value'=>$dataSet['description']
-                ),
-//                array(
-//                    'id' => 'type',
-//                    'value'=>$dataSet['type'],
-//                    'type' => 'dropdown',
-//                    'options' => $types,
-//                    'readonly'=>true
-//                ),
-           array(
-               'id'=>'type',
-               'readonly'=>true,
-               'value'=>$dataSet['type'],
-           )
+        );
 
+        if($this->ion_auth->is_admin() && $dataSet['category'] == 'standard') {
+            $items[] = array(
+                'id' => 'heading',
+                'value' => $dataSet['heading'],
+                'type' => 'dropdown',
+                'options' => $standard_types,
+                'label' => 'Heading'
             );
+        }
+
+
+        $items[] =  array(
+            'id' => 'description',
+            'value'=>$dataSet['description']
+        );
+
+
+
+        $items[] = array(
+            'id'=>'type',
+            'readonly'=>true,
+            'value'=>$dataSet['type'],
+        );
+
         if($dataSet['type'] == 'True/False'){
             $items[] = array(
                 'id' => 'value',

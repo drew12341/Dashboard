@@ -37,4 +37,8 @@ class Ajax extends Auth_Controller
         $_SESSION['emulated_name'] = $desc;
         echo json_encode(array('success'=>true));
     }
+
+    function testSections(){
+        echo json_encode( $this->Indicator_model->getFullMeasures(12, '2017'.'-'.'6', 0));
+    }
 }
