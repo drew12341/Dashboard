@@ -6,7 +6,7 @@ $config['indicator_threshold'] = 10;
 
 
 
-$config['dash_periods']     = 'Feb-Mar,Apr-May,Jun-Jul,Aug-Sep,Oct-Nov,Dec-Jan';
+$config['dash_periods']     = 'Dec-Jan,Feb-Mar,Apr-May,Jun-Jul,Aug-Sep,Oct-Nov';
 
 $config['1_minimise_injuries_maximise_wellbeing'] = 'Minimise Injuries / Maximise Wellbeing';
 $config['2_safe_workplace']             = 'Safe Workplace ';
