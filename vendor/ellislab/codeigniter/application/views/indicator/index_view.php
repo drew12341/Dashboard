@@ -12,6 +12,7 @@
             <th>&nbsp;</th>
             <th>Heading</th>
             <th>Sort Order</th>
+            <th>Heading</th>
             <th>Description</th>
             <th>Type</th>
             <th>Target</th>
@@ -25,11 +26,12 @@
 <?php foreach($dataSet as $i): ?>
 
     <tr>
-        <td style="width:130px"><a class="btn btn-primary" style="float:left" href="Indicator/editIndicator/<?=$i['id']?>">Edit</a>
+        <td style="width:70px"><a class="btn btn-primary" style="float:left" href="Indicator/editIndicator/<?=$i['id']?>">Edit</a>
 
         </td>
         <td><?=$i['heading']?></td>
         <td><?=$i['sort_order']?></td>
+        <td><?=$this->config->item($i['heading']);?></td>
         <td><?=$i['description']?></td>
         <td><?=$i['type']?></td>
         <td><?=  $i['value']; ?></td>
@@ -44,6 +46,7 @@
             <th>&nbsp;</th>
             <th>Heading</th>
             <th>Sort Order</th>
+            <th>Heading</th>
             <th>Description</th>
             <th>Type</th>
             <th>Target</th>
