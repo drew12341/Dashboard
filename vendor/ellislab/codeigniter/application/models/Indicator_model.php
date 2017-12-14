@@ -70,11 +70,21 @@ class Indicator_model extends CI_Model
         $aggregated = array();
 
         foreach($results as $res){
-            $this->db->where('heading', $res['heading']);
-            $this->db->order_by('sort_order ASC');
-            $query1 = $this->db->get('indicators');
-            $results1 = $query1->result_array();
-            $aggregated[$res['heading']] = $results1;
+            if($res['category'] == 'standard') {
+                $this->db->where('heading', $res['heading']);
+                $this->db->order_by('sort_order ASC');
+                $query1 = $this->db->get('indicators');
+                $results1 = $query1->result_array();
+                $aggregated[$res['heading']] = $results1;
+            }
+            else{
+                $this->db->where('heading', $res['heading']);
+                $this->db->where('userid', $userid);
+                $this->db->order_by('sort_order ASC');
+                $query1 = $this->db->get('indicators');
+                $results1 = $query1->result_array();
+                $aggregated[$res['heading']] = $results1;
+            }
         }
 
 
@@ -114,10 +124,10 @@ class Indicator_model extends CI_Model
 
         //if UTS wide, then we change the queries
 
-        $SQL = "select heading from indicators where userid = $user or category = 'standard'
+        $SQL = "select heading, category from indicators where userid = $user or category = 'standard'
                   group by heading";
         if($utswide){
-            $SQL = "select heading from indicators where category = 'standard'
+            $SQL = "select heading, category from indicators where category = 'standard'
                   group by heading";
         }
 
@@ -128,9 +138,10 @@ class Indicator_model extends CI_Model
         $aggregated = array();
         foreach($results as $res){
             $heading = $res['heading'];
+            $category = $res['category'];
 
-
-            $SQL = "
+            if($category == 'standard') {
+                $SQL = "
 select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current,
   curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light
 from indicators ind
@@ -138,6 +149,17 @@ from indicators ind
   left outer join indicator_measures prev on ind.id = prev.indicatorid and prev.userid = $user and prev.period = '$previousperiod' and prev.committed = 1
 where ind.heading = '$heading'
 ORDER BY ind.heading, ind.sort_order;";
+            }
+            else{
+                $SQL = "
+select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current,
+  curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light
+from indicators ind
+  left outer join indicator_measures curr on ind.id = curr.indicatorid and curr.userid = $user and curr.period = '$thisperiod' and curr.committed = 1
+  left outer join indicator_measures prev on ind.id = prev.indicatorid and prev.userid = $user and prev.period = '$previousperiod' and prev.committed = 1
+where ind.heading = '$heading' and ind.userid = $user
+ORDER BY ind.heading, ind.sort_order;";
+            }
 
             if($utswide){
 

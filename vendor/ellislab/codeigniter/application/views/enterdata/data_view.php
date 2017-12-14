@@ -170,7 +170,7 @@ function set_value_AA($field, $current_values) {
 
                 <a href="<?= site_url('EnterData/');?>" class="btn btn-primary" >Back </a>
 
-                <input type="button" id="draftbtn" class="btn btn-primary" <?= ($status == 'Committed') ? 'disabled' : ''; ?> value="Save as Draft"/>
+                <input type="button" formnovalidate="formnovalidate"  id="draftbtn" class="btn btn-primary" <?= ($status == 'Committed') ? 'disabled' : ''; ?> value="Save as Draft"/>
                 <input type="submit" class="btn btn-primary" <?= ($status == 'Committed') ? 'disabled' : ''; ?>
                        value="Commit"/>
 
@@ -186,6 +186,8 @@ function set_value_AA($field, $current_values) {
 <script type="text/javascript">
     $("#draftbtn").click(function(){
         $("#committed").val(0);
+        $("#mainform").attr( 'novalidate', 'novalidate' );
+
         $("#mainform").submit();
     });
 </script>

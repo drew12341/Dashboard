@@ -92,7 +92,8 @@
 
                                     function handleData(data) {
                                         //console.log("handled");
-                                        location.reload();
+                                        //location.reload();
+                                        window.location = '<?php echo site_url();?>';
                                         return false;
 
                                     }
