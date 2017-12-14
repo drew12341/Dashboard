@@ -338,7 +338,7 @@ where indicatorid = $id and period <= '$period' order by period desc limit 6";
 
         //if UTS wide, then we change the queries
 
-        $SQL = "select heading from indicators where userid = $user or category = 'standard'
+        $SQL = "select heading, category from indicators where userid = $user or category = 'standard'
                   group by heading";
 
 
@@ -349,10 +349,10 @@ where indicatorid = $id and period <= '$period' order by period desc limit 6";
         $aggregated = array();
         foreach($results as $res){
             $heading = $res['heading'];
+            $category = $res['category'];
 
-
-
-            $SQL = "select y1.period as y1period, y2.period as y2period, y3.period as y3period, y4.period as y4period, y5.period as y5period, y6.period as y6period, 
+            if($category == 'standard') {
+                $SQL = "select y1.period as y1period, y2.period as y2period, y3.period as y3period, y4.period as y4period, y5.period as y5period, y6.period as y6period, 
 y1.value as y1value, y2.value as y2value, y3.value as y3value, y4.value as y4value, y5.value as y5value, y6.value as y6value,  
 y1.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value
 from indicators ind
@@ -364,7 +364,21 @@ from indicators ind
   left outer join indicator_measures y6 on ind.id = y6.indicatorid and y6.userid = $user and y6.period = '$y6' and y6.committed = 1
 where ind.heading = '$heading' 
 ORDER BY ind.heading, ind.sort_order";
-
+            }
+            else{
+                $SQL = "select y1.period as y1period, y2.period as y2period, y3.period as y3period, y4.period as y4period, y5.period as y5period, y6.period as y6period, 
+y1.value as y1value, y2.value as y2value, y3.value as y3value, y4.value as y4value, y5.value as y5value, y6.value as y6value,  
+y1.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value
+from indicators ind
+  left outer join indicator_measures y1 on ind.id = y1.indicatorid and y1.userid = $user and y1.period = '$y1' and y1.committed = 1
+  left outer join indicator_measures y2 on ind.id = y2.indicatorid and y2.userid = $user and y2.period = '$y2' and y2.committed = 1
+  left outer join indicator_measures y3 on ind.id = y3.indicatorid and y3.userid = $user and y3.period = '$y3' and y3.committed = 1
+  left outer join indicator_measures y4 on ind.id = y4.indicatorid and y4.userid = $user and y4.period = '$y4' and y4.committed = 1
+  left outer join indicator_measures y5 on ind.id = y5.indicatorid and y5.userid = $user and y5.period = '$y5' and y5.committed = 1
+  left outer join indicator_measures y6 on ind.id = y6.indicatorid and y6.userid = $user and y6.period = '$y6' and y6.committed = 1
+where ind.heading = '$heading' and ind.userid = $user
+ORDER BY ind.heading, ind.sort_order";
+            }
 
             $query1 = $this->db->query($SQL);
             $results1 = $query1->result_array();
