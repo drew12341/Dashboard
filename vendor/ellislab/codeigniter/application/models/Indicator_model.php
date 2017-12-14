@@ -140,34 +140,35 @@ class Indicator_model extends CI_Model
             $heading = $res['heading'];
             $category = $res['category'];
 
-            if($category == 'standard') {
+            if(!$utswide && $category == 'standard') {
                 $SQL = "
-select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current,
-  curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light
-from indicators ind
-  left outer join indicator_measures curr on ind.id = curr.indicatorid and curr.userid = $user and curr.period = '$thisperiod' and curr.committed = 1
-  left outer join indicator_measures prev on ind.id = prev.indicatorid and prev.userid = $user and prev.period = '$previousperiod' and prev.committed = 1
-where ind.heading = '$heading'
-ORDER BY ind.heading, ind.sort_order;";
+                    select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current,
+                      curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light
+                    from indicators ind
+                      left outer join indicator_measures curr on ind.id = curr.indicatorid and curr.userid = $user and curr.period = '$thisperiod' and curr.committed = 1
+                      left outer join indicator_measures prev on ind.id = prev.indicatorid and prev.userid = $user and prev.period = '$previousperiod' and prev.committed = 1
+                    where ind.heading = '$heading'
+                    ORDER BY ind.heading, ind.sort_order;";
             }
             else{
                 $SQL = "
-select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current,
-  curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light
-from indicators ind
-  left outer join indicator_measures curr on ind.id = curr.indicatorid and curr.userid = $user and curr.period = '$thisperiod' and curr.committed = 1
-  left outer join indicator_measures prev on ind.id = prev.indicatorid and prev.userid = $user and prev.period = '$previousperiod' and prev.committed = 1
-where ind.heading = '$heading' and ind.userid = $user
-ORDER BY ind.heading, ind.sort_order;";
+                    select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current,
+                      curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light
+                    from indicators ind
+                      left outer join indicator_measures curr on ind.id = curr.indicatorid and curr.userid = $user and curr.period = '$thisperiod' and curr.committed = 1
+                      left outer join indicator_measures prev on ind.id = prev.indicatorid and prev.userid = $user and prev.period = '$previousperiod' and prev.committed = 1
+                    where ind.heading = '$heading' and ind.userid = $user
+                    ORDER BY ind.heading, ind.sort_order;";
             }
+
 
             if($utswide){
 
                 $SQL = "select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current,
-  curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light
+   ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light
 from indicators ind
-  left outer join indicator_measures curr on ind.id = curr.indicatorid and curr.period = '$thisperiod' and curr.committed = 1
-  left outer join indicator_measures prev on ind.id = prev.indicatorid and prev.period = '$previousperiod' and prev.committed = 1
+  left outer join indicator_measures_aggregate curr on ind.id = curr.indicatorid and curr.period = '$thisperiod' 
+  left outer join indicator_measures_aggregate prev on ind.id = prev.indicatorid and prev.period = '$previousperiod' 
 where ind.heading = '$heading'
 ORDER BY ind.heading, ind.sort_order;";
             }
