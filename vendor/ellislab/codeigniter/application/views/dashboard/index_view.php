@@ -35,6 +35,9 @@
                                 value="<?= date("Y"); ?>" <?= ($year == date("Y")) ? 'selected' : ''; ?> ><?= date("Y"); ?></option>
                             <option
                                 value="<?= date("Y", strtotime("-1 year")); ?>" <?= ($year == date("Y", strtotime("-1 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-1 year")); ?></option>
+							<option
+                                value="<?= date("Y", strtotime("-2 year")); ?>" <?= ($year == date("Y", strtotime("-2 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-2 year")); ?></option>
+								<!-- You can add more years to this if needed. Also update in enterdata and reports views -->
                         </select>
                     </div>
 
@@ -47,7 +50,7 @@
 
                             foreach ($periods as $key => $value): ?>
                                 <option
-                                    value="<?= $key; ?>" <?= ($key == $period) ? 'selected' : ''; ?> ><?= $value ?></option>
+                                    value="<?= $key; ?>" <?= ($key == $period) ? 'selected' : '';  ?>  ><?=$key;?> (<?= $value ?>) </option>
 
                             <?php endforeach; ?>
                         </select>
@@ -75,7 +78,7 @@
                             </tr>
                             <tr>
                                 <td><i class="badge badge-danger">&nbsp;</i> &nbsp;Further Work Required</td>
-                                <td><i class="entypo-switch dashboard-icon btn-gold">&nbsp;</i>&nbsp;Performance Improving</td>
+                                <td><i class="entypo-switch dashboard-icon btn-gold">&nbsp;</i>&nbsp;Performance Static</td>
                             </tr>
                         </table>
                     </div>

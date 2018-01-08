@@ -1,72 +1,101 @@
-SETUP INSTRUCTIONS FOR UTS
+Dashboard SETUP INSTRUCTIONS FOR UTS
 ==========================
 
+
+
 1) Open remote access
+
 2) Create folder in inetpub directory
-3) Share with admin (DLJ) for full access
-4) Share with IIS_IUSRS for read access
+ - use lowercase
+3) Right click- Share with: admin (DLJ) for full access
+
+4) Right click- Share with: IIS_IUSRS for read access. Type IIS_IUSRS into file sharing dialogue and click share.
 5) Close remote
+
 6) Copy all the files to new network folder
+
 7) Open IIS manager
-- In Application Pools add new application
-- Add new virtual directory with physical path .../inetpub/..../ellislab/codeigniter
-8) Change security of /vendor/ellislab/codeigniter to write/modify
+- In Application Pools add new application pool 
+8) Under Sites folder, add new virtual directory with physical path .../inetpub/..../ellislab/codeigniter
+
+8) Change security of /vendor/ellislab/codeigniter for IIS_IUSRS to write/modify
+
+
 
 
 CREATE DATABASE
 ===============
+
 you can create a ‘new’ DB by running the migration scripts. System uses SQLite, to set up tables navigate to webroot and run:
 php index.php tools migrate or alternatively, hit the URL: [baseurl]/tools/migrate
+
+
 
 
 
 INFORMATION ABOUT THE DIRECTORIES USED
 ======================================
 
+
 **Root directory**
 \codeigniter
+
 
 **Config file for cloudstor access**
 \codeigniter\application\config\SDS_config.php
 
+
 **Temporary files to clean out periodically**
 \codeigniter\tmp
+
 
 **Code that displays content**
 \codeigniter\application\views
 
+
 **Menu bar**
 \codeigniter\application\views\themes\menu.php
 
+
 **Starting Page**
 \codeigniter\application\views\themes\default.php
+
 
 **Styles**
 \codeigniter\assets\themes\default\css\additions.css 
 - top bar colour - line 19
 - buttons colours - line 24, 29, 34
 
+
 **Logos**
 \codeigniter\assets\images
+
+
 
 
 EMAIL CONFIGURATION
 ===================
 
+
 **Email content**
 \codeigniter\application\views\auth\email
+
 
 **Email sender and title**
 \codeigniter\application\config\ion_auth.php
 
+
 **Email wording**
 \codeigniter\application\language\english
+
 
 **Email settings**
 \codeigniter\application\config\email.php.
 Only changes to default are:
 $config['smtp_host'] = 'postoffice.uts.edu.au';
 $config['smtp_port'] = 25;
+
+
 
 **NO LONGER USED FOR EMAIL SETTINGS**
 \codeigniter\application\views\emails
@@ -75,3 +104,8 @@ $config['smtp_port'] = 25;
 \codeigniter\application\models\Mail_model.php
 
 
+
+DROPDOWN LIST of year selection. This can be edited in these files, to change from last 2 years to more:
+\views\dashboard\index_view.php
+\views\enterdata\index_view.php
+\views\reports\index_view.php
