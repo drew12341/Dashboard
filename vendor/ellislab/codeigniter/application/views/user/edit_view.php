@@ -47,7 +47,7 @@
                     'label' => 'Picture',
                     'class' => 'pictureinput inline btn',
                     'input_addons' => array(
-                        'pre' => '<img height="60px" src="'.base_url().'../tmp/'.$dataSet['profilepic'].'"/>',
+                        'pre' => '<img height="60px" src="'.base_url().'/tmp/'.$dataSet['profilepic'].'"/>',
                     )
 
                 ),

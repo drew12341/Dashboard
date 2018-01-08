@@ -56,7 +56,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="entypo-menu"></i>
                             <?php if(isset($this->ion_auth->user()->row()->profilepic) && $this->ion_auth->user()->row()->profilepic != ''): ?>
-                            <img src="<?= base_url().'../tmp/'.$this->ion_auth->user()->row()->profilepic; ?>" alt="" class="img-circle" width="44">
+                            <img src="<?= base_url().'/tmp/'.$this->ion_auth->user()->row()->profilepic; ?>" alt="" class="img-circle" width="44">
                             <?php endif ?>
                             <?= $this->ion_auth->user()->row()->orgunit_name;?>
                         </a>
