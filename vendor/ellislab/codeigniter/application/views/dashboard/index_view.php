@@ -171,8 +171,8 @@
                         <tr>
 
                             <td><?= $row['description']; ?></td>
-                            <td><?= $row['previous'] ?> <?= isset($row['previous']) ? $percent : ''; ?></td>
-                            <td><?= $row['current'] ?> <?= isset($row['current']) ? $percent : ''; ?></td>
+                            <td><?= round($row['previous']) ?> <?= isset($row['previous']) ? $percent : ''; ?></td>
+                            <td><?= round($row['current']) ?> <?= isset($row['current']) ? $percent : ''; ?></td>
                             <td class="text-center"><i class="badge <?= $badge; ?>">&nbsp;</i></td>
                             <td class="text-center"><i class="<?= $arrow; ?> dashboard-icon <?= $button; ?>"></i></td>
                         </tr>
@@ -188,7 +188,7 @@
                 <div id="<?= $key; ?>_chart" class="panel panel-primary">
 
                     <div class="panel-heading">
-                        <div class="panel-title"><?= $this->config->item($key) ?> Chart</div>
+                        <div class="panel-title"><?= $this->config->item($key) ?> <b>Chart</b></div>
                         <div class="panel-options">
                             <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
                         </div>
