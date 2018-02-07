@@ -9,14 +9,14 @@
     <?php if ($this->ion_auth->logged_in()) : ?>
 
         <?php if ($this->ion_auth->is_admin() && isset($_SESSION['emulated_name'])): ?>
-            <h4>Dashboard report for: <?= urldecode($_SESSION['emulated_name']); ?></h4>
+            <h3>Dashboard report for: <?= urldecode($_SESSION['emulated_name']); ?></h3>
 
         <?php else: ?>
-            <h4>Dashboard report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
+            <h3>Dashboard report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h3>
         <?php endif; ?>
 
     <?php else: ?>
-        <h4>Dashboard report for: UTS Wide</h4>
+        <h3>Dashboard report for: UTS Wide</h3>
     <?php endif; ?>
 
 
@@ -91,7 +91,7 @@
 
             <div id="<?= $key; ?>_panel" class="panel panel-primary">
                 <div class="panel-heading">
-                    <div class="panel-title"><?= $this->config->item($key) ?></div>
+                    <div class="panel-title"><b><?= $this->config->item($key) ?></b></div>
 
                     <div class="panel-options">
                         <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
@@ -188,7 +188,7 @@
                 <div id="<?= $key; ?>_chart" class="panel panel-primary">
 
                     <div class="panel-heading">
-                        <div class="panel-title"><?= $this->config->item($key) ?> <b>Chart</b></div>
+                        <div class="panel-title"><?= $this->config->item($key) ?> Chart</div>
                         <div class="panel-options">
                             <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
                         </div>
