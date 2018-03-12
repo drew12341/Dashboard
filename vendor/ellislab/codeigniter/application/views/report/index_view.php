@@ -29,6 +29,8 @@
                         <option value="<?=date("Y");?>" <?= ($year == date("Y")) ? 'selected' : '';  ?> ><?= date("Y");?></option>
                         <option
                             value="<?=date("Y", strtotime("-1 year"));?>" <?= ($year ==date("Y", strtotime("-1 year"))) ? 'selected' : '';  ?>  ><?=date("Y", strtotime("-1 year"));?></option>
+						<option
+                            value="<?=date("Y", strtotime("-2 year"));?>" <?= ($year ==date("Y", strtotime("-2 year"))) ? 'selected' : '';  ?>  ><?=date("Y", strtotime("-2 year"));?></option>
                     </select>
                 </div>
             </div>

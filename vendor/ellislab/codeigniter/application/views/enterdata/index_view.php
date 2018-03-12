@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<h3>Enter/View Data for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h3>
+<h4>Enter/View Data for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
 <br/>
 <div class="row">
     <div class="col-lg-8">
@@ -17,6 +17,8 @@
                         <option value="<?=date("Y");?>" <?= ($year == date("Y")) ? 'selected' : '';  ?> ><?= date("Y");?></option>
                         <option
                             value="<?=date("Y", strtotime("-1 year"));?>" <?= ($year ==date("Y", strtotime("-1 year"))) ? 'selected' : '';  ?>  ><?=date("Y", strtotime("-1 year"));?></option>
+						<option
+                            value="<?=date("Y", strtotime("-2 year"));?>" <?= ($year ==date("Y", strtotime("-2 year"))) ? 'selected' : '';  ?>  ><?=date("Y", strtotime("-2 year"));?></option>
                     </select>
                 </div>
 
@@ -28,7 +30,8 @@
                         <?php
 
                         foreach ($periods as $key => $value): ?>
-                            <option value="<?= $key; ?>" <?= ($key == $period) ? 'selected' : '';  ?>  ><?= $value ?></option>
+                            <option value="<?= $key; ?>" <?= ($key == $period) ? 'selected' : '';  ?>  ><?=$key;?> (<?= $value ?>) </option>
+
 
                         <?php endforeach; ?>
                     </select>
