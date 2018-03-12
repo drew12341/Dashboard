@@ -5,10 +5,12 @@
 <?php else : ?>
 
 
-<?php if($this->ion_auth->is_admin() && isset($_SESSION['emulated_name'])): ?>
+<?php if($this->ion_auth->is_admin() && isset($_SESSION['emulated_name'])):
+        $orgunit = urldecode($_SESSION['emulated_name']); ?>
     <h4>Report for: <?= urldecode($_SESSION['emulated_name']); ?></h4>
 
-<?php else:?>
+<?php else:
+        $orgunit = $this->ion_auth->user()->row()->orgunit_name; ?>
     <h4>Report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
 <?php endif; ?>
 
@@ -130,6 +132,7 @@
         window.location.href = url+'/'+year;
 
     });
+    var orgunit = "<?=$orgunit;?>";
 
 
     $(document).ready(function() {
@@ -141,18 +144,24 @@
                     exportOptions: {
                         columns: [0, 3, 4, 5, 6, 7, 8, 9],
                     },
+                    filename:'UTS | WHS Dashboard for '+orgunit,
+                    title:'UTS | WHS Dashboard for '+orgunit
                 },
                 {
                     extend: 'csv',
                     exportOptions: {
                         columns: [0, 3, 4, 5, 6, 7, 8, 9],
                     },
+                    filename:'UTS | WHS Dashboard for '+orgunit,
+                    title:'UTS | WHS Dashboard for '+orgunit
                 },
                 {
                     extend: 'pdf',
                     exportOptions: {
                         columns: [0, 3, 4, 5, 6, 7, 8, 9],
                     },
+                    filename:'UTS | WHS Dashboard for '+orgunit,
+                    title:'UTS | WHS Dashboard for '+orgunit
                 },
             ],
             "order": [[1, "asc"],[2, "asc"]],
