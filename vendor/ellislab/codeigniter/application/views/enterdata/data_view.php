@@ -69,6 +69,7 @@ function set_value_AA($field, $current_values) {
                         </thead>
                         <tbody>
                         <?php foreach($value as $row): ?>
+                            <?php if($row['visible']):?>
                             <tr>
                                 <td>
                                     <?= $row['description']; ?>
@@ -141,6 +142,7 @@ function set_value_AA($field, $current_values) {
                             </tr>
                         <?php
                         $lastrow = $row;
+                        endif;
                         endforeach; ?>
 
                         </tbody>
