@@ -11,9 +11,15 @@
         $em = $this->ion_auth->get_all_id();
         if(isset($_SESSION['emulate'])) {
             $sel = $_SESSION['emulate'];
+            //echo "EMULATING";
+        }
+        elseif($this->ion_auth->logged_in()){
+            $sel = $this->ion_auth->user()->row()->id;
+            //echo "USER ID:".$this->ion_auth->user()->row()->id;
         }
         else{
             $sel = 0;
+            //echo "JUST NOTHING";
         }
         ?>
 

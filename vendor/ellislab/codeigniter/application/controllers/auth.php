@@ -103,6 +103,8 @@ class Auth extends CI_Controller {
 
         // log the user out
         $logout = $this->ion_auth->logout();
+        unset($_SESSION['emulate']);
+
 
         // redirect them to the login page
         $this->session->set_flashdata('message', $this->ion_auth->messages());
