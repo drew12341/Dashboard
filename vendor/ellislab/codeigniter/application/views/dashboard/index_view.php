@@ -238,7 +238,7 @@
             <!-- Chart -->
             <?php if (isset($chartData[$key]) && count($chartData[$key]) > 0): ?>
 
-                <div id="<?= $key; ?>_chart" class="panel panel-primary">
+                <div id="<?= $key; ?>_chart" class="panel panel-primary panel-collapse collapse in">
 
                     <div class="panel-heading">
                         <div class="panel-title"><?= $this->config->item($key) ?> Chart</div>
@@ -337,3 +337,9 @@
         </div>
     </div>
 <?php endif; ?>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $(".with-chart").hide();
+        });
+</script>
