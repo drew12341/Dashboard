@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Ajax extends Auth_Controller
+class Ajax extends CI_Controller
 {
 
     function __construct()

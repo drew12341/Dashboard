@@ -5,19 +5,66 @@
     <span>&nbsp;</span>
 <?php else : ?>
 
+    <div class="col-md-6 col-sm-6 clearfix">
+        <?php
+        //if($this->ion_auth->is_admin()):
+        $em = $this->ion_auth->get_all_id();
+        if(isset($_SESSION['emulate'])) {
+            $sel = $_SESSION['emulate'];
+        }
+        else{
+            $sel = 0;
+        }
+        ?>
 
-    <?php if ($this->ion_auth->logged_in()) : ?>
+        <span style="padding-left:20px;">&nbsp;Viewing as: &nbsp;</span>
+        <select style="float:right;width:auto;display:inline-block" id="emulate" class="form-control">
+            <?php foreach($em as $key=>$value): ?>
+                <option <?=($sel == $key)? 'selected' : '' ?> value="<?=$key;?>"><?=$value;?></option>
+            <?php endforeach;?>
+        </select>
 
-        <?php if ($this->ion_auth->is_admin() && isset($_SESSION['emulated_name'])): ?>
+        <script type="text/javascript">
+            $("#emulate").change(function(){
+                v = $("#emulate").val();
+                d = $("#emulate option:selected").text();
+
+
+                //console.log(v);
+
+                jQuery.ajax({
+                    url: "<?php echo site_url('ajax'); ?>/setSession/"+v+"/"+d,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: true,
+                    success: handleData,
+                });
+            });
+
+            function handleData(data) {
+                //console.log("handled");
+                //location.reload();
+                window.location = '<?php echo site_url();?>';
+                return false;
+
+            }
+
+        </script>
+
+    </div>
+
+
+<div class="col-md-12 col-sm-12 clearfix">
+        <?php if (isset($_SESSION['emulated_name'])): ?>
             <h4>Dashboard report for: <?= urldecode($_SESSION['emulated_name']); ?></h4>
 
-        <?php else: ?>
+        <?php elseif($this->ion_auth->logged_in()): ?>
             <h4>Dashboard report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
+            <?php else: ?>
+            <h4>Dashboard report for: UTS Wide</h4>
         <?php endif; ?>
 
-    <?php else: ?>
-        <h4>Dashboard report for: UTS Wide</h4>
-    <?php endif; ?>
+</div>
 
 
     <div class="row">

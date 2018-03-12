@@ -28,18 +28,17 @@ class Dashboard extends CI_Controller
 
         //echo $year.' '.$period.' '.date('n');
         $userid = 0;
-        $utswide = true;
-        if($this->ion_auth->logged_in()) {
-            $userid = $this->ion_auth->user()->row()->id;
-            $utswide = false;
+        $utswide = false;
 
-            if($this->ion_auth->is_admin()){
-                if(isset($_SESSION['emulate'])){
-                    $userid = $_SESSION['emulate'];
-                    //echo "<b>EMULATING".$userid."</b>";
-                }
+        if(isset($_SESSION['emulate'])){
+            $userid = $_SESSION['emulate'];
+            //Userid '0' is UTS Wide
+            if($userid == 0){
+                $utswide = true;
             }
+            //echo "<b>EMULATING".$userid."</b>";
         }
+
 
         $data['year'] = $year;
         $data['period'] = $period;

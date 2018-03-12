@@ -44,6 +44,8 @@
         <div class="main-content">
 
 
+
+
             <?php if($this->ion_auth->logged_in()): ?>
             <!-- Profile Info and Notifications -->
             <div class="col-md-6 col-sm-8 clearfix">
@@ -61,45 +63,7 @@
                             <?= $this->ion_auth->user()->row()->orgunit_name;?>
                         </a>
 
-                        <?php if($this->ion_auth->is_admin()):
-                            $em = $this->ion_auth->get_all_id();
-                            $sel = $_SESSION['emulate'];
-                            ?>
 
-                                <span style="padding-left:20px;">&nbsp;Viewing as: &nbsp;</span>
-                                <select style="float:right;width:auto;display:inline-block" id="emulate" class="form-control">
-                                    <?php foreach($em as $key=>$value): ?>
-                                        <option <?=($sel == $key)? 'selected' : '' ?> value="<?=$key;?>"><?=$value;?></option>
-                                    <?php endforeach;?>
-                                </select>
-
-                                <script type="text/javascript">
-                                    $("#emulate").change(function(){
-                                        v = $("#emulate").val();
-                                        d = $("#emulate option:selected").text();
-
-
-                                        //console.log(v);
-
-                                        jQuery.ajax({
-                                            url: "<?php echo site_url('ajax'); ?>/setSession/"+v+"/"+d,
-                                            type: 'GET',
-                                            dataType: 'json',
-                                            async: true,
-                                            success: handleData,
-                                        });
-                                    });
-
-                                    function handleData(data) {
-                                        //console.log("handled");
-                                        //location.reload();
-                                        window.location = '<?php echo site_url();?>';
-                                        return false;
-
-                                    }
-
-                                </script>
-                        <?php endif; ?>
 
                         <ul class="dropdown-menu">
 
@@ -144,7 +108,10 @@
 
                 <ul class="list-inline links-list pull-right">
 
+
+
                     <li class="sep"></li>
+
 
                     <li>
                         <a href="<?php echo site_url('User/logout'); ?>">
@@ -155,6 +122,7 @@
 
             </div>
             <?php endif; ?>
+
 
 
             <?php if(!$this->ion_auth->logged_in()): ?>
