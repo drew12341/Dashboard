@@ -220,6 +220,16 @@
                             $badge = '';
                         }
 
+                        if($row['traffic_light'] && $row['traffic_light_reverse']){
+                            if($badge == 'badge-danger'){
+                                $badge = 'badge-success';
+                            }
+                            if($arrow == 'badge-success'){
+                                $badge = 'badge-danger';
+                            }
+
+                        }
+
                         ?>
                         <tr>
 
@@ -257,7 +267,7 @@
                     var counter = <?=$counter;?>;
 
                     var d = <?=json_encode($chartData[$key]);?>;
-                    //console.log(d);
+                    console.log(d);
                     var keys = Object.keys(d[0]);
                     keys.splice(0, 1);
 
@@ -273,6 +283,9 @@
                             postUnits: '%',
                             parseTime: false,
                             hideHover: true,
+                            hoverCallback: function (index, options, content, row) {
+                                return "sin(" + row.x + ") = " + row.y;
+                            }
 
 
                         },

@@ -123,6 +123,23 @@
             )
         );
 
+        $items[] = array(
+            'id' => 'traffic_light_reverse',
+            'type' => 'checkbox',
+            'label'=>'Invert Indicator',
+
+            'options' => array(
+
+                array(
+                    'id' => 'traffic_light_reverse',
+                    'value' => 1,
+                    'label' => '&nbsp;',
+                    'checked' => $dataSet['traffic_light_reverse'],
+
+                )
+            )
+        );
+
         $items[] =   array(
                 'id' => 'submit',
                 'type' => 'submit',
