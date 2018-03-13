@@ -283,9 +283,9 @@
                             postUnits: '%',
                             parseTime: false,
                             hideHover: true,
-                            hoverCallback: function (index, options, content, row) {
-                                return "sin(" + row.x + ") = " + row.y;
-                            }
+//                            hoverCallback: function (index, options, content, row) {
+//                                return "sin(" + row.x + ") = " + row.y;
+//                            }
 
 
                         },
