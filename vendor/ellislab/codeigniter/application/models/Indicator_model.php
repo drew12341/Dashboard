@@ -413,4 +413,27 @@ ORDER BY ind.heading, ind.sort_order";
         }
         return null;
     }
+
+    public function completedforPeriod($period){
+        $SQL = "select count(distinct(userid)) as cnt from indicator_measures where period = '$period' group by period";
+        $query = $this->db->query($SQL);
+        $results = $query->result_array();
+        if(count($results) > 0) {
+            $result = $results[0];
+            return $result['cnt'];
+        }
+        return 0;
+    }
+
+    public function totalUsers(){
+        $SQL = "select count(*) as cnt from users";
+        $query = $this->db->query($SQL);
+        $results = $query->result_array();
+        if(count($results) > 0) {
+            $result = $results[0];
+            //subtract 1 for admin
+            return $result['cnt'] -1;
+        }
+        return 0;
+    }
 }

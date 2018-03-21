@@ -24,12 +24,15 @@ class Dashboard extends CI_Controller
         //echo $year.' '.$period.' '.date('n');
         $userid = 0;
         $utswide = false;
+        $completed_proportion = '';
 
         if (isset($_SESSION['emulate'])) {
             $userid = $_SESSION['emulate'];
             //Userid '0' is UTS Wide
             if ($userid == 0) {
                 $utswide = true;
+
+
             }
             //echo "<b>EMULATING".$userid."</b>";
 
@@ -51,10 +54,19 @@ class Dashboard extends CI_Controller
         }
 
 
+        if($utswide){
+            $p = $year.'-'.$period;
+            $numerator = $this->Indicator_model->completedforPeriod($p);
+            $denominator = $this->Indicator_model->totalUsers();
+            $completed_proportion = $numerator.' of '.$denominator;
+
+        }
+
         $data['year'] = $year;
         $data['period'] = $period;
         $data['period_txt'] = $types[$period];
         $data['utswide'] = $utswide;
+        $data['completed_proportion'] = $completed_proportion;
 
         $data['periods'] = $types;
         $data['sections'] = $this->Indicator_model->getFullMeasures($userid, $year . '-' . $period, $utswide);

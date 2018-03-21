@@ -19,7 +19,7 @@
         }
         else{
             $sel = 0;
-            //echo "JUST NOTHING";
+
         }
         ?>
 
@@ -68,7 +68,11 @@
             <h4>Dashboard report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
             <?php else: ?>
             <h4>Dashboard report for: UTS Wide</h4>
+
         <?php endif; ?>
+    <?php if($utswide) :?>
+    <h6><?=$completed_proportion;?> Org Units have committed data for this period.</h6>
+    <?php endif; ?>
 
 </div>
 
