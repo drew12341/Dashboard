@@ -401,4 +401,16 @@ ORDER BY ind.heading, ind.sort_order";
             return $res['date_committed'];
         }
     }
+
+    public function mostRecentMeasures($userid){
+        $this->db->select_max('period');
+        $this->db->where('userid', $userid);
+        $query = $this->db->get('indicator_measures');
+        $results = $query->result_array();
+        if(count($results) > 0) {
+            $result = $results[0];
+            return $result['period'];
+        }
+        return null;
+    }
 }

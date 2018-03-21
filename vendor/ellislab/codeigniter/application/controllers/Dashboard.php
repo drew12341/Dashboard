@@ -10,33 +10,44 @@ class Dashboard extends CI_Controller
         $this->load->model('Indicator_model');
     }
 
-    function index($year = '', $period = ''){
+    function index($year = '', $period = '')
+    {
         $data = array();
         $wh = explode(",", $this->config->item('dash_periods'));
         $types = array();
         $count = 1;
-        foreach($wh as $w){
+        foreach ($wh as $w) {
             $types[$count++] = $w;
         }
 
-        if($year == ''){
-            $year = date("Y");
-        }
-        if($period == ''){
-            $period = month_to_period(date('n'));
-        }
 
         //echo $year.' '.$period.' '.date('n');
         $userid = 0;
         $utswide = false;
 
-        if(isset($_SESSION['emulate'])){
+        if (isset($_SESSION['emulate'])) {
             $userid = $_SESSION['emulate'];
             //Userid '0' is UTS Wide
-            if($userid == 0){
+            if ($userid == 0) {
                 $utswide = true;
             }
             //echo "<b>EMULATING".$userid."</b>";
+
+        }
+
+
+        if ($year == '' && $period == '') {
+            $recent = $this->Indicator_model->mostRecentMeasures($userid);
+            if($recent){
+                //split
+                $splits = explode('-', $recent);
+                $year = $splits[0];
+                $period = $splits[1];
+            }
+            else{
+                $year = date("Y");
+                $period = month_to_period(date('n'));
+            }
         }
 
 
@@ -46,12 +57,12 @@ class Dashboard extends CI_Controller
         $data['utswide'] = $utswide;
 
         $data['periods'] = $types;
-        $data['sections'] = $this->Indicator_model->getFullMeasures($userid, $year.'-'.$period, $utswide);
-        $data['chartData'] = $this->Indicator_model->getMeasuresChartData($userid, $year.'-'.$period, $utswide);
-        if(!$utswide){
+        $data['sections'] = $this->Indicator_model->getFullMeasures($userid, $year . '-' . $period, $utswide);
+        $data['chartData'] = $this->Indicator_model->getMeasuresChartData($userid, $year . '-' . $period, $utswide);
+        if (!$utswide) {
             $data['date_committed'] = $this->Indicator_model->getCommittedDate($userid, $year . '-' . $period);
 
-            $measuremeta = $this->Indicator_model->get_measure_meta($userid, $year.'-'.$period);
+            $measuremeta = $this->Indicator_model->get_measure_meta($userid, $year . '-' . $period);
             $data['comments'] = $measuremeta['comments'];
         }
         $this->load->view('dashboard/index_view', $data);
