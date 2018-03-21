@@ -173,7 +173,7 @@
                     }
                     if (!$current && !$previous) : ?>
                         <tr>
-                            <td style="text-align: center;" colspan="5"><b>No Data for this period</b></td>
+                            <td style="text-align: center;" colspan="5"><b>No data yet submitted for this period</b></td>
                         </tr>
                     <?php endif; ?>
 
