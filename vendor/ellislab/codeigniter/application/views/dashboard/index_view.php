@@ -164,9 +164,16 @@
 
                     <tbody>
 
-                    <?php if (count($value) == 0) : ?>
+                    <?php
+                    $current = 0;
+                    $previous = 0;
+                    foreach ($value as $row){
+                        $current += $row['current'];
+                        $previous += $row['previous'];
+                    }
+                    if (!$current && !$previous) : ?>
                         <tr>
-                            <td>No Data for this period</td>
+                            <td style="text-align: center;" colspan="5"><b>No Data for this period</b></td>
                         </tr>
                     <?php endif; ?>
 
