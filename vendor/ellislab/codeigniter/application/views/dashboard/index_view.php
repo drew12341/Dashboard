@@ -19,7 +19,6 @@
         }
         else{
             $sel = 0;
-
         }
         ?>
 
@@ -34,10 +33,7 @@
             $("#emulate").change(function(){
                 v = $("#emulate").val();
                 d = $("#emulate option:selected").text();
-
-
                 //console.log(v);
-
                 jQuery.ajax({
                     url: "<?php echo site_url('ajax'); ?>/setSession/"+v+"/"+d,
                     type: 'GET',
@@ -46,31 +42,17 @@
                     success: handleData,
                 });
             });
-
             function handleData(data) {
                 //console.log("handled");
                 //location.reload();
                 window.location = '<?php echo site_url();?>';
                 return false;
-
             }
-
         </script>
 
     </div>
 
 
-<<<<<<< HEAD
-        <?php if ($this->ion_auth->is_admin() && isset($_SESSION['emulated_name'])): ?>
-            <h3>Dashboard report for: <?= urldecode($_SESSION['emulated_name']); ?></h3>
-
-        <?php else: ?>
-            <h3>Dashboard report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h3>
-        <?php endif; ?>
-
-    <?php else: ?>
-        <h3>Dashboard report for: UTS Wide</h3>
-=======
 <div class="col-md-12 col-sm-12 clearfix">
         <?php if (isset($_SESSION['emulated_name'])): ?>
             <h4>Dashboard report for: <?= urldecode($_SESSION['emulated_name']); ?></h4>
@@ -83,7 +65,6 @@
         <?php endif; ?>
     <?php if($utswide) :?>
     <h6><?=$completed_proportion;?> Org Units have committed data for this period.</h6>
->>>>>>> refs/remotes/origin/master
     <?php endif; ?>
 
 </div>
@@ -116,7 +97,6 @@
                         <select id="period" name="period" class="form-control col-lg-2">
                             <option>--</option>
                             <?php
-
                             foreach ($periods as $key => $value): ?>
                                 <option
                                     value="<?= $key; ?>" <?= ($key == $period) ? 'selected' : '';  ?>  ><?=$key;?> (<?= $value ?>) </option>
@@ -160,7 +140,7 @@
 
             <div id="<?= $key; ?>_panel" class="panel panel-primary">
                 <div class="panel-heading">
-                    <div class="panel-title"><b><?= $this->config->item($key) ?></b></div>
+                    <div class="panel-title"><?= $this->config->item($key) ?></div>
 
                     <div class="panel-options">
                         <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
@@ -199,8 +179,6 @@
                         $badge = '';
                         $indicator_threshold = $this->config->item('indicator_threshold');
                         $percent = '';
-
-
                         if ($row['current'] > $row['previous']) {
                             $arrow = 'entypo-up';
                             $button = 'btn-green';
@@ -213,8 +191,6 @@
                             $arrow = 'entypo-switch';
                             $button = 'btn-gold';
                         }
-
-
                         if ($row['type'] == 'True/False') {
                             $badge = ($row['current']) ? 'badge-success' : 'badge-danger';
                             if (isset($row['previous'])) {
@@ -237,12 +213,10 @@
                                 $badge = 'badge-danger';
                             }
                         }
-
                         if (!$row['traffic_light']) {
                             $button = 'btn-grey';
                             $badge = '';
                         }
-
                         if($row['traffic_light'] && $row['traffic_light_reverse']){
                             if($badge == 'badge-danger'){
                                 $badge = 'badge-success';
@@ -250,15 +224,13 @@
                             if($arrow == 'badge-success'){
                                 $badge = 'badge-danger';
                             }
-
                         }
-
                         ?>
                         <tr>
 
                             <td><?= $row['description']; ?></td>
-                            <td><?= round($row['previous']) ?> <?= isset($row['previous']) ? $percent : ''; ?></td>
-                            <td><?= round($row['current']) ?> <?= isset($row['current']) ? $percent : ''; ?></td>
+                            <td><?= $row['previous'] ?> <?= isset($row['previous']) ? $percent : ''; ?></td>
+                            <td><?= $row['current'] ?> <?= isset($row['current']) ? $percent : ''; ?></td>
                             <td class="text-center"><i class="badge <?= $badge; ?>">&nbsp;</i></td>
                             <td class="text-center"><i class="<?= $arrow; ?> dashboard-icon <?= $button; ?>"></i></td>
                         </tr>
@@ -286,15 +258,11 @@
                 </div>
 
                 <script type="text/javascript">
-
                     var counter = <?=$counter;?>;
-
                     var d = <?=json_encode($chartData[$key]);?>;
                     console.log(d);
                     var keys = Object.keys(d[0]);
                     keys.splice(0, 1);
-
-
                     var line_chart = MTA.Line({
                             element: '<?=preg_replace('/[0-9]+/', '', $key);?>',
                             data: d,
@@ -309,12 +277,8 @@
 //                            hoverCallback: function (index, options, content, row) {
 //                                return "sin(" + row.x + ") = " + row.y;
 //                            }
-
-
                         },
                         true);
-
-
                 </script>
             <?php endif; ?>
 
@@ -324,7 +288,6 @@
         </div>
         <div class="col-sm-6">
             <?php endif;
-
             $counter++; ?>
 
             <?php endforeach; ?>
@@ -332,15 +295,12 @@
     </div>
 
     <script type="text/javascript">
-
         $("#year").change(function () {
             url = '<?php echo site_url('Dashboard/index');?>';
             year = $.trim($("#year").val());
             period = $.trim($("#period").val());
             window.location.href = url + '/' + year + '/' + period;
-
         });
-
         $("#period").change(function () {
             url = '<?php echo site_url('Dashboard/index');?>';
             year = $.trim($("#year").val());
