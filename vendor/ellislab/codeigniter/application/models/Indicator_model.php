@@ -143,7 +143,7 @@ class Indicator_model extends CI_Model
             if(!$utswide && $category == 'standard') {
                 $SQL = "
                     select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current,
-                      curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light
+                      curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light, ind.traffic_light_reverse
                     from indicators ind
                       left outer join indicator_measures curr on ind.id = curr.indicatorid and curr.userid = $user and curr.period = '$thisperiod' and curr.committed = 1
                       left outer join indicator_measures prev on ind.id = prev.indicatorid and prev.userid = $user and prev.period = '$previousperiod' and prev.committed = 1
@@ -152,8 +152,8 @@ class Indicator_model extends CI_Model
             }
             else{
                 $SQL = "
-                    select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current,
-                      curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light
+                    select curr.period as currentperiod, prev.period as previousperiod, round(prev.value, 2) as previous, round(curr.value,2 ) as current,
+                      curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light, ind.traffic_light_reverse
                     from indicators ind
                       left outer join indicator_measures curr on ind.id = curr.indicatorid and curr.userid = $user and curr.period = '$thisperiod' and curr.committed = 1
                       left outer join indicator_measures prev on ind.id = prev.indicatorid and prev.userid = $user and prev.period = '$previousperiod' and prev.committed = 1
@@ -164,8 +164,8 @@ class Indicator_model extends CI_Model
 
             if($utswide){
 
-                $SQL = "select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current,
-   ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light
+                $SQL = "select curr.period as currentperiod, prev.period as previousperiod, round(prev.value, 2) as previous, round(curr.value,2) as current,
+   ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light, ind.traffic_light_reverse
 from indicators ind
   left outer join indicator_measures_aggregate curr on ind.id = curr.indicatorid and curr.period = '$thisperiod' 
   left outer join indicator_measures_aggregate prev on ind.id = prev.indicatorid and prev.period = '$previousperiod' 
@@ -209,11 +209,11 @@ and type = 'Percentage' group by heading";
             foreach($results1 as $res1){
                 $id = $res1['id'];
                 $description = $res1['description'];
-                $SQL = "select period, ifnull(indicator_measures.value, 0) as value from indicator_measures 
+                $SQL = "select period, ifnull(round(indicator_measures.value, 2), 0) as value from indicator_measures 
 where indicatorid = $id and userid = $user and period <= '$period' and committed = 1 order by period desc limit 6";
 
                 if($utswide){
-                    $SQL = "select period, ifnull(indicator_measures_aggregate.value, 0) as value from indicator_measures_aggregate 
+                    $SQL = "select period, ifnull(round(indicator_measures_aggregate.value, 2), 0) as value from indicator_measures_aggregate 
 where indicatorid = $id and period <= '$period' order by period desc limit 6";
                 }
 
@@ -400,5 +400,40 @@ ORDER BY ind.heading, ind.sort_order";
             $res = $results[0];
             return $res['date_committed'];
         }
+    }
+
+    public function mostRecentMeasures($userid){
+        $this->db->select_max('period');
+        $this->db->where('userid', $userid);
+        $query = $this->db->get('indicator_measures');
+        $results = $query->result_array();
+        if(count($results) > 0) {
+            $result = $results[0];
+            return $result['period'];
+        }
+        return null;
+    }
+
+    public function completedforPeriod($period){
+        $SQL = "select count(distinct(userid)) as cnt from indicator_measures where period = '$period' group by period";
+        $query = $this->db->query($SQL);
+        $results = $query->result_array();
+        if(count($results) > 0) {
+            $result = $results[0];
+            return $result['cnt'];
+        }
+        return 0;
+    }
+
+    public function totalUsers(){
+        $SQL = "select count(*) as cnt from users";
+        $query = $this->db->query($SQL);
+        $results = $query->result_array();
+        if(count($results) > 0) {
+            $result = $results[0];
+            //subtract 1 for admin
+            return $result['cnt'] -1;
+        }
+        return 0;
     }
 }

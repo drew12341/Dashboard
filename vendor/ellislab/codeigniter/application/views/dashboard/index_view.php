@@ -5,9 +5,62 @@
     <span>&nbsp;</span>
 <?php else : ?>
 
+    <div class="col-md-6 col-sm-6 clearfix">
+        <?php
+        //if($this->ion_auth->is_admin()):
+        $em = $this->ion_auth->get_all_id();
+        if(isset($_SESSION['emulate'])) {
+            $sel = $_SESSION['emulate'];
+            //echo "EMULATING";
+        }
+        elseif($this->ion_auth->logged_in()){
+            $sel = $this->ion_auth->user()->row()->id;
+            //echo "USER ID:".$this->ion_auth->user()->row()->id;
+        }
+        else{
+            $sel = 0;
 
-    <?php if ($this->ion_auth->logged_in()) : ?>
+        }
+        ?>
 
+        <span style="padding-left:20px;">&nbsp;Viewing as: &nbsp;</span>
+        <select style="float:right;width:auto;display:inline-block" id="emulate" class="form-control">
+            <?php foreach($em as $key=>$value): ?>
+                <option <?=($sel == $key)? 'selected' : '' ?> value="<?=$key;?>"><?=$value;?></option>
+            <?php endforeach;?>
+        </select>
+
+        <script type="text/javascript">
+            $("#emulate").change(function(){
+                v = $("#emulate").val();
+                d = $("#emulate option:selected").text();
+
+
+                //console.log(v);
+
+                jQuery.ajax({
+                    url: "<?php echo site_url('ajax'); ?>/setSession/"+v+"/"+d,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: true,
+                    success: handleData,
+                });
+            });
+
+            function handleData(data) {
+                //console.log("handled");
+                //location.reload();
+                window.location = '<?php echo site_url();?>';
+                return false;
+
+            }
+
+        </script>
+
+    </div>
+
+
+<<<<<<< HEAD
         <?php if ($this->ion_auth->is_admin() && isset($_SESSION['emulated_name'])): ?>
             <h3>Dashboard report for: <?= urldecode($_SESSION['emulated_name']); ?></h3>
 
@@ -17,7 +70,23 @@
 
     <?php else: ?>
         <h3>Dashboard report for: UTS Wide</h3>
+=======
+<div class="col-md-12 col-sm-12 clearfix">
+        <?php if (isset($_SESSION['emulated_name'])): ?>
+            <h4>Dashboard report for: <?= urldecode($_SESSION['emulated_name']); ?></h4>
+
+        <?php elseif($this->ion_auth->logged_in()): ?>
+            <h4>Dashboard report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
+            <?php else: ?>
+            <h4>Dashboard report for: UTS Wide</h4>
+
+        <?php endif; ?>
+    <?php if($utswide) :?>
+    <h6><?=$completed_proportion;?> Org Units have committed data for this period.</h6>
+>>>>>>> refs/remotes/origin/master
     <?php endif; ?>
+
+</div>
 
 
     <div class="row">
@@ -111,9 +180,16 @@
 
                     <tbody>
 
-                    <?php if (count($value) == 0) : ?>
+                    <?php
+                    $current = 0;
+                    $previous = 0;
+                    foreach ($value as $row){
+                        $current += $row['current'];
+                        $previous += $row['previous'];
+                    }
+                    if (!$current && !$previous) : ?>
                         <tr>
-                            <td>No Data for this period</td>
+                            <td style="text-align: center;" colspan="5"><b>No data yet submitted for this period</b></td>
                         </tr>
                     <?php endif; ?>
 
@@ -167,6 +243,16 @@
                             $badge = '';
                         }
 
+                        if($row['traffic_light'] && $row['traffic_light_reverse']){
+                            if($badge == 'badge-danger'){
+                                $badge = 'badge-success';
+                            }
+                            if($arrow == 'badge-success'){
+                                $badge = 'badge-danger';
+                            }
+
+                        }
+
                         ?>
                         <tr>
 
@@ -185,7 +271,7 @@
             <!-- Chart -->
             <?php if (isset($chartData[$key]) && count($chartData[$key]) > 0): ?>
 
-                <div id="<?= $key; ?>_chart" class="panel panel-primary">
+                <div id="<?= $key; ?>_chart" class="panel panel-primary panel-collapse collapse in">
 
                     <div class="panel-heading">
                         <div class="panel-title"><?= $this->config->item($key) ?> Chart</div>
@@ -204,7 +290,7 @@
                     var counter = <?=$counter;?>;
 
                     var d = <?=json_encode($chartData[$key]);?>;
-                    //console.log(d);
+                    console.log(d);
                     var keys = Object.keys(d[0]);
                     keys.splice(0, 1);
 
@@ -220,6 +306,9 @@
                             postUnits: '%',
                             parseTime: false,
                             hideHover: true,
+//                            hoverCallback: function (index, options, content, row) {
+//                                return "sin(" + row.x + ") = " + row.y;
+//                            }
 
 
                         },
@@ -284,3 +373,9 @@
         </div>
     </div>
 <?php endif; ?>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $(".with-chart").hide();
+        });
+</script>

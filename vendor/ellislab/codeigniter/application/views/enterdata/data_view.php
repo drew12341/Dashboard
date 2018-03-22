@@ -69,6 +69,7 @@ function set_value_AA($field, $current_values) {
                         </thead>
                         <tbody>
                         <?php foreach($value as $row): ?>
+                            <?php if($row['visible']):?>
                             <tr>
                                 <td>
                                     <?= $row['description']; ?>
@@ -141,6 +142,7 @@ function set_value_AA($field, $current_values) {
                             </tr>
                         <?php
                         $lastrow = $row;
+                        endif;
                         endforeach; ?>
 
                         </tbody>
@@ -185,9 +187,18 @@ function set_value_AA($field, $current_values) {
 
 <script type="text/javascript">
     $("#draftbtn").click(function(){
+//        console.log("VALIEDATE");
         $("#committed").val(0);
-        $("#mainform").attr( 'novalidate', 'novalidate' );
-
-        $("#mainform").submit();
+//        $("#mainform").attr( 'novalidate', 'novalidate' );
+//
+//        $("#mainform").submit(function() {
+//            for(var f=$("#mainform :input"),i=f.length;i--;){
+//                console.log(f.length);
+//                f[i].setAttribute("novalidate",i);
+//                console.log("novalidate");
+//            }
+//
+//        });
+        $("#mainform").unbind('submit').submit();
     });
 </script>

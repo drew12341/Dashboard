@@ -85,6 +85,22 @@
             )
         );
 
+    $items[] = array(
+        'id' => 'traffic_light_reverse',
+        'type' => 'checkbox',
+        'label'=>'Invert Indicator',
+
+        'options' => array(
+
+            array(
+                'id' => 'traffic_light_reverse',
+                'value' => 1,
+                'label' => '&nbsp;',
+
+            )
+        )
+    );
+
 
         $submit = array(
             'id' => 'submit',
