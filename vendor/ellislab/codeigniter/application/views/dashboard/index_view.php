@@ -22,14 +22,14 @@
 
         }
         ?>
-
-        <span style="padding-left:20px;">&nbsp;Viewing as: &nbsp;</span>
-        <select style="float:right;width:auto;display:inline-block" id="emulate" class="form-control">
+<div style="float:right">
+        <span style="padding-left:20px;width:auto;display:inline-block">&nbsp;Viewing as: &nbsp;</span>
+        <select style="width:auto;display:inline-block" id="emulate" class="form-control">
             <?php foreach($em as $key=>$value): ?>
                 <option <?=($sel == $key)? 'selected' : '' ?> value="<?=$key;?>"><?=$value;?></option>
             <?php endforeach;?>
         </select>
-
+</div>
         <script type="text/javascript">
             $("#emulate").change(function(){
                 v = $("#emulate").val();
