@@ -173,9 +173,9 @@
                     $previous = 0;
                     foreach ($value as $row){
                         $current += $row['current'];
-                        $previous += $row['previous'];
+                        //$previous += $row['previous'];
                     }
-                    if (!$current && !$previous) : ?>
+                    if (!$current) : ?>
                         <tr>
                             <td style="text-align: center;" colspan="5"><b>No data yet submitted for this period</b></td>
                         </tr>
