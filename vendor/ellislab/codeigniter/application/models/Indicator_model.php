@@ -124,10 +124,10 @@ class Indicator_model extends CI_Model
 
         //if UTS wide, then we change the queries
 
-        $SQL = "select heading, category from indicators where userid = $user or category = 'standard'
+        $SQL = "select heading, category from indicators where (userid = $user or category = 'standard') and visible = 1
                   group by heading";
         if($utswide){
-            $SQL = "select heading, category from indicators where category = 'standard'
+            $SQL = "select heading, category from indicators where category = 'standard' and visible = 1
                   group by heading";
         }
 
@@ -147,7 +147,7 @@ class Indicator_model extends CI_Model
                     from indicators ind
                       left outer join indicator_measures curr on ind.id = curr.indicatorid and curr.userid = $user and curr.period = '$thisperiod' and curr.committed = 1
                       left outer join indicator_measures prev on ind.id = prev.indicatorid and prev.userid = $user and prev.period = '$previousperiod' and prev.committed = 1
-                    where ind.heading = '$heading'
+                    where ind.heading = '$heading' and ind.visible = 1
                     ORDER BY ind.heading, ind.sort_order;";
             }
             else{
@@ -157,7 +157,7 @@ class Indicator_model extends CI_Model
                     from indicators ind
                       left outer join indicator_measures curr on ind.id = curr.indicatorid and curr.userid = $user and curr.period = '$thisperiod' and curr.committed = 1
                       left outer join indicator_measures prev on ind.id = prev.indicatorid and prev.userid = $user and prev.period = '$previousperiod' and prev.committed = 1
-                    where ind.heading = '$heading' and ind.userid = $user
+                    where ind.heading = '$heading' and ind.userid = $user and ind.visible = 1
                     ORDER BY ind.heading, ind.sort_order;";
             }
 
@@ -169,7 +169,7 @@ class Indicator_model extends CI_Model
 from indicators ind
   left outer join indicator_measures_aggregate curr on ind.id = curr.indicatorid and curr.period = '$thisperiod' 
   left outer join indicator_measures_aggregate prev on ind.id = prev.indicatorid and prev.period = '$previousperiod' 
-where ind.heading = '$heading'
+where ind.heading = '$heading' and ind.visible = 1
 ORDER BY ind.heading, ind.sort_order;";
             }
 
@@ -184,11 +184,11 @@ ORDER BY ind.heading, ind.sort_order;";
     public function getMeasuresChartData($user, $period, $utswide = false){
         //first get measures that are percentage based
         $SQL = "select heading from indicators where (userid = $user or category = 'standard')
-and type = 'Percentage' group by heading";
+and type = 'Percentage' and visible = 1 group by heading";
 
         if($utswide){
             $SQL = "select heading from indicators where category = 'standard'
-and type = 'Percentage' group by heading";
+and type = 'Percentage' and visible = 1 group by heading";
         }
 
         $query = $this->db->query($SQL);
@@ -200,7 +200,7 @@ and type = 'Percentage' group by heading";
             $heading = $res['heading'];
 
             //get items that are percentage
-            $SQL = "select id, description from indicators where heading = '$heading' and type = 'Percentage'";
+            $SQL = "select id, description from indicators where heading = '$heading' and type = 'Percentage' and visible = 1";
 
             $query1 = $this->db->query($SQL);
             $results1 = $query1->result_array();
@@ -339,7 +339,7 @@ where indicatorid = $id and period <= '$period' order by period desc limit 6";
 
         //if UTS wide, then we change the queries
 
-        $SQL = "select heading, category from indicators where userid = $user or category = 'standard'
+        $SQL = "select heading, category from indicators where (userid = $user or category = 'standard') and visible = 1
                   group by heading";
 
 
@@ -363,7 +363,7 @@ from indicators ind
   left outer join indicator_measures y4 on ind.id = y4.indicatorid and y4.userid = $user and y4.period = '$y4' and y4.committed = 1
   left outer join indicator_measures y5 on ind.id = y5.indicatorid and y5.userid = $user and y5.period = '$y5' and y5.committed = 1
   left outer join indicator_measures y6 on ind.id = y6.indicatorid and y6.userid = $user and y6.period = '$y6' and y6.committed = 1
-where ind.heading = '$heading' 
+where ind.heading = '$heading' and ind.visible = 1
 ORDER BY ind.heading, ind.sort_order";
             }
             else{
@@ -377,7 +377,7 @@ from indicators ind
   left outer join indicator_measures y4 on ind.id = y4.indicatorid and y4.userid = $user and y4.period = '$y4' and y4.committed = 1
   left outer join indicator_measures y5 on ind.id = y5.indicatorid and y5.userid = $user and y5.period = '$y5' and y5.committed = 1
   left outer join indicator_measures y6 on ind.id = y6.indicatorid and y6.userid = $user and y6.period = '$y6' and y6.committed = 1
-where ind.heading = '$heading' and ind.userid = $user
+where ind.heading = '$heading' and ind.userid = $user and ind.visible = 1
 ORDER BY ind.heading, ind.sort_order";
             }
 
