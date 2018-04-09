@@ -123,11 +123,11 @@
                             </tr>
                             <tr>
                                 <td><i class="badge badge-warning">&nbsp;</i> &nbsp;Needs Improvement</td>
-                                <td><i class="entypo-down dashboard-icon btn-red">&nbsp;</i>&nbsp;Performance Declining</td>
+								<td><i class="entypo-switch dashboard-icon btn-gold">&nbsp;</i>&nbsp;Performance Static</td>
                             </tr>
                             <tr>
                                 <td><i class="badge badge-danger">&nbsp;</i> &nbsp;Further Work Required</td>
-                                <td><i class="entypo-switch dashboard-icon btn-gold">&nbsp;</i>&nbsp;Performance Static</td>
+                                <td><i class="entypo-down dashboard-icon btn-red">&nbsp;</i>&nbsp;Performance Declining</td>
                             </tr>
                         </table>
                     </div>
@@ -205,7 +205,7 @@
                         }
                         if ($row['type'] == 'Percentage') {
                             $percent = '%';
-                            if ($row['current'] > $row['value']) {
+                            if ($row['current'] >= $row['value']) {
                                 $badge = 'badge-success';
                             } else if ($row['current'] > $row['value'] - $indicator_threshold) {
                                 $badge = 'badge-warning';

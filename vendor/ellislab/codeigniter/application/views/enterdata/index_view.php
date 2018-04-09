@@ -114,14 +114,14 @@
                             <tr>
                                 <td><a href="<?=site_url('EnterData/data/').$year.'/'.$period;?>" class="btn btn-primary">Open</a>
 
-                                    <a
+                                    <!--a
                                         class="btn btn-primary" data-toggle="confirmation"
                                         data-btn-ok-label="Delete" data-btn-ok-icon="glyphicon glyphicon-share-alt"
                                         data-btn-ok-class="btn-success"
                                         data-btn-cancel-label="Cancel" data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
                                         data-btn-cancel-class="btn-danger"
                                         data-title="Warning" data-content="This will remove these records"
-                                        href="<?=site_url('EnterData/remove/').$measure['period'].'/'.$measure['userid']?>">Delete</a>
+                                        href="<?=site_url('EnterData/remove/').$measure['period'].'/'.$measure['userid']?>">Delete</a-->
                                 </td>
                                 <td><?=$measure['id'];?></td>
                                 <td><?=$year;?> </td>
