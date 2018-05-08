@@ -9,8 +9,8 @@ class Ajax extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Indicator_model');
-        ini_set('display_errors', 'On');
-        error_reporting(E_ALL);
+        //ini_set('display_errors', 'On');
+        //error_reporting(E_ALL);
     }
 
     function reloadDashboard($userid, $period)

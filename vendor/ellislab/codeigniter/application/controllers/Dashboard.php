@@ -10,8 +10,7 @@ class Dashboard extends CI_Controller
         $this->load->model('Indicator_model');
     }
 
-    function index($year = '', $period = '')
-    {
+    function getDashData($year = '', $period = ''){
         $data = array();
         $wh = explode(",", $this->config->item('dash_periods'));
         $types = array();
@@ -82,6 +81,21 @@ class Dashboard extends CI_Controller
             $measuremeta = $this->Indicator_model->get_measure_meta($userid, $year . '-' . $period);
             $data['comments'] = $measuremeta['comments'];
         }
+        return $data;
+    }
+
+    function index($year = '', $period = '')
+    {
+        $data = $this->getDashData($year, $period);
         $this->load->view('dashboard/index_view', $data);
+    }
+
+    function meetingPackReport(){
+        $_SESSION['emulate'] = 2;
+        $data = $this->getDashData();
+
+        $this->output->set_template('modal');
+        $this->load->view('dashboard/meeting_pack_report' , $data);
+
     }
 }
