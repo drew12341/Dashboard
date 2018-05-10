@@ -91,11 +91,99 @@ class Dashboard extends CI_Controller
     }
 
     function meetingPackReport(){
-        $_SESSION['emulate'] = 2;
-        $data = $this->getDashData();
+        ini_set('max_execution_time', 300);
 
-        $this->output->set_template('modal');
-        $this->load->view('dashboard/meeting_pack_report' , $data);
 
+        $year = date("Y");
+        $period = month_to_period(date('n'));
+
+        $collection = array();
+        $em = $this->ion_auth->get_all_id();
+
+        foreach($em as $key=>$value) {
+            $_SESSION['emulate'] = $key;
+            $data = $this->getDashData($year, $period);
+            $data['emulated_name'] = $value;
+
+            $collection[] = $data;
+        }
+
+
+        $total = array();
+        $total['collection'] = $collection;
+
+        //$this->output->set_template('modal');
+        $this->output->unset_template();
+        $this->load->view('dashboard/meeting_pack_report' , $total);
+    }
+    function meetingPackPDF(){
+        ini_set('max_execution_time', 300);
+
+
+        $year = date("Y");
+        $period = month_to_period(date('n'));
+
+        $collection = array();
+        $em = $this->ion_auth->get_all_id();
+
+
+        foreach($em as $key=>$value) {
+            $_SESSION['emulate'] = $key;
+            $data = $this->getDashData($year, $period);
+            $data['emulated_name'] = $value;
+
+            $collection[] = $data;
+
+            //exit early whilst developing
+
+            break;
+        }
+
+
+        $total = array();
+        $total['collection'] = $collection;
+
+        //$this->output->set_template('modal');
+        $this->output->unset_template();
+        $this->load->view('dashboard/meeting_pack_report' , $total);
+
+
+        //$this->load->helper(array('wkhtmltopdf', 'file'));
+        $html = $this->load->view('dashboard/meeting_pack_report', $total, true);
+
+
+        // Set parameters
+        $apikey = 'c6029753-0d5a-43d5-9988-80755b267cee';
+        $value = $html; // can aso be a url, starting with http..
+
+        $postdata = http_build_query(
+            array(
+                'apikey' => $apikey,
+                'value' => $value,
+                'MarginBottom' => '30',
+                'MarginTop' => '20'
+            )
+        );
+
+        $opts = array('http' =>
+            array(
+                'method'  => 'POST',
+                'header'  => 'Content-type: application/x-www-form-urlencoded',
+                'content' => $postdata
+            )
+        );
+
+        $context  = stream_context_create($opts);
+
+// Convert the HTML string to a PDF using those parameters
+        $result = file_get_contents('http://api.html2pdfrocket.com/pdf', false, $context);
+
+// Save to root folder in website
+        $file_name = APPPATH.'../tmp/mypdf-1.pdf';
+        file_put_contents($file_name, $result);
+
+        header("X-Sendfile: $file_name");
+        header("Content-type: application/octet-stream");
+        header('Content-Disposition: attachment; filename="' . basename($file_name) . '"');
     }
 }

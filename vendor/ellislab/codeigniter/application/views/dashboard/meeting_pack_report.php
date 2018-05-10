@@ -1,247 +1,459 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style type="text/css">
+        /*! CSS Used from: http://localhost:8080/assets/css/font-icons/entypo/css/entypo.css */
+        [class^="entypo-"]:before{font-family:"entypo";font-style:normal;font-weight:normal;speak:none;display:inline-block;text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;font-variant:normal;text-transform:none;line-height:1em;margin-left:.2em;}
+        .entypo-down-open:before{content:'\e873';}
+        .entypo-down:before{content:'\e87f';}
+        .entypo-up:before{content:'\e882';}
+        .entypo-switch:before{content:'\e896';}
+        /*! CSS Used from: http://localhost:8080/assets/css/bootstrap.css */
+        html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
+        body{margin:0;}
+        footer{display:block;}
+        a{background-color:transparent;}
+        a:active,a:hover{outline:0;}
+        b{font-weight:bold;}
+        table{border-collapse:collapse;border-spacing:0;}
+        td,th{padding:0;}
+        @media print{
+            *,*:before,*:after{background:transparent!important;color:#000!important;box-shadow:none!important;text-shadow:none!important;}
+            a,a:visited{text-decoration:underline;}
+            a[href]:after{content:" (" attr(href) ")";}
+            a[href^="#"]:after{content:"";}
+            thead{display:table-header-group;}
+            tr{page-break-inside:avoid;}
+            .table{border-collapse:collapse!important;}
+            .table td,.table th{background-color:#fff!important;}
+            .table-bordered th,.table-bordered td{border:1px solid #ddd!important;}
+        }
+        *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+        *:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+        html{font-size:10px;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
+        body{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-size:12px;line-height:1.42857143;color:#323232;background-color:#fff;}
+        a{color:#373e4a;text-decoration:none;}
+        a:hover,a:focus{color:#818da2;text-decoration:none;}
+        a:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px;}
+        h4,h6{font-family:inherit;font-weight:700;line-height:1.1;color:#373e4a;}
+        h4,h6{margin-top:8.5px;margin-bottom:8.5px;}
+        h4{font-size:15px;}
+        h6{font-size:11px;}
+        .text-center{text-align:center;}
+        .row{margin-left:-15px;margin-right:-15px;}
+        .col-sm-4,.col-sm-6,.col-md-6,.col-sm-12,.col-md-12{position:relative;min-height:1px;padding-left:15px;padding-right:15px;}
+        @media (min-width: 768px){
+            .col-sm-4,.col-sm-6,.col-sm-12{float:left;}
+            .col-sm-12{width:100%;}
+            .col-sm-6{width:50%;}
+            .col-sm-4{width:33.33333333%;}
+        }
+        @media (min-width: 992px){
+            .col-md-6,.col-md-12{float:left;}
+            .col-md-12{width:100%;}
+            .col-md-6{width:50%;}
+        }
+        table{background-color:transparent;}
+        th{text-align:left;}
+        .table{width:100%;max-width:100%;margin-bottom:17px;}
+        .table > thead > tr > th,.table > tbody > tr > td{padding:8px;line-height:1.42857143;vertical-align:top;border-top:1px solid #ebebeb;}
+        .table > thead > tr > th{vertical-align:bottom;border-bottom:2px solid #ebebeb;}
+        .table > thead:first-child > tr:first-child > th{border-top:0;}
+        .table-bordered{border:1px solid #ebebeb;}
+        .table-bordered > thead > tr > th,.table-bordered > tbody > tr > td{border:1px solid #ebebeb;}
+        .table-bordered > thead > tr > th{border-bottom-width:2px;}
+        .table-responsive{overflow-x:auto;min-height:0.01%;}
+        @media screen and (max-width: 767px){
+            .table-responsive{width:100%;margin-bottom:12.75px;overflow-y:hidden;-ms-overflow-style:-ms-autohiding-scrollbar;border:1px solid #ebebeb;}
+        }
+        .badge{display:inline-block;min-width:10px;padding:3px 7px;font-size:11px;font-weight:normal;color:#fff;line-height:1;vertical-align:middle;white-space:nowrap;text-align:center;background-color:#999999;border-radius:10px;}
+        .badge:empty{display:none;}
+        .panel{margin-bottom:17px;background-color:#fff;border:1px solid transparent;border-radius:3px;-webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.05);box-shadow:0 1px 1px rgba(0, 0, 0, 0.05);}
+        .panel-body{padding:15px;}
+        .panel-heading{padding:10px 15px;border-bottom:1px solid transparent;border-top-right-radius:2px;border-top-left-radius:2px;}
+        .panel-title{margin-top:0;margin-bottom:0;font-size:14px;color:inherit;}
+        .panel > .table{margin-bottom:0;}
+        .panel > .table:last-child{border-bottom-right-radius:2px;border-bottom-left-radius:2px;}
+        .panel > .table:last-child > tbody:last-child > tr:last-child{border-bottom-left-radius:2px;border-bottom-right-radius:2px;}
+        .panel > .table:last-child > tbody:last-child > tr:last-child td:first-child{border-bottom-left-radius:2px;}
+        .panel > .table:last-child > tbody:last-child > tr:last-child td:last-child{border-bottom-right-radius:2px;}
+        .panel > .table-bordered{border:0;}
+        .panel > .table-bordered > thead > tr > th:first-child,.panel > .table-bordered > tbody > tr > td:first-child{border-left:0;}
+        .panel > .table-bordered > thead > tr > th:last-child,.panel > .table-bordered > tbody > tr > td:last-child{border-right:0;}
+        .panel > .table-bordered > tbody > tr:first-child > td,.panel > .table-bordered > thead > tr:first-child > th{border-bottom:0;}
+        .panel > .table-bordered > tbody > tr:last-child > td{border-bottom:0;}
+        .panel > .table-responsive{border:0;margin-bottom:0;}
+        .panel-primary{border-color:#949494;}
+        .panel-primary > .panel-heading{color:#fff;background-color:#949494;border-color:#949494;}
+        .clearfix:before,.clearfix:after,.row:before,.row:after,.panel-body:before,.panel-body:after{content:" ";display:table;}
+        .clearfix:after,.row:after,.panel-body:after{clear:both;}
+        @media (max-width: 767px){
+            .hidden-xs{display:none!important;}
+        }
+        /*! CSS Used from: http://localhost:8080/assets/css/neon-core.css */
+        .panel{margin-bottom:17px;background-color:#fff;border:1px solid transparent;border-radius:3px;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;}
+        .panel > .panel-heading .panel-title{font-size:15px;}
+        .panel-body{position:relative;padding:15px;}
+        .panel-body:before,.panel-body:after{content:" ";display:table;}
+        .panel-body:after{clear:both;}
+        .panel > .table{margin-bottom:0;}
+        .panel > .table:last-child > tbody:last-child > tr:last-child td:first-child{border-bottom-left-radius:2px;}
+        .panel > .table:last-child > tbody:last-child > tr:last-child td:last-child{border-bottom-right-radius:2px;}
+        .panel > .table-bordered{border:0;}
+        .panel > .table-bordered > thead > tr > th:first-child,.panel > .table-bordered > tbody > tr > td:first-child{border-left:0;}
+        .panel > .table-bordered > thead > tr > th:last-child,.panel > .table-bordered > tbody > tr > td:last-child{border-right:0;}
+        .panel > .table-bordered > thead > tr:first-child > th,.panel > .table-bordered > tbody > tr:first-child > td{border-top:0;}
+        .panel > .table-bordered > thead > tr:last-child > th,.panel > .table-bordered > tbody > tr:last-child > td{border-bottom:0;}
+        .panel > .table-responsive{border:0;margin-bottom:0;}
+        .panel-heading{border-bottom:1px solid transparent;border-top-right-radius:3px;border-top-left-radius:3px;}
+        .panel-heading:before,.panel-heading:after{content:" ";display:table;}
+        .panel-heading:after{clear:both;}
+        .panel-heading > .panel-title{float:left;padding:10px 15px;}
+        .panel-heading > .panel-options{float:right;padding-right:15px;}
+        .panel-heading > .panel-options > a{margin-top:10px;}
+        .panel-title{margin-top:0;margin-bottom:0;font-size:14px;}
+        .panel-primary{border-color:#ebebeb;-webkit-border-radius:3px;-webkit-background-clip:padding-box;-moz-border-radius:3px;-moz-background-clip:padding;border-radius:3px;background-clip:padding-box;}
+        .panel-primary > .panel-heading{color:#373e4a;background-color:#ffffff;border-color:#ebebeb;padding:0;}
+        .panel-primary > .panel-heading > .panel-options > a{display:inline-block;color:#373e4a;text-align:center;line-height:1;padding:4px 2px;-webkit-border-radius:3px;-webkit-background-clip:padding-box;-moz-border-radius:3px;-moz-background-clip:padding;border-radius:3px;background-clip:padding-box;-webkit-transition:all 300ms ease-in-out;-moz-transition:all 300ms ease-in-out;-o-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out;}
+        .panel-primary > .panel-heading > .panel-options > a i{margin:0;padding:0;display:inline-block;}
+        .panel-primary{border-color:#ebebeb;-webkit-border-radius:3px;-webkit-background-clip:padding-box;-moz-border-radius:3px;-moz-background-clip:padding;border-radius:3px;background-clip:padding-box;}
+        .panel-primary > .panel-heading{color:#373e4a;background-color:#92d0508a;border-color:#ebebeb;padding:0;}
+        .panel-primary > .panel-heading > .panel-options > a{display:inline-block;color:#373e4a;text-align:center;line-height:1;padding:4px 2px;-webkit-border-radius:3px;-webkit-background-clip:padding-box;-moz-border-radius:3px;-moz-background-clip:padding;border-radius:3px;background-clip:padding-box;-webkit-transition:all 300ms ease-in-out;-moz-transition:all 300ms ease-in-out;-o-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out;}
+        .panel-primary > .panel-heading > .panel-options > a i{margin:0;padding:0;display:inline-block;}
+        table{max-width:100%;background-color:transparent;}
+        th{text-align:left;font-weight:400;color:#303641;}
+        .table-bordered{border:1px solid #ebebeb;}
+        .table-bordered > thead > tr > th,.table-bordered > tbody > tr > td{border:1px solid #ebebeb;}
+        .table-bordered > thead > tr > th{background-color:#f5f5f6;border-bottom-width:0px;color:#323232;border-bottom:0!important;}
+        .badge{background-color:#ebebeb;color:#373e4a;}
+        .badge.badge-success{background-color:#00a651;color:#fff;}
+        .badge.badge-warning{background-color:#fad839;color:#fff;}
+        .badge.badge-danger{background-color:#cc2424;color:#fff;}
+        .badge:empty{display:none;}
+        .btn-red{color:#FFF;background-color:#d42020;border-color:#d42020;}
+        .btn-red:focus{color:#FFF;background-color:#a81919;border-color:#650f0f;}
+        .btn-red:hover{color:#FFF;background-color:#a81919;border-color:#9f1818;}
+        .btn-red:active{color:#FFF;background-color:#a81919;border-color:#9f1818;}
+        .btn-red:active:hover,.btn-red:active:focus{color:#FFF;background-color:#891515;border-color:#650f0f;}
+        .btn-red:active{background-image:none;}
+        .btn-red:hover,.btn-red:focus{color:#FFF!important;}
+        .btn-grey{color:#c9c9c9;background-color:#959595;border-color:#959595;}
+        .btn-gold{color:#846e20;background-color:#fcd036;border-color:#fcd036;}
+        .btn-gold:focus{color:#846e20;background-color:#fbc404;border-color:#b08903;}
+        .btn-gold:hover{color:#846e20;background-color:#fbc404;border-color:#f1bc04;}
+        .btn-gold:active{color:#846e20;background-color:#fbc404;border-color:#f1bc04;}
+        .btn-gold:active:hover,.btn-gold:active:focus{color:#846e20;background-color:#d8a903;border-color:#b08903;}
+        .btn-gold:active{background-image:none;}
+        .btn-gold:hover,.btn-gold:focus{color:#846e20!important;}
+        .btn-green{color:#fff;background-color:#00a651;border-color:#008d45;}
+        .btn-green:focus{color:#fff;background-color:#007338;border-color:#000d06;}
+        .btn-green:hover{color:#fff;background-color:#007338;border-color:#004f27;}
+        .btn-green:active{color:#fff;background-color:#007338;border-color:#004f27;}
+        .btn-green:active:hover,.btn-green:active:focus{color:#fff;background-color:#004f27;border-color:#000d06;}
+        .btn-green:active{background-image:none;}
+        .btn-green:hover,.btn-green:focus{color:#fff!important;}
+        html,body{height:100%;position:relative;}
+        .page-container{width:100%;display:table;height:100%;table-layout:fixed;}
+        @media screen and (max-width: 768px){
+            .page-container{display:block;}
+        }
+        .page-container .main-content{position:relative;display:table-cell;vertical-align:top;padding:20px;background:#ffffff;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+        @media screen and (max-width: 767px){
+            .page-container .main-content{display:block;}
+        }
+        @media (max-width: 767px){
+            .page-body .page-container{padding-left:0;}
+            .page-body .page-container .main-content{min-height:auto!important;}
+            .page-body .page-container .main-content{min-height:0!important;}
+        }
+        body{font-family:"Helvetica Neue", Helvetica, "Noto Sans", sans-serif;}
+        a{color:#373e4a;}
+        a:hover{text-decoration:none;color:#818da2;}
+        footer.main{margin-top:15px;padding-top:15px;border-top:1px solid #ebebeb;}
+        footer.main:before,footer.main:after{content:" ";display:table;}
+        footer.main:after{clear:both;}
+        .panel > .panel-body.with-table{position:relative;padding:0;margin:-1px;border:0;}
+        .panel > .panel-body.with-table > table{margin:0;}
+        body{-webkit-perspective:800;-moz-perspective:800;perspective:800;-webkit-perspective:800px;-moz-perspective:800px;perspective:800px;}
+        /*! CSS Used from: http://localhost:8080/assets/css/neon-theme.css */
+        .btn-red{color:#FFF;background-color:#d42020;border-color:#d42020;}
+        .btn-red:focus{color:#FFF;background-color:#a81919;border-color:#650f0f;}
+        .btn-red:hover{color:#FFF;background-color:#a81919;border-color:#9f1818;}
+        .btn-red:active{color:#FFF;background-color:#a81919;border-color:#9f1818;}
+        .btn-red:active:hover,.btn-red:active:focus{color:#FFF;background-color:#891515;border-color:#650f0f;}
+        .btn-red:active{background-image:none;}
+        .btn-red:hover,.btn-red:focus{color:#FFF!important;}
+        .btn-gold{color:#846e20;background-color:#fcd036;border-color:#fcd036;}
+        .btn-gold:focus{color:#846e20;background-color:#fbc404;border-color:#b08903;}
+        .btn-gold:hover{color:#846e20;background-color:#fbc404;border-color:#f1bc04;}
+        .btn-gold:active{color:#846e20;background-color:#fbc404;border-color:#f1bc04;}
+        .btn-gold:active:hover,.btn-gold:active:focus{color:#846e20;background-color:#d8a903;border-color:#b08903;}
+        .btn-gold:active{background-image:none;}
+        .btn-gold:hover,.btn-gold:focus{color:#846e20!important;}
+        .btn-green{color:#fff;background-color:#00a651;border-color:#008d45;}
+        .btn-green:focus{color:#fff;background-color:#007338;border-color:#000d06;}
+        .btn-green:hover{color:#fff;background-color:#007338;border-color:#004f27;}
+        .btn-green:active{color:#fff;background-color:#007338;border-color:#004f27;}
+        .btn-green:active:hover,.btn-green:active:focus{color:#fff;background-color:#004f27;border-color:#000d06;}
+        .btn-green:active{background-image:none;}
+        .btn-green:hover,.btn-green:focus{color:#fff!important;}
+        /*! CSS Used from: http://localhost:8080/assets/css/custom.css */
+        .dashboard-icon{-webkit-border-radius:3px;-webkit-background-clip:padding-box;-moz-border-radius:3px;-moz-background-clip:padding;border-radius:3px;background-clip:padding-box;width:28px;height:24px;text-align:center;color:white;padding:5px;line-height:14px;}
+        /*! CSS Used fontfaces */
+        @font-face{font-family:'entypo';src:url(http://localhost:8080/assets/css/font-icons/entypo/font/entypo.eot?71205724);src:url(http://localhost:8080/assets/css/font-icons/entypo/font/entypo.eot?71205724#iefix) format('embedded-opentype'),
+        url(http://localhost:8080/assets/css/font-icons/entypo/font/entypo.woff?71205724) format('woff'),
+        url(http://localhost:8080/assets/css/font-icons/entypo/font/entypo.ttf?71205724) format('truetype'),
+        url(http://localhost:8080/assets/css/font-icons/entypo/font/entypo.svg?71205724#entypo) format('svg');font-weight:normal;font-style:normal;}
+        @font-face{font-family:'Noto Sans';font-style:italic;font-weight:400;src:local('Noto Sans Italic'), local('NotoSans-Italic'), url(http://fonts.gstatic.com/s/notosans/v7/o-0OIpQlx3QUlC5A4PNr4ARPQ_mu72BiBLE.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+        @font-face{font-family:'Noto Sans';font-style:italic;font-weight:400;src:local('Noto Sans Italic'), local('NotoSans-Italic'), url(http://fonts.gstatic.com/s/notosans/v7/o-0OIpQlx3QUlC5A4PNr4ARGQ_mu72BiBLE.woff2) format('woff2');unicode-range:U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+        @font-face{font-family:'Noto Sans';font-style:italic;font-weight:400;src:local('Noto Sans Italic'), local('NotoSans-Italic'), url(http://fonts.gstatic.com/s/notosans/v7/o-0OIpQlx3QUlC5A4PNr4ARDQ_mu72BiBLE.woff2) format('woff2');unicode-range:U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;}
+        @font-face{font-family:'Noto Sans';font-style:italic;font-weight:400;src:local('Noto Sans Italic'), local('NotoSans-Italic'), url(http://fonts.gstatic.com/s/notosans/v7/o-0OIpQlx3QUlC5A4PNr4AROQ_mu72BiBLE.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+        @font-face{font-family:'Noto Sans';font-style:italic;font-weight:400;src:local('Noto Sans Italic'), local('NotoSans-Italic'), url(http://fonts.gstatic.com/s/notosans/v7/o-0OIpQlx3QUlC5A4PNr4ARBQ_mu72BiBLE.woff2) format('woff2');unicode-range:U+0370-03FF;}
+        @font-face{font-family:'Noto Sans';font-style:italic;font-weight:400;src:local('Noto Sans Italic'), local('NotoSans-Italic'), url(http://fonts.gstatic.com/s/notosans/v7/o-0OIpQlx3QUlC5A4PNr4ARNQ_mu72BiBLE.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;}
+        @font-face{font-family:'Noto Sans';font-style:italic;font-weight:400;src:local('Noto Sans Italic'), local('NotoSans-Italic'), url(http://fonts.gstatic.com/s/notosans/v7/o-0OIpQlx3QUlC5A4PNr4ARMQ_mu72BiBLE.woff2) format('woff2');unicode-range:U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+        @font-face{font-family:'Noto Sans';font-style:italic;font-weight:400;src:local('Noto Sans Italic'), local('NotoSans-Italic'), url(http://fonts.gstatic.com/s/notosans/v7/o-0OIpQlx3QUlC5A4PNr4ARCQ_mu72Bi.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:400;src:local('Noto Sans'), local('NotoSans'), url(http://fonts.gstatic.com/s/notosans/v7/o-0IIpQlx3QUlC5A4PNr6DRASf6M7VBj.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:400;src:local('Noto Sans'), local('NotoSans'), url(http://fonts.gstatic.com/s/notosans/v7/o-0IIpQlx3QUlC5A4PNr4TRASf6M7VBj.woff2) format('woff2');unicode-range:U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:400;src:local('Noto Sans'), local('NotoSans'), url(http://fonts.gstatic.com/s/notosans/v7/o-0IIpQlx3QUlC5A4PNr5DRASf6M7VBj.woff2) format('woff2');unicode-range:U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:400;src:local('Noto Sans'), local('NotoSans'), url(http://fonts.gstatic.com/s/notosans/v7/o-0IIpQlx3QUlC5A4PNr6TRASf6M7VBj.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:400;src:local('Noto Sans'), local('NotoSans'), url(http://fonts.gstatic.com/s/notosans/v7/o-0IIpQlx3QUlC5A4PNr5jRASf6M7VBj.woff2) format('woff2');unicode-range:U+0370-03FF;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:400;src:local('Noto Sans'), local('NotoSans'), url(http://fonts.gstatic.com/s/notosans/v7/o-0IIpQlx3QUlC5A4PNr6jRASf6M7VBj.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:400;src:local('Noto Sans'), local('NotoSans'), url(http://fonts.gstatic.com/s/notosans/v7/o-0IIpQlx3QUlC5A4PNr6zRASf6M7VBj.woff2) format('woff2');unicode-range:U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:400;src:local('Noto Sans'), local('NotoSans'), url(http://fonts.gstatic.com/s/notosans/v7/o-0IIpQlx3QUlC5A4PNr5TRASf6M7Q.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:700;src:local('Noto Sans Bold'), local('NotoSans-Bold'), url(http://fonts.gstatic.com/s/notosans/v7/o-0NIpQlx3QUlC5A4PNjXhFVadyBx2pqPIif.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:700;src:local('Noto Sans Bold'), local('NotoSans-Bold'), url(http://fonts.gstatic.com/s/notosans/v7/o-0NIpQlx3QUlC5A4PNjXhFVYNyBx2pqPIif.woff2) format('woff2');unicode-range:U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:700;src:local('Noto Sans Bold'), local('NotoSans-Bold'), url(http://fonts.gstatic.com/s/notosans/v7/o-0NIpQlx3QUlC5A4PNjXhFVZdyBx2pqPIif.woff2) format('woff2');unicode-range:U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:700;src:local('Noto Sans Bold'), local('NotoSans-Bold'), url(http://fonts.gstatic.com/s/notosans/v7/o-0NIpQlx3QUlC5A4PNjXhFVaNyBx2pqPIif.woff2) format('woff2');unicode-range:U+1F00-1FFF;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:700;src:local('Noto Sans Bold'), local('NotoSans-Bold'), url(http://fonts.gstatic.com/s/notosans/v7/o-0NIpQlx3QUlC5A4PNjXhFVZ9yBx2pqPIif.woff2) format('woff2');unicode-range:U+0370-03FF;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:700;src:local('Noto Sans Bold'), local('NotoSans-Bold'), url(http://fonts.gstatic.com/s/notosans/v7/o-0NIpQlx3QUlC5A4PNjXhFVa9yBx2pqPIif.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:700;src:local('Noto Sans Bold'), local('NotoSans-Bold'), url(http://fonts.gstatic.com/s/notosans/v7/o-0NIpQlx3QUlC5A4PNjXhFVatyBx2pqPIif.woff2) format('woff2');unicode-range:U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}
+        @font-face{font-family:'Noto Sans';font-style:normal;font-weight:700;src:local('Noto Sans Bold'), local('NotoSans-Bold'), url(http://fonts.gstatic.com/s/notosans/v7/o-0NIpQlx3QUlC5A4PNjXhFVZNyBx2pqPA.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+    </style>
+</head>
+<body class="page-body" data-url="http://neon.dev">
 
+<div class="page-container">
+    <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 
-<?php if ($this->ion_auth->is_admin() && (!isset($_SESSION['emulate']) || $this->ion_auth->user()->row()->id == $_SESSION['emulate']))  : ?>
-    <span>&nbsp;</span>
-<?php else : ?>
+    <div class="main-content">
 
-
-    <div class="col-md-12 col-sm-12 clearfix">
-        <?php if (isset($_SESSION['emulated_name'])): ?>
-            <h4>Dashboard report for: <?= urldecode($_SESSION['emulated_name']); ?></h4>
-
-        <?php elseif($this->ion_auth->logged_in()): ?>
-            <h4>Dashboard report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
-        <?php else: ?>
-            <h4>Dashboard report for: UTS Wide</h4>
-
-        <?php endif; ?>
-        <?php if($utswide) :?>
-            <h6><?=$completed_proportion;?> Org Units have committed data for this period.</h6>
-        <?php endif; ?>
-
-    </div>
-
-
-    <div class="row">
-        <div class="col-lg-12">
-
-            <form class="form-horizontal col-sm-12" autocomplete="on" method="post" accept-charset="utf-8">
-                <div class="form-group">
-
-                    <label class="col-lg-1 control-label" for="year">Year</label>
-
-                    <div class="col-lg-2">
-                        <select id="year" name="year" class="form-control col-lg-2">
-                            <option>--</option>
-                            <option
-                                value="<?= date("Y"); ?>" <?= ($year == date("Y")) ? 'selected' : ''; ?> ><?= date("Y"); ?></option>
-                            <option
-                                value="<?= date("Y", strtotime("-1 year")); ?>" <?= ($year == date("Y", strtotime("-1 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-1 year")); ?></option>
-                            <option
-                                value="<?= date("Y", strtotime("-2 year")); ?>" <?= ($year == date("Y", strtotime("-2 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-2 year")); ?></option>
-                            <!-- You can add more years to this if needed. Also update in enterdata and reports views -->
-                        </select>
-                    </div>
-
-                    <label class="col-lg-1 control-label" for="period">Period</label>
-
-                    <div class="col-lg-2">
-                        <select id="period" name="period" class="form-control col-lg-2">
-                            <option>--</option>
-                            <?php
-
-                            foreach ($periods as $key => $value): ?>
-                                <option
-                                    value="<?= $key; ?>" <?= ($key == $period) ? 'selected' : '';  ?>  ><?=$key;?> (<?= $value ?>) </option>
-
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-
-
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel panel-primary">
-                <div class="panel-body with-table">
-                    <table class="table table-bordered table-responsive">
-                        <tr>
-                            <td><i class="badge badge-success">&nbsp;</i> &nbsp;On Track</td>
-                            <td><i class="entypo-up dashboard-icon btn-green">&nbsp;</i>&nbsp;Performance Improving</td>
-                        </tr>
-                        <tr>
-                            <td><i class="badge badge-warning">&nbsp;</i> &nbsp;Needs Improvement</td>
-                            <td><i class="entypo-down dashboard-icon btn-red">&nbsp;</i>&nbsp;Performance Declining</td>
-                        </tr>
-                        <tr>
-                            <td><i class="badge badge-danger">&nbsp;</i> &nbsp;Further Work Required</td>
-                            <td><i class="entypo-switch dashboard-icon btn-gold">&nbsp;</i>&nbsp;Performance Static</td>
-                        </tr>
-                    </table>
-                </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
             </div>
+        </div>
+        <div id="contentpage">
 
-            <?php
-            $counter = 1;
-            foreach ($sections as $key => $value) : ?>
+            <?php foreach ($collection as $data):
+                extract($data); ?>
 
 
-            <div id="<?= $key; ?>_panel" class="panel panel-primary">
-                <div class="panel-heading">
-                    <div class="panel-title"><?= $this->config->item($key) ?></div>
+                <div class="col-md-12 col-sm-12 clearfix">
 
-                    <div class="panel-options">
-                        <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
-                    </div>
-                </div>
-                <table class="table table-bordered table-responsive">
-                    <thead>
-                    <tr>
+                    <h4>Dashboard report for: <?= urldecode($emulated_name); ?> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                        Year: <?= $year; ?> &nbsp;&nbsp;&nbsp; |&nbsp; &nbsp;&nbsp;Period: <?= $period; ?>
+                        (<?= $periods[$period]; ?>)</h4>
 
-                        <th></th>
-                        <th>Previous</th>
-                        <th>Current</th>
-                        <th>Target</th>
-                        <th>Trend</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-
-                    <?php
-                    $current = 0;
-                    $previous = 0;
-                    foreach ($value as $row){
-                        $current += $row['current'];
-                        //$previous += $row['previous'];
-                    }
-                    if (!$current) : ?>
-                        <tr>
-                            <td style="text-align: center;" colspan="5"><b>No data yet submitted for this period</b></td>
-                        </tr>
+                    <?php if ($utswide) : ?>
+                        <h6><?= $completed_proportion; ?> Org Units have committed data for this period.</h6>
                     <?php endif; ?>
 
-                    <?php foreach ($value as $row):
-                        $arrow = '';
-                        $button = '';
-                        $badge = '';
-                        $indicator_threshold = $this->config->item('indicator_threshold');
-                        $percent = '';
+                </div>
 
 
-                        if ($row['current'] > $row['previous']) {
-                            $arrow = 'entypo-up';
-                            $button = 'btn-green';
-                        }
-                        if ($row['current'] < $row['previous']) {
-                            $arrow = 'entypo-down';
-                            $button = 'btn-red';
-                        }
-                        if ($row['current'] == $row['previous']) {
-                            $arrow = 'entypo-switch';
-                            $button = 'btn-gold';
-                        }
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-body with-table">
+                                <table class="table table-bordered table-responsive">
+                                    <tr>
+                                        <td><i class="badge badge-success">&nbsp;</i> &nbsp;On Track</td>
+                                        <td><i class="entypo-up dashboard-icon btn-green">&nbsp;</i>&nbsp;Performance
+                                            Improving
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="badge badge-warning">&nbsp;</i> &nbsp;Needs Improvement</td>
+                                        <td><i class="entypo-down dashboard-icon btn-red">&nbsp;</i>&nbsp;Performance
+                                            Declining
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="badge badge-danger">&nbsp;</i> &nbsp;Further Work Required</td>
+                                        <td><i class="entypo-switch dashboard-icon btn-gold">&nbsp;</i>&nbsp;Performance
+                                            Static
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <?php
+                        $counter = 1;
+                        foreach ($sections as $key => $value) : ?>
 
 
-                        if ($row['type'] == 'True/False') {
-                            $badge = ($row['current']) ? 'badge-success' : 'badge-danger';
-                            if (isset($row['previous'])) {
-                                $row['previous'] = ($row['previous'] ? 'Yes' : 'No');
-                            }
-                            if (isset($row['current'])) {
-                                $row['current'] = ($row['current'] ? 'Yes' : 'No');
-                            }
-                        }
-                        if ($row['type'] == 'Absolute') {
-                            $badge = ($row['current'] > $row['value']) ? 'badge-success' : 'badge-danger';
-                        }
-                        if ($row['type'] == 'Percentage') {
-                            $percent = '%';
-                            if ($row['current'] > $row['value']) {
-                                $badge = 'badge-success';
-                            } else if ($row['current'] > $row['value'] - $indicator_threshold) {
-                                $badge = 'badge-warning';
-                            } else {
-                                $badge = 'badge-danger';
-                            }
-                        }
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="panel-title"><?= $this->config->item($key) ?></div>
 
-                        if (!$row['traffic_light']) {
-                            $button = 'btn-grey';
-                            $badge = '';
-                        }
+                                <div class="panel-options">
+                                    <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-responsive">
+                                <thead>
+                                <tr>
 
-                        if($row['traffic_light'] && $row['traffic_light_reverse']){
-                            if($badge == 'badge-danger'){
-                                $badge = 'badge-success';
-                            }
-                            if($arrow == 'badge-success'){
-                                $badge = 'badge-danger';
-                            }
+                                    <th></th>
+                                    <th>Previous</th>
+                                    <th>Current</th>
+                                    <th>Target</th>
+                                    <th>Trend</th>
+                                </tr>
+                                </thead>
 
-                        }
+                                <tbody>
 
-                        ?>
-                        <tr>
+                                <?php
+                                $current = 0;
+                                $previous = 0;
+                                foreach ($value as $row) {
+                                    $current += $row['current'];
+                                    //$previous += $row['previous'];
+                                }
+                                if (!$current) : ?>
+                                    <tr>
+                                        <td style="text-align: center;" colspan="5"><b>No data yet submitted for this
+                                                period</b></td>
+                                    </tr>
+                                <?php endif; ?>
 
-                            <td><?= $row['description']; ?></td>
-                            <td><?= $row['previous'] ?> <?= isset($row['previous']) ? $percent : ''; ?></td>
-                            <td><?= $row['current'] ?> <?= isset($row['current']) ? $percent : ''; ?></td>
-                            <td class="text-center"><i class="badge <?= $badge; ?>">&nbsp;</i></td>
-                            <td class="text-center"><i class="<?= $arrow; ?> dashboard-icon <?= $button; ?>"></i></td>
-                        </tr>
+                                <?php foreach ($value as $row):
+                                    $arrow = '';
+                                    $button = '';
+                                    $badge = '';
+                                    $indicator_threshold = $this->config->item('indicator_threshold');
+                                    $percent = '';
 
-                    <?php endforeach; ?>
 
-                    </tbody>
-                </table>
-            </div>
-            <?php if ($counter == floor(count($sections) / 2.0)): ?>
-        </div>
-        <div class="col-sm-6">
-            <?php endif;
+                                    if ($row['current'] > $row['previous']) {
+                                        $arrow = 'entypo-up';
+                                        $button = 'btn-green';
+                                    }
+                                    if ($row['current'] < $row['previous']) {
+                                        $arrow = 'entypo-down';
+                                        $button = 'btn-red';
+                                    }
+                                    if ($row['current'] == $row['previous']) {
+                                        $arrow = 'entypo-switch';
+                                        $button = 'btn-gold';
+                                    }
 
-            $counter++; ?>
+
+                                    if ($row['type'] == 'True/False') {
+                                        $badge = ($row['current']) ? 'badge-success' : 'badge-danger';
+                                        if (isset($row['previous'])) {
+                                            $row['previous'] = ($row['previous'] ? 'Yes' : 'No');
+                                        }
+                                        if (isset($row['current'])) {
+                                            $row['current'] = ($row['current'] ? 'Yes' : 'No');
+                                        }
+                                    }
+                                    if ($row['type'] == 'Absolute') {
+                                        $badge = ($row['current'] > $row['value']) ? 'badge-success' : 'badge-danger';
+                                    }
+                                    if ($row['type'] == 'Percentage') {
+                                        $percent = '%';
+                                        if ($row['current'] > $row['value']) {
+                                            $badge = 'badge-success';
+                                        } else if ($row['current'] > $row['value'] - $indicator_threshold) {
+                                            $badge = 'badge-warning';
+                                        } else {
+                                            $badge = 'badge-danger';
+                                        }
+                                    }
+
+                                    if (!$row['traffic_light']) {
+                                        $button = 'btn-grey';
+                                        $badge = '';
+                                    }
+
+                                    if ($row['traffic_light'] && $row['traffic_light_reverse']) {
+                                        if ($badge == 'badge-danger') {
+                                            $badge = 'badge-success';
+                                        }
+                                        if ($arrow == 'badge-success') {
+                                            $badge = 'badge-danger';
+                                        }
+
+                                    }
+
+                                    ?>
+                                    <tr>
+
+                                        <td><?= $row['description']; ?></td>
+                                        <td><?= $row['previous'] ?> <?= isset($row['previous']) ? $percent : ''; ?></td>
+                                        <td><?= $row['current'] ?> <?= isset($row['current']) ? $percent : ''; ?></td>
+                                        <td class="text-center"><i class="badge <?= $badge; ?>">&nbsp;</i></td>
+                                        <td class="text-center"><i
+                                                class="<?= $arrow; ?> dashboard-icon <?= $button; ?>"></i></td>
+                                    </tr>
+
+                                <?php endforeach; ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php if ($counter == floor(count($sections) / 2.0)): ?>
+                    </div>
+                    <div class="col-sm-6">
+                        <?php endif;
+
+                        $counter++; ?>
+
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+
+                <?php if (!$utswide && isset($date_committed)): ?>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-body ">
+                                Dashboard report for <?= $period_txt; ?> <?= $year; ?> committed
+                                on <?= date("g:i a d/m/Y", strtotime($date_committed)); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+                <?php if (!$utswide && isset($comments)): ?>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-body ">
+                                Comments: <?= $comments; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+            <?php endif; ?>
 
             <?php endforeach; ?>
+
         </div>
+        <!-- Footer -->
+        <footer class="main">
+
+            Copyright &copy; 2017 <a target="_blank" href="http://www.uts.edu.au">uts.edu.au</a>
+        </footer>
     </div>
 
+</div>
 
+</body>
+</html>
 
-<?php endif; ?>
-
-<?php if(!$utswide && isset($date_committed)): ?>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="panel panel-primary">
-                <div class="panel-body ">
-                    Dashboard report for <?=$period_txt;?> <?=$year;?> committed on <?=date("g:i a d/m/Y", strtotime($date_committed)); ?>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php endif;?>
-<?php if(!$utswide && isset($comments)): ?>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="panel panel-primary">
-                <div class="panel-body ">
-                    Comments:  <?=$comments;?>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php endif; ?>
-
-<script type="text/javascript">
-    $( document ).ready(function() {
-        $(".with-chart").hide();
-    });
-</script>
