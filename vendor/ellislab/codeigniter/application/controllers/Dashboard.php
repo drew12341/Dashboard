@@ -116,9 +116,10 @@ class Dashboard extends CI_Controller
         $this->output->unset_template();
         $this->load->view('dashboard/meeting_pack_report' , $total);
     }
-    function meetingPackPDF(){
+    function meetingPackPDF()
+    {
         ini_set('max_execution_time', 300);
-
+        ini_set('memory_limit', '256M');
 
         $year = date("Y");
         $period = month_to_period(date('n'));
@@ -127,7 +128,7 @@ class Dashboard extends CI_Controller
         $em = $this->ion_auth->get_all_id();
 
 
-        foreach($em as $key=>$value) {
+        foreach ($em as $key => $value) {
             $_SESSION['emulate'] = $key;
             $data = $this->getDashData($year, $period);
             $data['emulated_name'] = $value;
@@ -135,8 +136,7 @@ class Dashboard extends CI_Controller
             $collection[] = $data;
 
             //exit early whilst developing
-
-            break;
+            //break;
         }
 
 
@@ -145,8 +145,9 @@ class Dashboard extends CI_Controller
 
         //$this->output->set_template('modal');
         $this->output->unset_template();
-        $this->load->view('dashboard/meeting_pack_report' , $total);
+        $this->load->view('dashboard/meeting_pack_report', $total);
 
+        //return;
 
         //$this->load->helper(array('wkhtmltopdf', 'file'));
         $html = $this->load->view('dashboard/meeting_pack_report', $total, true);
@@ -160,30 +161,38 @@ class Dashboard extends CI_Controller
             array(
                 'apikey' => $apikey,
                 'value' => $value,
-                'MarginBottom' => '30',
-                'MarginTop' => '20'
+                'MarginBottom' => '10',
+                'MarginTop' => '10',
+                'UseLandscape'=>'true',
+
             )
         );
 
         $opts = array('http' =>
             array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
+                'method' => 'POST',
+                'header' => 'Content-type: application/x-www-form-urlencoded',
                 'content' => $postdata
             )
         );
 
-        $context  = stream_context_create($opts);
+        $context = stream_context_create($opts);
 
 // Convert the HTML string to a PDF using those parameters
         $result = file_get_contents('http://api.html2pdfrocket.com/pdf', false, $context);
 
 // Save to root folder in website
-        $file_name = APPPATH.'../tmp/mypdf-1.pdf';
-        file_put_contents($file_name, $result);
+        //$file_name = APPPATH.'../tmp/mypdf-1.pdf';
+        //file_put_contents($file_name, $result);
 
-        header("X-Sendfile: $file_name");
-        header("Content-type: application/octet-stream");
-        header('Content-Disposition: attachment; filename="' . basename($file_name) . '"');
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: attachment; filename=' . 'Meeting-Pack-Report.pdf');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . strlen($result));
+
+        echo $result;
     }
 }
