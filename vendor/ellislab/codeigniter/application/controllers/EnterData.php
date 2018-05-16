@@ -76,6 +76,7 @@ class EnterData extends Auth_Controller
 
         $measuremeta = $this->Indicator_model->get_measure_meta($this->ion_auth->user()->row()->id, $year.'-'.$period);
         $data['comments'] = $measuremeta['comments'];
+        $data['data_entered_by'] = $measuremeta['data_entered_by'];
 
         $validations = array();
         //$this->form_validation->set_rules('year', 'Year','trim|required');
@@ -105,13 +106,14 @@ class EnterData extends Auth_Controller
             $measuremeta['userid'] = $this->ion_auth->user()->row()->id;
             $measuremeta['period'] = $year.'-'.$period;
             $measuremeta['comments'] = $record['comments'];
+            $measuremeta['data_entered_by'] = $record['data_entered_by'];
             $this->Indicator_model->upsert_measure_meta($measuremeta);
 
             $data['current_values'] = $this->Indicator_model->getMeasures($this->ion_auth->user()->row()->id, $year.'-'.$period);
             $data['status'] = $this->Indicator_model->getMeasuresStatus($this->ion_auth->user()->row()->id, $year.'-'.$period);
             $measuremeta = $this->Indicator_model->get_measure_meta($this->ion_auth->user()->row()->id, $year.'-'.$period);
             $data['comments'] = $measuremeta['comments'];
-
+            $data['data_entered_by'] = $measuremeta['data_entered_by'];
             $this->load->view('enterdata/data_view', $data);
         }
     }

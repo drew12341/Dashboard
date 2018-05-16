@@ -1,18 +1,22 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <?php if($this->ion_auth->is_admin() && (!isset($_SESSION['emulate']) || $this->ion_auth->user()->row()->id == $_SESSION['emulate']))  : ?>
-    <span>&nbsp;</span>
+    <?php if( $this->ion_auth->is_admin())  : ?>
+        <span><a href="<?= site_url('Dashboard/meetingPackPDF');?>" class="btn btn-primary" >Generate Dashboard Meeting Pack Report&nbsp;</a></span>
+    <?php else: ?>
+        <span> </span>
+    <?php endif; ?>
 <?php else : ?>
 
 
-<?php if($this->ion_auth->is_admin() && isset($_SESSION['emulated_name'])):
-        $orgunit = urldecode($_SESSION['emulated_name']); ?>
-    <h4>Report for: <?= urldecode($_SESSION['emulated_name']); ?></h4>
+    <?php if($this->ion_auth->is_admin() && isset($_SESSION['emulated_name'])):
+            $orgunit = urldecode($_SESSION['emulated_name']); ?>
+        <h4>Report for: <?= urldecode($_SESSION['emulated_name']); ?></h4>
 
-<?php else:
-        $orgunit = $this->ion_auth->user()->row()->orgunit_name; ?>
-    <h4>Report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
-<?php endif; ?>
+    <?php else:
+            $orgunit = $this->ion_auth->user()->row()->orgunit_name; ?>
+        <h4>Report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
+    <?php endif; ?>
 
 
 

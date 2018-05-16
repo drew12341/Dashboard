@@ -221,7 +221,7 @@
                             if($badge == 'badge-danger'){
                                 $badge = 'badge-success';
                             }
-                            if($arrow == 'badge-success'){
+                            else if($badge == 'badge-success'){
                                 $badge = 'badge-danger';
                             }
                         }

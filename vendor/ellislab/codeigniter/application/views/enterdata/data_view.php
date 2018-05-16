@@ -166,14 +166,34 @@ function set_value_AA($field, $current_values) {
                     <!-- comments section -->
 
                     <tr><td><textarea rows="3" class="form-control" type="text" name="comments"><?=$comments;?></textarea></td></tr>
+
                     </tbody>
                 </table>
 
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Data Entered By</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+
+                    <tr><td><textarea rows="3" class="form-control" type="text" name="data_entered_by"><?=$data_entered_by;?></textarea></td></tr>
+
+                    </tbody>
+                </table>
 
                 <a href="<?= site_url('EnterData/');?>" class="btn btn-primary" >Back </a>
 
                 <input type="button" formnovalidate="formnovalidate"  id="draftbtn" class="btn btn-primary" <?= ($status == 'Committed') ? 'disabled' : ''; ?> value="Save as Draft"/>
-                <input type="submit" class="btn btn-primary" <?= ($status == 'Committed') ? 'disabled' : ''; ?>
+                <input type="submit" id="submitbtn"
+                       data-btn-ok-label="Continue" data-btn-ok-class="btn-success"
+                       data-btn-ok-icon-class="material-icons" data-btn-ok-icon-content="check"
+                       data-btn-cancel-label="Cancel" data-btn-cancel-class="btn-danger"
+                       data-btn-cancel-icon-class="material-icons" data-btn-cancel-icon-content="close"
+                       data-title="Commit" data-content="Are you sure? Data cannot be edited once committed."
+                       data-toggle="confirmation" class="btn btn-primary" <?= ($status == 'Committed') ? 'disabled' : ''; ?>
                        value="Commit"/>
 
                 <br/>
@@ -187,18 +207,14 @@ function set_value_AA($field, $current_values) {
 
 <script type="text/javascript">
     $("#draftbtn").click(function(){
-//        console.log("VALIEDATE");
         $("#committed").val(0);
-//        $("#mainform").attr( 'novalidate', 'novalidate' );
-//
-//        $("#mainform").submit(function() {
-//            for(var f=$("#mainform :input"),i=f.length;i--;){
-//                console.log(f.length);
-//                f[i].setAttribute("novalidate",i);
-//                console.log("novalidate");
-//            }
-//
-//        });
+
         $("#mainform").unbind('submit').submit();
+    });
+    $(document).ready(function() {
+        $('[data-toggle=confirmation]').confirmation({
+            rootSelector: '[data-toggle=confirmation]',
+            // other options
+        });
     });
 </script>
