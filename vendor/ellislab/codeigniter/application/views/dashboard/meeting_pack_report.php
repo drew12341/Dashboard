@@ -5,7 +5,10 @@
     <style>
 
         /*! CSS Used from: Embedded */
-        [class^="entypo-"]:before{font-family:"entypo";font-style:normal;font-weight:normal;speak:none;display:inline-block;text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;font-variant:normal;text-transform:none;line-height:1em;margin-left:.2em;}
+        [class^="entypo-"]:before{font-family:"entypo";font-style:normal;font-weight:normal;speak:none;display:inline-block;
+            text-decoration:inherit;width:1em;margin-right:.2em;text-align:center;
+            font-variant:normal;text-transform:none;line-height:1em;
+            margin-left:.2em;}
         .entypo-down-open:before{content:'\e873';}
         body{margin:0;}
         footer{display:block;}
@@ -33,8 +36,8 @@
 
         *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
         *:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
-        body{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-size:12px;
-            line-height:1.42857143;color:#323232;background-color:#fff;}
+        body{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-size:11px;
+            line-height:1.0;color:#323232;background-color:#fff;}
         a{color:#373e4a;text-decoration:none;}
         a:hover,a:focus{color:#818da2;text-decoration:none;}
         a:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px;}
@@ -58,7 +61,7 @@
         table{background-color:transparent;}
         th{text-align:left;}
         .table{width:100%;max-width:100%;margin-bottom:17px;}
-        .table > thead > tr > th,.table > tbody > tr > td{padding:8px;line-height:1.42857143;
+        .table > thead > tr > th,.table > tbody > tr > td{padding:6px;line-height:1.1;
             vertical-align:top;border-top:1px solid #ebebeb;}
         .table > thead > tr > th{vertical-align:bottom;border-bottom:2px solid #ebebeb;}
         .table > thead:first-child > tr:first-child > th{border-top:0;}
@@ -95,7 +98,7 @@
             .hidden-xs{display:none!important;}
         }
         .panel{margin-bottom:17px;background-color:#fff;border:1px solid transparent;}
-        .panel > .panel-heading .panel-title{font-size:15px;}
+        .panel > .panel-heading .panel-title{font-size:13px;}
         .panel-body{position:relative;padding:15px;}
         .panel-body:before,.panel-body:after{content:" ";display:table;}
         .panel-body:after{clear:both;}
@@ -221,19 +224,19 @@
                                 <table class="table table-bordered table-responsive">
                                     <tr>
                                         <td><img style="width:20px" alt="green up" src="data:image/png;base64,<?=$green_dot;?>"/> &nbsp;On Track</td>
-                                        <td><img style="width:30px" alt="green up" src="data:image/png;base64,<?=$green_up;?>"/> Performance
+                                        <td><img style="width:25px" alt="green up" src="data:image/png;base64,<?=$green_up;?>"/> Performance
                                             Improving
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><img style="width:20px" alt="red down" src="data:image/png;base64,<?=$red_dot;?>"/> &nbsp;Needs Improvement</td>
-                                        <td><img style="width:30px" alt="red down" src="data:image/png;base64,<?=$red_down;?>"/>&nbsp;Performance
+                                        <td><img style="width:25px" alt="red down" src="data:image/png;base64,<?=$red_down;?>"/>&nbsp;Performance
                                             Declining
                                         </td>
                                     </tr>
                                     <tr>
                                         <td><img style="width:20px" alt="green up" src="data:image/png;base64,<?=$yellow_dot;?>"/> &nbsp;Further Work Required</td>
-                                        <td><img style="width:30px" alt="yellow static" src="data:image/png;base64,<?=$yellow_static;?>"/>&nbsp;Performance
+                                        <td><img style="width:25px" alt="yellow static" src="data:image/png;base64,<?=$yellow_static;?>"/>&nbsp;Performance
                                             Static
                                         </td>
                                     </tr>
@@ -366,7 +369,7 @@
                                         <td class="text-center">
                                             <img style="width:20px" alt="indicator" src="<?=$badge_src;?>"/></td>
                                         <td class="text-center" style="padding-top:6px">
-                                            <img style="width:30px" alt="indicator" src="<?=$img_src;?>"/>
+                                            <img style="width:25px" alt="indicator" src="<?=$img_src;?>"/>
                                         </td>
                                     </tr>
 

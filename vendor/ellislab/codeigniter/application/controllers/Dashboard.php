@@ -147,7 +147,7 @@ class Dashboard extends CI_Controller
         $this->output->unset_template();
         $this->load->view('dashboard/meeting_pack_report', $total);
 
-        //return;
+        return;
 
         //$this->load->helper(array('wkhtmltopdf', 'file'));
         $html = $this->load->view('dashboard/meeting_pack_report', $total, true);
