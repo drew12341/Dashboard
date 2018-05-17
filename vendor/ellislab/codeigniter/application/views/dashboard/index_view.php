@@ -334,6 +334,18 @@
     </div>
 <?php endif; ?>
 
+<?php if(!$utswide && isset($data_entered_by)): ?>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-body ">
+                   Entered by:  <?=$data_entered_by;?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
 <script type="text/javascript">
     $( document ).ready(function() {
         $(".with-chart").hide();

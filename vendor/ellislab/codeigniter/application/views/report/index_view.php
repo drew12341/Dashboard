@@ -2,7 +2,7 @@
 
 <?php if($this->ion_auth->is_admin() && (!isset($_SESSION['emulate']) || $this->ion_auth->user()->row()->id == $_SESSION['emulate']))  : ?>
     <?php if( $this->ion_auth->is_admin())  : ?>
-        <span><a href="<?= site_url('Dashboard/meetingPackPDF');?>" class="btn btn-primary" >Generate Dashboard Meeting Pack Report&nbsp;</a></span>
+        <span><a href="<?= site_url('Dashboard/meetingPackPDF');?>" class="btn btn-primary" >Generate Dashboard Meeting Pack Report&nbsp; (takes ~30 seconds)</a></span>
     <?php else: ?>
         <span> </span>
     <?php endif; ?>

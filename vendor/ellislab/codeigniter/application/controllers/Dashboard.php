@@ -80,6 +80,7 @@ class Dashboard extends CI_Controller
 
             $measuremeta = $this->Indicator_model->get_measure_meta($userid, $year . '-' . $period);
             $data['comments'] = $measuremeta['comments'];
+			$data['data_entered_by'] = $measuremeta['data_entered_by'];
         }
         return $data;
     }
