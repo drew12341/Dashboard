@@ -31,8 +31,9 @@
             .table td,.table th{background-color:#fff!important;}
             .table-bordered th,.table-bordered td{border:1px solid #ddd!important;}
             footer{page-break-after:always;}
-        }
 
+        }
+        footer{page-break-after:always;}
 
         *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
         *:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
@@ -61,8 +62,8 @@
         table{background-color:transparent;}
         th{text-align:left;}
         .table{width:100%;max-width:100%;margin-bottom:17px;}
-        .table > thead > tr > th,.table > tbody > tr > td{padding:6px;line-height:1.1;
-            vertical-align:top;border-top:1px solid #ebebeb;}
+        .table > thead > tr > th,.table > tbody > tr > td{padding:4px;line-height:1.1;
+            vertical-align:center;border-top:1px solid #ebebeb;}
         .table > thead > tr > th{vertical-align:bottom;border-bottom:2px solid #ebebeb;}
         .table > thead:first-child > tr:first-child > th{border-top:0;}
         .table-bordered{border:1px solid #ebebeb;}
@@ -78,7 +79,7 @@
         .panel{margin-bottom:17px;background-color:#fff;border:1px solid transparent;}
         .panel-body{padding:15px;}
         .panel-heading{padding:10px 15px;border-bottom:1px solid transparent;}
-        .panel-title{margin-top:0;margin-bottom:0;font-size:14px;color:inherit;}
+        .panel-title{margin-top:0;margin-bottom:0;font-size:12px;color:inherit;}
         .panel > .table{margin-bottom:0;}
         .panel > .table:last-child{}
         .panel > .table:last-child > tbody:last-child > tr:last-child{}
@@ -99,7 +100,7 @@
         }
 
         .panel{margin-bottom:17px;background-color:#fff;border:1px solid transparent;}
-        .panel > .panel-heading .panel-title{font-size:13px;}
+        .panel > .panel-heading .panel-title{font-size:12px;}
         .panel-body{position:relative;padding:15px;}
         .panel-body:before,.panel-body:after{content:" ";display:table;}
         .panel-body:after{clear:both;}
@@ -118,7 +119,7 @@
         .panel-heading{border-bottom:1px solid transparent;}
         .panel-heading:before,.panel-heading:after{content:" ";display:table;}
         .panel-heading:after{clear:both;}
-        .panel-heading > .panel-title{float:left;padding:10px 15px;}
+        .panel-heading > .panel-title{float:left;padding:7px 15px;}
         .panel-heading > .panel-options{float:right;padding-right:15px;}
         .panel-heading > .panel-options > a{margin-top:10px;}
         .panel-title{margin-top:0;margin-bottom:0;font-size:14px;}
@@ -224,20 +225,20 @@
                             <div class="panel-body with-table">
                                 <table class="table table-bordered table-responsive">
                                     <tr>
-                                        <td><img style="width:20px" alt="green up" src="data:image/png;base64,<?=$green_dot;?>"/> &nbsp;On Track</td>
-                                        <td><img style="width:25px" alt="green up" src="data:image/png;base64,<?=$green_up;?>"/> Performance
+                                        <td><img style="height:12px" alt="green up" src="data:image/png;base64,<?=$green_dot;?>"/> &nbsp;On Track</td>
+                                        <td><img style="height:15px" alt="green up" src="data:image/png;base64,<?=$green_up;?>"/> Performance
                                             Improving
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><img style="width:20px" alt="red down" src="data:image/png;base64,<?=$red_dot;?>"/> &nbsp;Needs Improvement</td>
-                                        <td><img style="width:25px" alt="red down" src="data:image/png;base64,<?=$red_down;?>"/>&nbsp;Performance
+                                        <td><img style="height:12px" alt="red down" src="data:image/png;base64,<?=$red_dot;?>"/> &nbsp;Needs Improvement</td>
+                                        <td><img style="height:15px" alt="red down" src="data:image/png;base64,<?=$red_down;?>"/>&nbsp;Performance
                                             Declining
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><img style="width:20px" alt="green up" src="data:image/png;base64,<?=$yellow_dot;?>"/> &nbsp;Further Work Required</td>
-                                        <td><img style="width:25px" alt="yellow static" src="data:image/png;base64,<?=$yellow_static;?>"/>&nbsp;Performance
+                                        <td><img style="height:12px" alt="green up" src="data:image/png;base64,<?=$yellow_dot;?>"/> &nbsp;Further Work Required</td>
+                                        <td><img style="height:15px" alt="yellow static" src="data:image/png;base64,<?=$yellow_static;?>"/>&nbsp;Performance
                                             Static
                                         </td>
                                     </tr>
@@ -368,9 +369,9 @@
                                         <td><?= $row['previous'] ?> <?= isset($row['previous']) ? $percent : ''; ?></td>
                                         <td><?= $row['current'] ?> <?= isset($row['current']) ? $percent : ''; ?></td>
                                         <td class="text-center">
-                                            <img style="width:20px" alt="indicator" src="<?=$badge_src;?>"/></td>
+                                            <img style="height:12px" alt="indicator" src="<?=$badge_src;?>"/></td>
                                         <td class="text-center" style="padding-top:6px">
-                                            <img style="width:25px" alt="indicator" src="<?=$img_src;?>"/>
+                                            <img style="height:15px" alt="indicator" src="<?=$img_src;?>"/>
                                         </td>
                                     </tr>
 
