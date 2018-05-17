@@ -97,6 +97,7 @@
         @media (max-width: 767px){
             .hidden-xs{display:none!important;}
         }
+
         .panel{margin-bottom:17px;background-color:#fff;border:1px solid transparent;}
         .panel > .panel-heading .panel-title{font-size:13px;}
         .panel-body{position:relative;padding:15px;}
