@@ -55,6 +55,9 @@ class Indicator_model extends CI_Model
         if(!isset($record['traffic_light'])){
             $record['traffic_light'] = 0;
         }
+        if(!isset($record['traffic_light_reverse'])){
+            $record['traffic_light_reverse'] = 0;
+        }
         $this->db->update('indicators', $record, array('id'=>$id));
         return $this->db->insert_id();
     }
