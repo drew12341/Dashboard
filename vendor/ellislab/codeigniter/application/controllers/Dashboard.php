@@ -146,7 +146,7 @@ class Dashboard extends CI_Controller
         //$this->output->set_template('modal');
         $this->output->unset_template();
         $this->load->view('dashboard/meeting_pack_report', $total);
-
+        unset($_SESSION['emulate']);
         return;
 
 
