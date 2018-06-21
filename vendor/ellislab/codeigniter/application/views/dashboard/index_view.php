@@ -224,6 +224,16 @@
                             else if($badge == 'badge-success'){
                                 $badge = 'badge-danger';
                             }
+
+							if($arrow == 'entypo-up'){
+								$arrow = 'entypo-down';
+								$button = 'btn-red';
+							}
+							elseif($arrow == 'entypo-down'){
+								$arrow = 'entypo-up';
+								$button = 'btn-green';
+							}
+
                         }
                         ?>
                         <tr>
