@@ -241,7 +241,7 @@
                             <td><?= $row['description']; ?></td>
                             <td><?= $row['previous'] ?> <?= isset($row['previous']) ? $percent : ''; ?></td>
                             <td><?= $row['current'] ?> <?= isset($row['current']) ? $percent : ''; ?></td>
-                            <td class="text-center"><i class="badge <?= $badge; ?>">&nbsp;</i></td>
+                            <td class="text-center"><i class="badge <?= $badge; ?>">&nbsp;</i>    </td>
                             <td class="text-center"><i class="<?= $arrow; ?> dashboard-icon <?= $button; ?>"></i></td>
                         </tr>
 

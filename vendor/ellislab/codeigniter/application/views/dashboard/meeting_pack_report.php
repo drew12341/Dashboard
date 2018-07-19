@@ -230,16 +230,17 @@
                                             Improving
                                         </td>
                                     </tr>
+
+                                    <tr>
+                                        <td><img style="height:12px" alt="yellow static" src="data:image/png;base64,<?=$yellow_dot;?>"/> &nbsp;Further Work Required</td>
+                                        <td><img style="height:15px" alt="yellow static" src="data:image/png;base64,<?=$yellow_static;?>"/>&nbsp;Performance
+                                            Static
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td><img style="height:12px" alt="red down" src="data:image/png;base64,<?=$red_dot;?>"/> &nbsp;Needs Improvement</td>
                                         <td><img style="height:15px" alt="red down" src="data:image/png;base64,<?=$red_down;?>"/>&nbsp;Performance
                                             Declining
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img style="height:12px" alt="green up" src="data:image/png;base64,<?=$yellow_dot;?>"/> &nbsp;Further Work Required</td>
-                                        <td><img style="height:15px" alt="yellow static" src="data:image/png;base64,<?=$yellow_static;?>"/>&nbsp;Performance
-                                            Static
                                         </td>
                                     </tr>
                                 </table>
@@ -331,7 +332,7 @@
                                     }
                                     if ($row['type'] == 'Percentage') {
                                         $percent = '%';
-                                        if ($row['current'] > $row['value']) {
+                                        if ($row['current'] >= $row['value']) {
                                             $badge = 'badge-success';
                                             $badge_src = 'data:image/png;base64,'.$green_dot;
                                         } else if ($row['current'] > $row['value'] - $indicator_threshold) {
@@ -360,6 +361,16 @@
                                             $badge_src = 'data:image/png;base64,'.$red_dot;
                                         }
 
+
+                                        if($arrow == 'entypo-up'){
+                                            $arrow = 'entypo-down';
+                                            $img_src = 'data:image/png;base64,'.$red_down;
+                                        }
+                                        elseif($arrow == 'entypo-down'){
+                                            $arrow = 'entypo-up';
+                                            $img_src = 'data:image/png;base64,'.$green_up;
+                                        }
+
                                     }
 
                                     ?>
@@ -369,7 +380,9 @@
                                         <td><?= $row['previous'] ?> <?= isset($row['previous']) ? $percent : ''; ?></td>
                                         <td><?= $row['current'] ?> <?= isset($row['current']) ? $percent : ''; ?></td>
                                         <td class="text-center">
-                                            <img style="height:12px" alt="indicator" src="<?=$badge_src;?>"/></td>
+                                            <img style="height:12px" alt="indicator" src="<?=$badge_src;?>"/>
+
+                                        </td>
                                         <td class="text-center" style="padding-top:6px">
                                             <img style="height:15px" alt="indicator" src="<?=$img_src;?>"/>
                                         </td>
