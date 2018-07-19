@@ -82,6 +82,34 @@ class Dashboard extends CI_Controller
             $data['comments'] = $measuremeta['comments'];
 			$data['data_entered_by'] = $measuremeta['data_entered_by'];
         }
+        else {
+            $remove_these = Array('Safety and Wellbeing Essentials', 'Preventing Bullying in the Workplace', 'H&S for Supervisors');
+
+            //remove these sections for UTSwide user
+            foreach ($data['sections'] as $key => &$section) {
+                if ($key == '3_informed_and_engaged') {
+                    foreach ($section as $k => &$row) {
+                        if (in_array($row['description'], $remove_these)) {
+                            unset($section[$k]);
+                        }
+                    }
+                }
+            }
+            // also remove for chart data
+            foreach ($data['chartData'] as $key => &$section) {
+                if ($key == '3_informed_and_engaged') {
+                    foreach ($section as $k => &$row) {
+                        foreach ($row as $j => $v) {
+                            if (in_array($j, $remove_these)) {
+                                unset($row[$j]);
+
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
         return $data;
     }
 

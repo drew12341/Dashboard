@@ -14,41 +14,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library name="PHARS">
-        <CLASSES>
-          <root url="phar://$MODULE_DIR$/composer.phar/" />
-        </CLASSES>
-        <SOURCES>
-          <root url="phar://$MODULE_DIR$/composer.phar/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="PHP">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/composer" />
-          <root url="file://$MODULE_DIR$/vendor/ellislab/codeigniter" />
-          <root url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
-          <root url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
-          <root url="file://$MODULE_DIR$/vendor/mikehaertl/php-shellcommand" />
-          <root url="file://$MODULE_DIR$/vendor/mikehaertl/php-tmpfile" />
-          <root url="file://$MODULE_DIR$/vendor/mikehaertl/phpwkhtmltopdf" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
-          <root url="file://$MODULE_DIR$/vendor/twbs/bootstrap" />
-        </CLASSES>
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/composer" />
-          <root url="file://$MODULE_DIR$/vendor/ellislab/codeigniter" />
-          <root url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
-          <root url="file://$MODULE_DIR$/vendor/guzzlehttp/guzzle" />
-          <root url="file://$MODULE_DIR$/vendor/mikehaertl/php-shellcommand" />
-          <root url="file://$MODULE_DIR$/vendor/mikehaertl/php-tmpfile" />
-          <root url="file://$MODULE_DIR$/vendor/mikehaertl/phpwkhtmltopdf" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
-          <root url="file://$MODULE_DIR$/vendor/twbs/bootstrap" />
-        </SOURCES>
-      </library>
-    </orderEntry>
   </component>
 </module>

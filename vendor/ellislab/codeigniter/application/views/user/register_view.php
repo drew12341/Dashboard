@@ -22,7 +22,7 @@
         ),
         array(
             'id' => 'email',
-            'value' => 'test@email.com',
+            'value' => 'admin@admin.com',
             'type' => 'hidden'
         ),
         array(

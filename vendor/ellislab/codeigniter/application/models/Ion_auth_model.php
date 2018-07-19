@@ -2294,7 +2294,7 @@ class Ion_auth_model extends CI_Model
         $results = $query->result_array();
         $agg = array();
         foreach($results as $res){
-            $agg[0] = 'UTS Wide';
+            $agg[0] = 'Entered Reports Summary';
             if($res['orgunit_name'] != 'Administrator'){
                 $agg[$res['id']] = $res['orgunit_name'];
             }
