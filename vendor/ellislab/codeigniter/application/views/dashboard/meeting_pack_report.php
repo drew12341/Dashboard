@@ -194,6 +194,8 @@
             $red_down = base64_encode(file_get_contents(APPPATH.'../assets/images/red_down.png'));
             $yellow_static = base64_encode(file_get_contents(APPPATH.'../assets/images/yellow_static.png'));
             $grey_static = base64_encode(file_get_contents(APPPATH.'../assets/images/grey_static.png'));
+            $grey_down = base64_encode(file_get_contents(APPPATH.'../assets/images/grey_down.png'));
+            $grey_up = base64_encode(file_get_contents(APPPATH.'../assets/images/grey_up.png'));
 
             $green_dot = base64_encode(file_get_contents(APPPATH.'../assets/images/green_dot.png'));
             $red_dot = base64_encode(file_get_contents(APPPATH.'../assets/images/red_dot.png'));
@@ -291,43 +293,122 @@
                                 <?php endif; ?>
 
                                 <?php foreach ($value as $row):
+//                                    $arrow = '';
+//                                    $button = '';
+//                                    $badge = '';
+//                                    $indicator_threshold = $this->config->item('indicator_threshold');
+//                                    $percent = '';
+//                                    $badge_src = '';
+//                                    $img_src = '';
+//
+//                                    if ($row['current'] > $row['previous']) {
+//                                        $arrow = 'entypo-up';
+//                                        $button = 'btn-green';
+//                                        //$img_url = base_url().'../assets/images/green_up.png';
+//                                        $img_src = 'data:image/png;base64,'.$green_up;
+//                                    }
+//                                    if ($row['current'] < $row['previous']) {
+//                                        $arrow = 'entypo-down';
+//                                        $button = 'btn-red';
+//                                        //$img_url = base_url().'../assets/images/red_down.png';
+//                                        $img_src = 'data:image/png;base64,'.$red_down;
+//                                    }
+//                                    if ($row['current'] == $row['previous']) {
+//                                        $arrow = 'entypo-switch';
+//                                        $button = 'btn-gold';
+//                                        //$img_url = base_url().'../assets/images/yellow_static.png';
+//                                        $img_src = 'data:image/png;base64,'.$yellow_static;
+//                                    }
+//
+//
+//                                    if ($row['type'] == 'True/False') {
+//                                        //$badge = ($row['current']) ? 'badge-success' : 'badge-danger';
+//                                        if ($row['current']) {
+//                                            $badge = 'badge-success';
+//                                            $badge_src = 'data:image/png;base64,'.$green_dot;
+//                                        } else {
+//                                            $badge = 'badge-danger';
+//                                            $badge_src = 'data:image/png;base64,'.$red_dot;
+//                                        }
+//                                        if (isset($row['previous'])) {
+//                                            $row['previous'] = ($row['previous'] ? 'Yes' : 'No');
+//                                        }
+//                                        if (isset($row['current'])) {
+//                                            $row['current'] = ($row['current'] ? 'Yes' : 'No');
+//                                        }
+//                                    }
+//                                    if ($row['type'] == 'Absolute') {
+//                                        //$badge = ($row['current'] > $row['value']) ? 'badge-success' : 'badge-danger';
+//                                        //AHHHHHHH!  This is where the glitch is
+//                                        if ($row['current'] > $row['value']) {
+//                                            $badge = 'badge-success';
+//                                            $badge_src = 'data:image/png;base64,'.$green_dot;
+//                                        } else {
+//                                            $badge = 'badge-danger';
+//                                            $badge_src = 'data:image/png;base64,'.$red_dot;
+//                                        }
+//                                    }
+//                                    if ($row['type'] == 'Percentage') {
+//                                        $percent = '%';
+//                                        if ($row['current'] >= $row['value']) {
+//                                            $badge = 'badge-success';
+//                                            $badge_src = 'data:image/png;base64,'.$green_dot;
+//                                        } else if ($row['current'] > $row['value'] - $indicator_threshold) {
+//                                            $badge = 'badge-warning';
+//                                            $badge_src = 'data:image/png;base64,'.$yellow_dot;
+//                                        } else {
+//                                            $badge = 'badge-danger';
+//                                            $badge_src = 'data:image/png;base64,'.$red_dot;
+//                                        }
+//                                    }
+//
+//                                    if (!$row['traffic_light']) {
+//                                        $button = 'btn-grey';
+//                                        $badge = '';
+//                                        $badge_src = 'data:image/png;base64,'.$grey_dot;
+//                                        $img_src = 'data:image/png;base64,'.$grey_static;
+//                                    }
+//
+//                                    if ($row['traffic_light'] && $row['traffic_light_reverse']) {
+//                                        if ($badge == 'badge-danger') {
+//                                            $badge = 'badge-success';
+//                                            $badge_src = 'data:image/png;base64,'.$green_dot;
+//                                        }
+//                                        else if ($badge == 'badge-success') {
+//                                            $badge = 'badge-danger';
+//                                            $badge_src = 'data:image/png;base64,'.$red_dot;
+//                                        }
+//
+//
+//                                        if($arrow == 'entypo-up'){
+//                                            $arrow = 'entypo-down';
+//                                            $img_src = 'data:image/png;base64,'.$red_down;
+//                                        }
+//                                        elseif($arrow == 'entypo-down'){
+//                                            $arrow = 'entypo-up';
+//                                            $img_src = 'data:image/png;base64,'.$green_up;
+//                                        }
+//
+//                                    }
                                     $arrow = '';
                                     $button = '';
                                     $badge = '';
                                     $indicator_threshold = $this->config->item('indicator_threshold');
                                     $percent = '';
-                                    $badge_src = '';
-                                    $img_src = '';
-
                                     if ($row['current'] > $row['previous']) {
                                         $arrow = 'entypo-up';
                                         $button = 'btn-green';
-                                        //$img_url = base_url().'../assets/images/green_up.png';
-                                        $img_src = 'data:image/png;base64,'.$green_up;
                                     }
                                     if ($row['current'] < $row['previous']) {
                                         $arrow = 'entypo-down';
                                         $button = 'btn-red';
-                                        //$img_url = base_url().'../assets/images/red_down.png';
-                                        $img_src = 'data:image/png;base64,'.$red_down;
                                     }
                                     if ($row['current'] == $row['previous']) {
                                         $arrow = 'entypo-switch';
                                         $button = 'btn-gold';
-                                        //$img_url = base_url().'../assets/images/yellow_static.png';
-                                        $img_src = 'data:image/png;base64,'.$yellow_static;
                                     }
-
-
                                     if ($row['type'] == 'True/False') {
-                                        //$badge = ($row['current']) ? 'badge-success' : 'badge-danger';
-                                        if ($row['current']) {
-                                            $badge = 'badge-success';
-                                            $badge_src = 'data:image/png;base64,'.$green_dot;
-                                        } else {
-                                            $badge = 'badge-danger';
-                                            $badge_src = 'data:image/png;base64,'.$red_dot;
-                                        }
+                                        $badge = ($row['current']) ? 'badge-success' : 'badge-danger';
                                         if (isset($row['previous'])) {
                                             $row['previous'] = ($row['previous'] ? 'Yes' : 'No');
                                         }
@@ -336,59 +417,77 @@
                                         }
                                     }
                                     if ($row['type'] == 'Absolute') {
-                                        //$badge = ($row['current'] > $row['value']) ? 'badge-success' : 'badge-danger';
-                                        //AHHHHHHH!  This is where the glitch is
-                                        if ($row['current'] > $row['value']) {
-                                            $badge = 'badge-success';
-                                            $badge_src = 'data:image/png;base64,'.$green_dot;
-                                        } else {
-                                            $badge = 'badge-danger';
-                                            $badge_src = 'data:image/png;base64,'.$red_dot;
-                                        }
+                                        $badge = ($row['current'] > $row['value']) ? 'badge-success' : 'badge-danger';
                                     }
                                     if ($row['type'] == 'Percentage') {
                                         $percent = '%';
                                         if ($row['current'] >= $row['value']) {
                                             $badge = 'badge-success';
-                                            $badge_src = 'data:image/png;base64,'.$green_dot;
                                         } else if ($row['current'] > $row['value'] - $indicator_threshold) {
                                             $badge = 'badge-warning';
-                                            $badge_src = 'data:image/png;base64,'.$yellow_dot;
                                         } else {
                                             $badge = 'badge-danger';
-                                            $badge_src = 'data:image/png;base64,'.$red_dot;
                                         }
                                     }
-
                                     if (!$row['traffic_light']) {
                                         $button = 'btn-grey';
                                         $badge = '';
-                                        $badge_src = 'data:image/png;base64,'.$grey_dot;
-                                        $img_src = 'data:image/png;base64,'.$grey_static;
                                     }
-
-                                    if ($row['traffic_light'] && $row['traffic_light_reverse']) {
-                                        if ($badge == 'badge-danger') {
+                                    if($row['traffic_light'] && $row['traffic_light_reverse']){
+                                        if($badge == 'badge-danger'){
                                             $badge = 'badge-success';
-                                            $badge_src = 'data:image/png;base64,'.$green_dot;
                                         }
-                                        else if ($badge == 'badge-success') {
+                                        else if($badge == 'badge-success'){
                                             $badge = 'badge-danger';
-                                            $badge_src = 'data:image/png;base64,'.$red_dot;
                                         }
-
 
                                         if($arrow == 'entypo-up'){
                                             $arrow = 'entypo-down';
-                                            $img_src = 'data:image/png;base64,'.$red_down;
+                                            $button = 'btn-red';
                                         }
                                         elseif($arrow == 'entypo-down'){
                                             $arrow = 'entypo-up';
-                                            $img_src = 'data:image/png;base64,'.$green_up;
+                                            $button = 'btn-green';
                                         }
 
                                     }
+                                    if($badge == 'badge-danger'){
+                                        $badge_src = 'data:image/png;base64,'.$red_dot;
+                                    }
+                                    if($badge == 'badge-success'){
+                                        $badge_src = 'data:image/png;base64,'.$green_dot;
+                                    }
+                                    if($badge == 'badge-warning'){
+                                        $badge_src = 'data:image/png;base64,'.$yellow_dot;
+                                    }
+                                    if($badge == ''){
+                                        $badge_src = 'data:image/png;base64,'.$grey_dot;
+                                    }
+                                    if($arrow == 'entypo-up'){
+                                        if($button == 'btn-green'){
+                                            $img_src = 'data:image/png;base64,'.$green_up;
+                                        }
+                                        if($button == 'btn-grey'){
+                                            $img_src = 'data:image/png;base64,'.$grey_up;
+                                        }
 
+                                    }
+                                    if($arrow == 'entypo-down'){
+                                        if($button == 'btn-red'){
+                                            $img_src = 'data:image/png;base64,'.$red_down;
+                                        }
+                                        if($button == 'btn-grey'){
+                                            $img_src = 'data:image/png;base64,'.$grey_down;
+                                        }
+                                    }
+                                    if($arrow == 'entypo-switch'){
+                                        if($button == 'btn-gold'){
+                                            $img_src = 'data:image/png;base64,'.$yellow_static;
+                                        }
+                                        if($button == 'btn-grey'){
+                                            $img_src = 'data:image/png;base64,'.$grey_static;
+                                        }
+                                    }
                                     ?>
                                     <tr>
 
