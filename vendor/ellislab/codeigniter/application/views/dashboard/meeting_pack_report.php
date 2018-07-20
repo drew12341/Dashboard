@@ -296,30 +296,38 @@
                                     $badge = '';
                                     $indicator_threshold = $this->config->item('indicator_threshold');
                                     $percent = '';
-
+                                    $badge_src = '';
+                                    $img_src = '';
 
                                     if ($row['current'] > $row['previous']) {
                                         $arrow = 'entypo-up';
                                         $button = 'btn-green';
-                                        $img_url = base_url().'../assets/images/green_up.png';
+                                        //$img_url = base_url().'../assets/images/green_up.png';
                                         $img_src = 'data:image/png;base64,'.$green_up;
                                     }
                                     if ($row['current'] < $row['previous']) {
                                         $arrow = 'entypo-down';
                                         $button = 'btn-red';
-                                        $img_url = base_url().'../assets/images/red_down.png';
+                                        //$img_url = base_url().'../assets/images/red_down.png';
                                         $img_src = 'data:image/png;base64,'.$red_down;
                                     }
                                     if ($row['current'] == $row['previous']) {
                                         $arrow = 'entypo-switch';
                                         $button = 'btn-gold';
-                                        $img_url = base_url().'../assets/images/yellow_static.png';
+                                        //$img_url = base_url().'../assets/images/yellow_static.png';
                                         $img_src = 'data:image/png;base64,'.$yellow_static;
                                     }
 
 
                                     if ($row['type'] == 'True/False') {
-                                        $badge = ($row['current']) ? 'badge-success' : 'badge-danger';
+                                        //$badge = ($row['current']) ? 'badge-success' : 'badge-danger';
+                                        if ($row['current']) {
+                                            $badge = 'badge-success';
+                                            $badge_src = 'data:image/png;base64,'.$green_dot;
+                                        } else {
+                                            $badge = 'badge-danger';
+                                            $badge_src = 'data:image/png;base64,'.$red_dot;
+                                        }
                                         if (isset($row['previous'])) {
                                             $row['previous'] = ($row['previous'] ? 'Yes' : 'No');
                                         }
@@ -328,7 +336,15 @@
                                         }
                                     }
                                     if ($row['type'] == 'Absolute') {
-                                        $badge = ($row['current'] > $row['value']) ? 'badge-success' : 'badge-danger';
+                                        //$badge = ($row['current'] > $row['value']) ? 'badge-success' : 'badge-danger';
+                                        //AHHHHHHH!  This is where the glitch is
+                                        if ($row['current'] > $row['value']) {
+                                            $badge = 'badge-success';
+                                            $badge_src = 'data:image/png;base64,'.$green_dot;
+                                        } else {
+                                            $badge = 'badge-danger';
+                                            $badge_src = 'data:image/png;base64,'.$red_dot;
+                                        }
                                     }
                                     if ($row['type'] == 'Percentage') {
                                         $percent = '%';
@@ -381,6 +397,7 @@
                                         <td><?= $row['current'] ?> <?= isset($row['current']) ? $percent : ''; ?></td>
                                         <td class="text-center">
                                             <img style="height:12px" alt="indicator" src="<?=$badge_src;?>"/>
+
 
                                         </td>
                                         <td class="text-center" style="padding-top:6px">
