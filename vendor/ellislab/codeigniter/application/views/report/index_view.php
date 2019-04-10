@@ -60,12 +60,18 @@
                         <th>Group Sorting</th>
                         <th>Row Sorting</th>
                         <th>Description</th>
-                        <th>Dec-Jan</th>
-                        <th>Feb-Mar</th>
-                        <th>Apr-May</th>
-                        <th>Jun-Jul</th>
-                        <th>Aug-Sept</th>
-                        <th>Oct-Nov</th>
+                        <th>Jan</th>
+                        <th>Feb</th>
+                        <th>Mar</th>
+                        <th>Apr</th>
+                        <th>May</th>
+                        <th>Jun</th>
+                        <th>Jul</th>
+                        <th>Aug</th>
+                        <th>Sept</th>
+                        <th>Oct</th>
+                        <th>Nov</th>
+                        <th>Dec</th>
 
 
 
@@ -96,6 +102,13 @@
                                 <td><?=(isset($row['y5value'])) ? ($row['y5value']) ? 'Yes' : 'No' : '';?> </td>
                                 <td><?=(isset($row['y6value'])) ? ($row['y6value']) ? 'Yes' : 'No' : '';?> </td>
 
+                                <td><?=(isset($row['y7value'])) ? ($row['y7value']) ? 'Yes' : 'No' : '';?> </td>
+                                <td><?=(isset($row['y8value'])) ? ($row['y8value']) ? 'Yes' : 'No' : '';?> </td>
+                                <td><?=(isset($row['y9value'])) ? ($row['y9value']) ? 'Yes' : 'No' : '';?> </td>
+                                <td><?=(isset($row['y10value'])) ? ($row['y10value']) ? 'Yes' : 'No' : '';?> </td>
+                                <td><?=(isset($row['y11value'])) ? ($row['y11value']) ? 'Yes' : 'No' : '';?> </td>
+                                <td><?=(isset($row['y12value'])) ? ($row['y12value']) ? 'Yes' : 'No' : '';?> </td>
+
                             </tr>
                             <?php else: ?>
                             <tr>
@@ -109,6 +122,13 @@
                                 <td><?=(isset($row['y4value']))? $row['y4value'].$percent : '' ;?></td>
                                 <td><?=(isset($row['y5value']))? $row['y5value'].$percent : '' ;?></td>
                                 <td><?=(isset($row['y6value']))? $row['y6value'].$percent : '' ;?></td>
+
+                                <td><?=(isset($row['y7value']))? $row['y7value'].$percent : '' ;?></td>
+                                <td><?=(isset($row['y8value']))? $row['y8value'].$percent : '' ;?></td>
+                                <td><?=(isset($row['y9value']))? $row['y9value'].$percent : '' ;?></td>
+                                <td><?=(isset($row['y10value']))? $row['y10value'].$percent : '' ;?></td>
+                                <td><?=(isset($row['y11value']))? $row['y11value'].$percent : '' ;?></td>
+                                <td><?=(isset($row['y12value']))? $row['y12value'].$percent : '' ;?></td>
 
                             </tr>
                             <?php endif; ?>
@@ -146,7 +166,7 @@
                 {
                     extend: 'print',
                     exportOptions: {
-                        columns: [0, 3, 4, 5, 6, 7, 8, 9],
+                        columns: [0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
                     },
                     filename:'UTS | WHS Dashboard for '+orgunit,
                     title:'UTS | WHS Dashboard for '+orgunit
@@ -154,7 +174,7 @@
                 {
                     extend: 'csv',
                     exportOptions: {
-                        columns: [0, 3, 4, 5, 6, 7, 8, 9],
+                        columns: [0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
                     },
                     filename:'UTS | WHS Dashboard for '+orgunit,
                     title:'UTS | WHS Dashboard for '+orgunit
@@ -162,7 +182,7 @@
                 {
                     extend: 'pdf',
                     exportOptions: {
-                        columns: [0, 3, 4, 5, 6, 7, 8, 9],
+                        columns: [0, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
                     },
                     filename:'UTS | WHS Dashboard for '+orgunit,
                     title:'UTS | WHS Dashboard for '+orgunit
