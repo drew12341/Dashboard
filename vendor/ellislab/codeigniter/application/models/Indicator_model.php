@@ -338,7 +338,12 @@ where indicatorid = $id and period <= '$period' order by period desc limit 6";
         $y4 = $year.'-4';
         $y5 = $year.'-5';
         $y6 = $year.'-6';
-
+        $y7 = $year.'-7';
+        $y8 = $year.'-8';
+        $y9 = $year.'-9';
+        $y10 = $year.'-10';
+        $y11 = $year.'-11';
+        $y12 = $year.'-12';
 
         //if UTS wide, then we change the queries
 
@@ -357,7 +362,9 @@ where indicatorid = $id and period <= '$period' order by period desc limit 6";
 
             if($category == 'standard') {
                 $SQL = "select y1.period as y1period, y2.period as y2period, y3.period as y3period, y4.period as y4period, y5.period as y5period, y6.period as y6period, 
+y7.period as y7period, y8.period as y8period, y9.period as y9period, y10.period as y10period, y11.period as y11period, y12.period as y12period, 
 y1.value as y1value, y2.value as y2value, y3.value as y3value, y4.value as y4value, y5.value as y5value, y6.value as y6value,  
+y7.value as y7value, y8.value as y8value, y9.value as y9value, y10.value as y10value, y11.value as y11value, y12.value as y12value, 
 y1.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value
 from indicators ind
   left outer join indicator_measures y1 on ind.id = y1.indicatorid and y1.userid = $user and y1.period = '$y1' and y1.committed = 1
@@ -366,12 +373,20 @@ from indicators ind
   left outer join indicator_measures y4 on ind.id = y4.indicatorid and y4.userid = $user and y4.period = '$y4' and y4.committed = 1
   left outer join indicator_measures y5 on ind.id = y5.indicatorid and y5.userid = $user and y5.period = '$y5' and y5.committed = 1
   left outer join indicator_measures y6 on ind.id = y6.indicatorid and y6.userid = $user and y6.period = '$y6' and y6.committed = 1
+  left outer join indicator_measures y7 on ind.id = y7.indicatorid and y7.userid = $user and y7.period = '$y7' and y7.committed = 1
+  left outer join indicator_measures y8 on ind.id = y8.indicatorid and y8.userid = $user and y8.period = '$y8' and y8.committed = 1
+  left outer join indicator_measures y9 on ind.id = y9.indicatorid and y9.userid = $user and y9.period = '$y9' and y9.committed = 1
+  left outer join indicator_measures y10 on ind.id = y10.indicatorid and y10.userid = $user and y10.period = '$y10' and y10.committed = 1
+  left outer join indicator_measures y11 on ind.id = y11.indicatorid and y11.userid = $user and y11.period = '$y11' and y11.committed = 1
+  left outer join indicator_measures y12 on ind.id = y12.indicatorid and y12.userid = $user and y12.period = '$y12' and y12.committed = 1
 where ind.heading = '$heading' and ind.visible = 1
 ORDER BY ind.heading, ind.sort_order";
             }
             else{
                 $SQL = "select y1.period as y1period, y2.period as y2period, y3.period as y3period, y4.period as y4period, y5.period as y5period, y6.period as y6period, 
+y7.period as y7period, y8.period as y8period, y9.period as y9period, y10.period as y10period, y11.period as y11period, y12.period as y12period, 
 y1.value as y1value, y2.value as y2value, y3.value as y3value, y4.value as y4value, y5.value as y5value, y6.value as y6value,  
+y7.value as y7value, y8.value as y8value, y9.value as y9value, y10.value as y10value, y11.value as y11value, y12.value as y12value, 
 y1.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value
 from indicators ind
   left outer join indicator_measures y1 on ind.id = y1.indicatorid and y1.userid = $user and y1.period = '$y1' and y1.committed = 1
@@ -380,6 +395,12 @@ from indicators ind
   left outer join indicator_measures y4 on ind.id = y4.indicatorid and y4.userid = $user and y4.period = '$y4' and y4.committed = 1
   left outer join indicator_measures y5 on ind.id = y5.indicatorid and y5.userid = $user and y5.period = '$y5' and y5.committed = 1
   left outer join indicator_measures y6 on ind.id = y6.indicatorid and y6.userid = $user and y6.period = '$y6' and y6.committed = 1
+    left outer join indicator_measures y7 on ind.id = y7.indicatorid and y7.userid = $user and y7.period = '$y7' and y7.committed = 1
+  left outer join indicator_measures y8 on ind.id = y8.indicatorid and y8.userid = $user and y8.period = '$y8' and y8.committed = 1
+  left outer join indicator_measures y9 on ind.id = y9.indicatorid and y9.userid = $user and y9.period = '$y9' and y9.committed = 1
+  left outer join indicator_measures y10 on ind.id = y10.indicatorid and y10.userid = $user and y10.period = '$y10' and y10.committed = 1
+  left outer join indicator_measures y11 on ind.id = y11.indicatorid and y11.userid = $user and y11.period = '$y11' and y11.committed = 1
+  left outer join indicator_measures y12 on ind.id = y12.indicatorid and y12.userid = $user and y12.period = '$y12' and y12.committed = 1
 where ind.heading = '$heading' and ind.userid = $user and ind.visible = 1
 ORDER BY ind.heading, ind.sort_order";
             }

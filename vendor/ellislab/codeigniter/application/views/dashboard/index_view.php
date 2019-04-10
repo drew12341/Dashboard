@@ -164,7 +164,7 @@
                     $current = 0;
                     $previous = 0;
                     foreach ($value as $row){
-                        $current += $row['current'];
+                        $current += intval($row['current']);
                         //$previous += $row['previous'];
                     }
                     if (!$current) : ?>
