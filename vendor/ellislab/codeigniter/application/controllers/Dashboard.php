@@ -83,7 +83,7 @@ class Dashboard extends CI_Controller
 			$data['data_entered_by'] = $measuremeta['data_entered_by'];
         }
         else {
-            $remove_these = Array('Safety and Wellbeing Essentials', 'Preventing Bullying in the Workplace', 'H&S for Supervisors');
+            $remove_these = Array('Safety and Wellbeing Essentials', 'Preventing Bullying in the Workplace', 'H&S for Supervisors', 'Consent Matters', 'Consent Matters (casual staff)');
 
             //remove these sections for UTSwide user
             foreach ($data['sections'] as $key => &$section) {

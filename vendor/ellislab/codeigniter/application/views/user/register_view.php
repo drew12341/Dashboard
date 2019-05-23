@@ -4,6 +4,10 @@
     <div class="col-lg-12">
     <h1>Register</h1>
 
+<p><em>Username</em> is an abbreviated unique name that is not displayed again within this application. Usually a <strong>lowercase</strong> three letter acronym.</p>
+<p><em>OrgUnit Nam</em>e is the long, proper name of the faculty or unit.</p>
+
+
         <?php if (isset($_SESSION['register_message'])) : ?>
             <div class="alert alert-success"><?=$_SESSION['register_message'];?>
             </div>
