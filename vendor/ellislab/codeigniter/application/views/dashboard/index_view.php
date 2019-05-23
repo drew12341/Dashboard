@@ -80,14 +80,16 @@
 
                     <div class="col-lg-2">
                         <select id="year" name="year" class="form-control col-lg-2">
-                            <option>--</option>
+                            
                             <option
                                 value="<?= date("Y"); ?>" <?= ($year == date("Y")) ? 'selected' : ''; ?> ><?= date("Y"); ?></option>
                             <option
                                 value="<?= date("Y", strtotime("-1 year")); ?>" <?= ($year == date("Y", strtotime("-1 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-1 year")); ?></option>
 							<option
                                 value="<?= date("Y", strtotime("-2 year")); ?>" <?= ($year == date("Y", strtotime("-2 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-2 year")); ?></option>
+							<option value="<?= date("Y", strtotime("-3 year")); ?>" <?= ($year == date("Y", strtotime("-3 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-3 year")); ?></option>
 								<!-- You can add more years to this if needed. Also update in enterdata and reports views -->
+							
                         </select>
                     </div>
 
@@ -95,7 +97,7 @@
 
                     <div class="col-lg-2">
                         <select id="period" name="period" class="form-control col-lg-2">
-                            <option>--</option>
+                            <!--option>--</option-->
                             <?php
                             foreach ($periods as $key => $value): ?>
                                 <option
