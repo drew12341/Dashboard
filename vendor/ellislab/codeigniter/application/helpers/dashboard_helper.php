@@ -3,7 +3,11 @@
 if ( ! function_exists('get_period')) {
     function month_to_period($month)
     {
-        return intval($month);
+        if($month > 1){
+            return $month - 1;
+        }
+        return 12;
+        //return intval($month);
         /*
         switch(intval($month)){
             case 2:
