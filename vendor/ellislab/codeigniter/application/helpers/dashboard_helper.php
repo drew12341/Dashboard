@@ -3,6 +3,8 @@
 if ( ! function_exists('get_period')) {
     function month_to_period($month)
     {
+        return intval($month);
+        /*
         switch(intval($month)){
             case 2:
             case 3:
@@ -31,6 +33,7 @@ if ( ! function_exists('get_period')) {
 
         }
         return $period;
+        */
     }
 }
 
