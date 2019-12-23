@@ -39,7 +39,11 @@ class Dashboard extends CI_Controller
 
 
         if ($year == '' && $period == '') {
-            $recent = $this->Indicator_model->mostRecentMeasures($userid);
+            //24 dec 2019 - default to the current month, regardless of when the
+            //last measures were entered
+            $recent = false;
+            //$recent = $this->Indicator_model->mostRecentMeasures($userid);
+
             if($recent){
                 //split
                 $splits = explode('-', $recent);
