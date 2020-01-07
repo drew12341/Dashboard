@@ -20,8 +20,8 @@ class EnterData extends Auth_Controller
             $types[$count++] = $w;
         }
         $data['periods'] = $types;
-        $year = date("Y");
-
+        //$year = date("Y");
+        $year = year_to_period(date('n'));
         $period = month_to_period(date('n'));
 
         $data['year'] = $year;

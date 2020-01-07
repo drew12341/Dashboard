@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-if ( ! function_exists('get_period')) {
+if ( ! function_exists('month_to_period')) {
     function month_to_period($month)
     {
         if($month > 1){
@@ -42,3 +42,14 @@ if ( ! function_exists('get_period')) {
 }
 
 
+if ( ! function_exists('year_to_period')) {
+    function year_to_period($month)
+    {
+        if ($month > 1) {
+            return date("Y");
+        }
+
+        return date("Y") - 1;
+
+    }
+}

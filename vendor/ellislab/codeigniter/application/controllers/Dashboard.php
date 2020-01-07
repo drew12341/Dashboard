@@ -51,8 +51,10 @@ class Dashboard extends CI_Controller
                 $period = $splits[1];
             }
             else{
-                $year = date("Y");
+                //$year = date("Y");
+                $year = year_to_period(date('n'));
                 $period = month_to_period(date('n'));
+                //echo "<h1>".$year." ".date('n')."</h1>";
             }
         }
 
@@ -127,7 +129,8 @@ class Dashboard extends CI_Controller
         ini_set('max_execution_time', 300);
 
 
-        $year = date("Y");
+        //$year = date("Y");
+        $year = year_to_period(date('n'));
         $period = month_to_period(date('n'));
 
         $collection = array();
@@ -154,7 +157,8 @@ class Dashboard extends CI_Controller
         ini_set('max_execution_time', 300);
         ini_set('memory_limit', '256M');
 
-        $year = date("Y");
+        //$year = date("Y");
+        $year = year_to_period(date('n'));
         $period = month_to_period(date('n'));
 
         $collection = array();
