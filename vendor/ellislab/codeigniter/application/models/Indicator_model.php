@@ -119,7 +119,7 @@ class Indicator_model extends CI_Model
         }
         else{
             $previousyear = $year - 1;
-            $previousperiod = 6;
+            $previousperiod = 12;
         }
         $previousperiod = $previousyear.'-'.$previousperiod;
 
