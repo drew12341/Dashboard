@@ -61,13 +61,22 @@ class EnterData extends Auth_Controller
         $data['period_txt'] = $types[$period];
 
         //calculate previous value (year then base 6)
+//        if($period > 1){
+//            $previousyear = $year;
+//            $previousperiod = $period - 1;
+//        }
+//        else{
+//            $previousyear = $year - 1;
+//            $previousperiod = 6;
+//        }
+
         if($period > 1){
             $previousyear = $year;
             $previousperiod = $period - 1;
         }
         else{
             $previousyear = $year - 1;
-            $previousperiod = 6;
+            $previousperiod = 12;
         }
 
         $data['current_values'] = $this->Indicator_model->getMeasures($this->ion_auth->user()->row()->id, $year.'-'.$period);
