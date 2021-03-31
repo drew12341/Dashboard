@@ -176,6 +176,7 @@
                     <?php endif; ?>
 
                     <?php foreach ($value as $row):
+                        //echo json_encode($row);
                         $arrow = '';
                         $button = '';
                         $badge = '';
@@ -241,7 +242,8 @@
                         <tr>
 
                             <td><?= $row['description']; ?></td>
-                            <td><?= $row['previous'] ?> <?= isset($row['previous']) ? $percent : ''; ?></td>
+                            <td><?= $row['previous'] ?> <?= isset($row['previous']) ? $percent : ''; ?>
+                            <?=($key == '3_informed_and_engaged' ? '(N=45)': '');?> </td>
                             <td><?= $row['current'] ?> <?= isset($row['current']) ? $percent : ''; ?></td>
                             <td class="text-center"><i class="badge <?= $badge; ?>">&nbsp;</i>    </td>
                             <td class="text-center"><i class="<?= $arrow; ?> dashboard-icon <?= $button; ?>"></i></td>

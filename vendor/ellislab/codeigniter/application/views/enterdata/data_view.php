@@ -1,55 +1,62 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <?php
+echo json_encode($current_values);
+
 function set_value_AA($field, $current_values) {
     if (isset($_POST['data'][$field]))
     {
         return $_POST['data'][$field];
-
     }
     return (isset($current_values[$field])) ? $current_values[$field] : '';
+}
+function set_value_staff($field, $current_staff_values) {
+    if (isset($_POST['staff'][$field]))
+    {
+        return $_POST['staff'][$field];
+    }
+    return (isset($current_staff_values[$field])) ? $current_staff_values[$field] : '';
+}
+function set_value_completions($field, $current_completion_values) {
+    if (isset($_POST['completions'][$field]))
+    {
+        return $_POST['completions'][$field];
+    }
+    return (isset($current_completion_values[$field])) ? $current_completion_values[$field] : '';
 }
 ?>
 
 <h3>Enter Data for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h3>
 <br/>
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-10">
 
         <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
 
         <form class="form-horizontal col-sm-12" autocomplete="on" method="post" accept-charset="utf-8">
             <div class="form-group">
-
                 <label class="col-lg-1 control-label" for="year">ID</label>
                 <span class="col-lg-2 label-value"><?= $id.'-'.$year.'-'.$period; ?></span>
 
                 <label class="col-lg-1 control-label" for="year">Year</label>
                 <span class="col-lg-2 label-value"><?= $year; ?></span>
 
-
                 <label class="col-lg-1 control-label" for="period">Period</label>
                 <span class="col-lg-2 label-value"><?= $period_txt; ?></span>
 
-
                 <label class="col-lg-1 control-label" for="status">Status</label>
                 <span class="col-lg-2 label-value"><?= $status ?></span>
-
-
             </div>
-
-
         </form>
     </div>
 </div>
 
 
 <div class="row">
-    <form role="form" class="form-horizontal col-lg-8 validate" id="mainform" autocomplete="on" method="post" accept-charset="utf-8">
+    <form role="form" class="form-horizontal col-lg-10 validate" id="mainform" autocomplete="on" method="post" accept-charset="utf-8">
 
         <input type="hidden" name="year"    value="<?= $year; ?>"/>
         <input type="hidden" name="period"  value="<?= $period; ?>"/>
         <input type="hidden" name="committed" id="committed" value="1"/>
-
 
         <!---- render page from array ---->
         <?php
@@ -57,15 +64,13 @@ function set_value_AA($field, $current_values) {
         foreach ($sections as $key => $value): ?>
             <div class="row">
                 <div class="col-lg-12">
-
                     <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th><?= $this->config->item($key) ?></th>
                             <th class="col-lg-2">Previous</th>
-                            <th class="col-lg-4">Current</th>
+                            <th class="col-lg-5">Current</th>
                         </tr>
-
                         </thead>
                         <tbody>
                         <?php foreach($value as $row): ?>
@@ -85,9 +90,7 @@ function set_value_AA($field, $current_values) {
                                 </td>
 
                                 <td class="input-group" style="width:100%">
-
-
-                                    <?php if($row['type'] != 'True/False'): ?>
+                                    <?php if($row['type'] != 'True/False' && $row['type'] != 'Calculated'): ?>
                                         <input class="form-control"
                                             <?= ($status == 'Committed') ? 'readonly' : ''; ?>
                                                name="data[<?=$row['id'];?>]"
@@ -113,12 +116,33 @@ function set_value_AA($field, $current_values) {
                                                 data-message-required="Must be numeric"
                                             <?php }; ?>
                                         >
-                                    <?php else: ?>
+                                    <?php elseif ($row['type'] == 'True/False'): ?>
                                         <select class="form-control" data-first-option="false" name="data[<?=$row['id'];?>]" >
                                             <option value="1">True</option>
                                             <option value="0">False</option>
                                         </select>
+                                    <?php elseif ($row['type'] == 'Calculated'): ?>
+                                        <input class="form-control" name="staff[<?=$row['id'];?>]"
+                                               <?php if($row['mandatory']):?>
+                                                data-validate="required,number"
+                                                data-message-required="Please provide a number"
+                                               <?php endif ?>
+
+                                               value="<?= set_value_staff($row['id'], $current_staff_values); ?>"
+                                               style="width:45%;margin-right:5%"
+                                               type="text" placeholder="# Staff in Group">
+
+                                        <input class="form-control" name="completions[<?=$row['id'];?>]"
+                                            <?php if($row['mandatory']):?>
+                                                data-validate="required,number"
+                                                data-message-required="Please provide a number"
+                                            <?php endif ?>
+                                               value="<?= set_value_completions($row['id'], $current_completion_values); ?>"
+                                               style="width:45%"
+                                               type="text" placeholder="# Completions">
+
                                     <?php endif; ?>
+
 
                                     <?php if($row['type'] == 'Percentage'): ?>
                                         <span class="input-group-addon">%</span>
