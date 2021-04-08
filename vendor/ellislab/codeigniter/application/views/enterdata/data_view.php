@@ -139,8 +139,9 @@ function set_value_completions($field, $current_completion_values) {
 
 
                                                value="<?= set_value_staff($row['id'], $current_staff_values); ?>"
-                                               style="width:45%;margin-right:5%"
-                                               type="text" placeholder="# Staff in Group">
+
+                                               type="text" placeholder="# of Staff in Group"/>
+                                            <span class="input-group-addon"># Staff</span>
 
                                         <input class="form-control" name="completions[<?=$row['id'];?>]"
                                             <?php if($row['mandatory']):?>
@@ -149,9 +150,9 @@ function set_value_completions($field, $current_completion_values) {
                                             <?php endif ?>
                                             <?= ($status == 'Committed') ? 'readonly' : ''; ?>
                                                value="<?= set_value_completions($row['id'], $current_completion_values); ?>"
-                                               style="width:45%"
-                                               type="text" placeholder="# Completions">
 
+                                               type="text" placeholder="# of Completions"/>
+                                            <span class="input-group-addon"># Completions</span>
                                         <?php endif; ?>
                                     <?php endif; ?>
 

@@ -46,3 +46,6 @@ tr.group{
     border: 1px solid black;
     font-weight: bold;
 }
+.input-group-addon{
+    background-color:lightcyan;
+}
