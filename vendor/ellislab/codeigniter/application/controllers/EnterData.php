@@ -60,15 +60,6 @@ class EnterData extends Auth_Controller
         $data['period'] = $period;
         $data['period_txt'] = $types[$period];
 
-        //calculate previous value (year then base 6)
-//        if($period > 1){
-//            $previousyear = $year;
-//            $previousperiod = $period - 1;
-//        }
-//        else{
-//            $previousyear = $year - 1;
-//            $previousperiod = 6;
-//        }
 
         if($period > 1){
             $previousyear = $year;
@@ -82,6 +73,8 @@ class EnterData extends Auth_Controller
         $data['current_values'] = $this->Indicator_model->getMeasures($this->ion_auth->user()->row()->id, $year.'-'.$period);
         $data['previous_values'] = $this->Indicator_model->getMeasures($this->ion_auth->user()->row()->id, $previousyear.'-'.$previousperiod);
         $data['status'] = $this->Indicator_model->getMeasuresStatus($this->ion_auth->user()->row()->id, $year.'-'.$period);
+        $data['current_staff_values'] = $this->Indicator_model->getMeasuresStaff($this->ion_auth->user()->row()->id, $year.'-'.$period);
+        $data['current_completion_values'] = $this->Indicator_model->getMeasuresCompletion($this->ion_auth->user()->row()->id, $year.'-'.$period);
 
         $measuremeta = $this->Indicator_model->get_measure_meta($this->ion_auth->user()->row()->id, $year.'-'.$period);
         $data['comments'] = $measuremeta['comments'];
@@ -102,6 +95,7 @@ class EnterData extends Auth_Controller
         else {
             //Shave recordsh
             $record = $this->input->post();
+            echo json_encode($record);
 
             foreach($record['data'] as $key=>$value){
                 $measure['userid'] = $this->ion_auth->user()->row()->id;
@@ -111,6 +105,28 @@ class EnterData extends Auth_Controller
                 $measure['committed'] = $record['committed'];
                 $this->Indicator_model->upsertmeasure($measure);
             }
+
+
+            foreach($record['staff'] as $key=>$value){
+                $measure['userid'] = $this->ion_auth->user()->row()->id;
+                $measure['indicatorid'] = $key;
+                $measure['staff_in_group'] = $value;
+
+                $measure['completions'] = $record['completions'][$key];
+
+                if($measure['completions'] > 0) {
+                    $measure['value'] = $measure['staff_in_group']/$measure['completions'];
+                }
+                else{
+                    $measure['value'] = $value;
+                }
+
+                $measure['period'] = $year.'-'.$period;
+                $measure['committed'] = $record['committed'];
+                $this->Indicator_model->upsertmeasure($measure);
+            }
+
+
             $measuremeta = array();
             $measuremeta['userid'] = $this->ion_auth->user()->row()->id;
             $measuremeta['period'] = $year.'-'.$period;
@@ -120,6 +136,8 @@ class EnterData extends Auth_Controller
 
             $data['current_values'] = $this->Indicator_model->getMeasures($this->ion_auth->user()->row()->id, $year.'-'.$period);
             $data['status'] = $this->Indicator_model->getMeasuresStatus($this->ion_auth->user()->row()->id, $year.'-'.$period);
+            $data['current_staff_values'] = $this->Indicator_model->getMeasuresStaff($this->ion_auth->user()->row()->id, $year.'-'.$period);
+            $data['current_completion_values'] = $this->Indicator_model->getMeasuresCompletion($this->ion_auth->user()->row()->id, $year.'-'.$period);
             $measuremeta = $this->Indicator_model->get_measure_meta($this->ion_auth->user()->row()->id, $year.'-'.$period);
             $data['comments'] = $measuremeta['comments'];
             $data['data_entered_by'] = $measuremeta['data_entered_by'];

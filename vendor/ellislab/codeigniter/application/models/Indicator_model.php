@@ -107,6 +107,30 @@ class Indicator_model extends CI_Model
         }
         return $aggregated;
     }
+    public function getMeasuresStaff($user, $period){
+        $this->db->where('userid', $user);
+        $this->db->where('period', $period);
+        $query = $this->db->get('indicator_measures');
+        $results = $query->result_array();
+
+        $aggregated = array();
+        foreach($results as $res){
+            $aggregated[$res['indicatorid']] = $res['staff_in_group'];
+        }
+        return $aggregated;
+    }
+    public function getMeasuresCompletion($user, $period){
+        $this->db->where('userid', $user);
+        $this->db->where('period', $period);
+        $query = $this->db->get('indicator_measures');
+        $results = $query->result_array();
+
+        $aggregated = array();
+        foreach($results as $res){
+            $aggregated[$res['indicatorid']] = $res['completions'];
+        }
+        return $aggregated;
+    }
 
     public function getFullMeasures($user, $thisperiod, $utswide = false){
         $d = explode('-', $thisperiod);
