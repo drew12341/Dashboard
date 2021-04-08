@@ -56,6 +56,7 @@
         table1.DataTable( {
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
             "bStateSave": true,
+            "order": [[ 1, "desc" ]],
             columnDefs: [ {
                 targets: [4],
                 render:  $.fn.dataTable.render.moment('h:mm:ss a, DD/MM/YYYY'),
