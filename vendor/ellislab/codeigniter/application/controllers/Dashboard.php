@@ -60,16 +60,14 @@ class Dashboard extends CI_Controller
 
         if ($userid == 0) {
             $utswide = true;
-
-
         }
+
         if($utswide){
             //echo "UTS";
             $p = $year.'-'.$period;
             $numerator = $this->Indicator_model->completedforPeriod($p);
             $denominator = $this->Indicator_model->totalUsers();
             $completed_proportion = $numerator.' of '.$denominator;
-
         }
 
         $data['year'] = $year;
