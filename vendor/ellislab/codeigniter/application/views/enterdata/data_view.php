@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <?php
-echo json_encode($current_values);
+//echo json_encode($current_values);
 
 function set_value_AA($field, $current_values) {
     if (isset($_POST['data'][$field]))
@@ -122,11 +122,21 @@ function set_value_completions($field, $current_completion_values) {
                                             <option value="0">False</option>
                                         </select>
                                     <?php elseif ($row['type'] == 'Calculated'): ?>
+                                        <?php if ($status == 'Committed'): ?>
+
+                                            <input class="form-control" readonly
+                                                   value="<?= round(set_value_AA($row['id'], $current_values),2); ?>" />
+                                            <span class="input-group-addon">%</span>
+
+                                            <span class="input-group-addon"><i class="entypo-chart-pie"><?= strval(set_value_staff($row['id'], $current_staff_values)).'/'.strval(set_value_completions($row['id'], $current_completion_values)) ?></i></span>
+
+                                        <?php else:?>
                                         <input class="form-control" name="staff[<?=$row['id'];?>]"
                                                <?php if($row['mandatory']):?>
                                                 data-validate="required,number"
                                                 data-message-required="Please provide a number"
                                                <?php endif ?>
+
 
                                                value="<?= set_value_staff($row['id'], $current_staff_values); ?>"
                                                style="width:45%;margin-right:5%"
@@ -137,10 +147,12 @@ function set_value_completions($field, $current_completion_values) {
                                                 data-validate="required,number"
                                                 data-message-required="Please provide a number"
                                             <?php endif ?>
+                                            <?= ($status == 'Committed') ? 'readonly' : ''; ?>
                                                value="<?= set_value_completions($row['id'], $current_completion_values); ?>"
                                                style="width:45%"
                                                type="text" placeholder="# Completions">
 
+                                        <?php endif; ?>
                                     <?php endif; ?>
 
 

@@ -95,7 +95,7 @@ class EnterData extends Auth_Controller
         else {
             //Shave recordsh
             $record = $this->input->post();
-            echo json_encode($record);
+            //echo json_encode($record);
 
             foreach($record['data'] as $key=>$value){
                 $measure['userid'] = $this->ion_auth->user()->row()->id;
@@ -116,6 +116,7 @@ class EnterData extends Auth_Controller
 
                 if($measure['completions'] > 0) {
                     $measure['value'] = $measure['staff_in_group']/$measure['completions'];
+                    $measure['value'] = $measure['value'] * 100;
                 }
                 else{
                     $measure['value'] = $value;
