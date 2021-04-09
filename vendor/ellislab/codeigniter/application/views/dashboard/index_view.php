@@ -242,11 +242,11 @@
 
                             <td><?= $row['description']; ?></td>
                             <td><?= round($row['previous'],2) ?> <?= isset($row['previous']) ? $percent : ''; ?>
-                            <?=($key == '3_informed_and_engaged' ? '(N='.$row['prevstaff'].')': '');?>
+                            <?=($row['type'] == 'Calculated' ? '(N='.$row['prevstaff'].')': '');?>
 
                             </td>
                             <td><?= round($row['current'],2) ?> <?= isset($row['current']) ? $percent : ''; ?>
-                                <?=($key == '3_informed_and_engaged' ? '(N='.$row['currstaff'].')': '');?>
+                                <?=($row['type'] == 'Calculated' ? '(N='.$row['currstaff'].')': '');?>
 
                             </td>
                             <td class="text-center"><i class="badge <?= $badge; ?>">&nbsp;</i>    </td>
