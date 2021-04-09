@@ -193,7 +193,8 @@ class Indicator_model extends CI_Model
 
             if($utswide){
 
-                $SQL = "select curr.period as currentperiod, prev.period as previousperiod, round(prev.value, 2) as previous, round(curr.value,2) as current,
+                $SQL = "select curr.period as currentperiod, prev.period as previousperiod, round(prev.value, 2) as previous, 
+       round(curr.value,2) as current,
        prev.staff_in_group as prevstaff, curr.staff_in_group as currstaff,
    ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light, ind.traffic_light_reverse
 from indicators ind
