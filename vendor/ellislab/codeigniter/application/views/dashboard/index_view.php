@@ -241,11 +241,11 @@
                         <tr>
 
                             <td><?= $row['description']; ?></td>
-                            <td><?= round($row['previous'],2) ?> <?= isset($row['previous']) ? $percent : ''; ?>
+                            <td><?= round($row['previous'],0) ?> <?= isset($row['previous']) ? $percent : ''; ?>
                             <?=($row['type'] == 'Calculated' ? '(n='.$row['prevstaff'].')': '');?>
 
                             </td>
-                            <td><?= round($row['current'],2) ?> <?= isset($row['current']) ? $percent : ''; ?>
+                            <td><?= round($row['current'],0) ?> <?= isset($row['current']) ? $percent : ''; ?>
                                 <?=($row['type'] == 'Calculated' ? '(n='.$row['currstaff'].')': '');?>
 
                             </td>

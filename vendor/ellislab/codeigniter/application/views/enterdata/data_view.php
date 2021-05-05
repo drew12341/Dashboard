@@ -125,7 +125,7 @@ function set_value_completions($field, $current_completion_values) {
                                         <?php if ($status == 'Committed'): ?>
 
                                             <input class="form-control" readonly
-                                                   value="<?= round(set_value_AA($row['id'], $current_values),2); ?>" />
+                                                   value="<?= round(set_value_AA($row['id'], $current_values),0); ?>" />
                                             <span class="input-group-addon">%</span>
 
                                             <span class="input-group-addon"><i class="entypo-chart-pie"><?= strval(set_value_completions($row['id'], $current_completion_values).'/'.strval(set_value_staff($row['id'], $current_staff_values))) ?></i></span>
