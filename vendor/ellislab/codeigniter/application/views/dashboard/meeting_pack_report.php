@@ -491,9 +491,15 @@
                                     ?>
                                     <tr>
 
-                                        <td><?= $row['description']; ?></td>
-                                        <td><?= $row['previous'] ?> <?= isset($row['previous']) ? $percent : ''; ?></td>
-                                        <td><?= $row['current'] ?> <?= isset($row['current']) ? $percent : ''; ?></td>
+                            <td><?= $row['description']; ?></td>
+                            <td><?= round($row['previous'],0) ?> <?= isset($row['previous']) ? $percent : ''; ?>
+                            <?=($row['type'] == 'Calculated' ? '(n='.$row['prevstaff'].')': '');?>
+
+                            </td>
+                            <td><?= round($row['current'],0) ?> <?= isset($row['current']) ? $percent : ''; ?>
+                                <?=($row['type'] == 'Calculated' ? '(n='.$row['currstaff'].')': '');?>
+
+
                                         <td class="text-center">
                                             <img style="height:12px" alt="indicator" src="<?=$badge_src;?>"/>
 
