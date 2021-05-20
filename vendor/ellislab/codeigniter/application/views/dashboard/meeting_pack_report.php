@@ -419,7 +419,7 @@
                                     if ($row['type'] == 'Absolute') {
                                         $badge = ($row['current'] > $row['value']) ? 'badge-success' : 'badge-danger';
                                     }
-                                    if ($row['type'] == 'Percentage') {
+                                    if ($row['type'] == 'Percentage' || $row['type'] == 'Calculated') {
                                         $percent = '%';
                                         if ($row['current'] >= $row['value']) {
                                             $badge = 'badge-success';
