@@ -116,19 +116,19 @@
                                 <td><?=$key;?></td>
                                 <td><?=$row['sort_order'];?></td>
                                 <td class="col-lg-4"><?=$row['description'];?></td>
-                                <td><?=(isset($row['y1value']))? $row['y1value'].$percent : '' ;?></td>
-                                <td><?=(isset($row['y2value']))? $row['y2value'].$percent : '' ;?></td>
-                                <td><?=(isset($row['y3value']))? $row['y3value'].$percent : '' ;?></td>
-                                <td><?=(isset($row['y4value']))? $row['y4value'].$percent : '' ;?></td>
-                                <td><?=(isset($row['y5value']))? $row['y5value'].$percent : '' ;?></td>
-                                <td><?=(isset($row['y6value']))? $row['y6value'].$percent : '' ;?></td>
+                                <td><?=(isset($row['y1value']))? round($row['y1value'],0).$percent : '' ;?></td>
+                                <td><?=(isset($row['y2value']))? round($row['y2value'],0).$percent : '' ;?></td>
+                                <td><?=(isset($row['y3value']))? round($row['y3value'],0).$percent : '' ;?></td>
+                                <td><?=(isset($row['y4value']))? round($row['y4value'],0).$percent : '' ;?></td>
+                                <td><?=(isset($row['y5value']))? round($row['y5value'],0).$percent : '' ;?></td>
+                                <td><?=(isset($row['y6value']))? round($row['y6value'],0).$percent : '' ;?></td>
 
-                                <td><?=(isset($row['y7value']))? $row['y7value'].$percent : '' ;?></td>
-                                <td><?=(isset($row['y8value']))? $row['y8value'].$percent : '' ;?></td>
-                                <td><?=(isset($row['y9value']))? $row['y9value'].$percent : '' ;?></td>
-                                <td><?=(isset($row['y10value']))? $row['y10value'].$percent : '' ;?></td>
-                                <td><?=(isset($row['y11value']))? $row['y11value'].$percent : '' ;?></td>
-                                <td><?=(isset($row['y12value']))? $row['y12value'].$percent : '' ;?></td>
+                                <td><?=(isset($row['y7value']))? round($row['y7value'],0).$percent : '' ;?></td>
+                                <td><?=(isset($row['y8value']))? round($row['y8value'],0).$percent : '' ;?></td>
+                                <td><?=(isset($row['y9value']))? round($row['y9value'],0).$percent : '' ;?></td>
+                                <td><?=(isset($row['y10value']))? round($row['y10value'],0).$percent : '' ;?></td>
+                                <td><?=(isset($row['y11value']))? round($row['y11value'],0).$percent : '' ;?></td>
+                                <td><?=(isset($row['y12value']))? round($row['y12value'],0).$percent : '' ;?></td>
 
                             </tr>
                             <?php endif; ?>
