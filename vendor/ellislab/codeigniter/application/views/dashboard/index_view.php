@@ -181,15 +181,16 @@
                         $badge = '';
                         $indicator_threshold = $this->config->item('indicator_threshold');
                         $percent = '';
-                        if ($row['current'] > $row['previous']) {
+
+                        if (round($row['current']) > round($row['previous'])) {    
                             $arrow = 'entypo-up';
                             $button = 'btn-green';
                         }
-                        if ($row['current'] < $row['previous']) {
+                        if (round($row['current']) < round($row['previous'])) {
                             $arrow = 'entypo-down';
                             $button = 'btn-red';
                         }
-                        if ($row['current'] == $row['previous']) {
+                        if (round($row['current']) == round($row['previous'])) {
                             $arrow = 'entypo-switch';
                             $button = 'btn-gold';
                         }
