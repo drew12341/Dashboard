@@ -2,7 +2,67 @@
 
 
 <?php if ($this->ion_auth->is_admin() && (!isset($_SESSION['emulate']) || $this->ion_auth->user()->row()->id == $_SESSION['emulate']))  : ?>
-    <span>&nbsp;</span>
+    <h3>Manage Committed Data</h3>
+    <table class="table table-bordered table-responsive">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Org Unit</th>
+    
+            <th>Period</th>
+            <th>Date Committed</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($allMeasures as $row): ?>
+            <tr>
+                <td><?php if($row['committed']): ?>
+                        <a href="<?= site_url('Dashboard/Uncommit/'.$row['userid'].'/'.$row['period']);?>"
+                           class="btn btn-primary"
+                           data-btn-ok-label="Continue" data-btn-ok-class="btn-success"
+                           data-btn-ok-icon-class="material-icons" data-btn-ok-icon-content="check"
+                           data-btn-cancel-label="Cancel" data-btn-cancel-class="btn-danger"
+                           data-btn-cancel-icon-class="material-icons" data-btn-cancel-icon-content="close"
+                           data-title="Commit" data-content="Are you sure? "
+                           data-toggle="confirmation"
+                           value="Uncommit">Uncommit</a>
+
+                    <?php else:?>
+                    Draft
+                    <?php endif;?>
+                </td>
+                <td><?=$row['orgunit_name'];?></td>
+                <td><?=$row['period'];?></td>
+                <td><?=(isset($row['date_committed'])? $row['date_committed']: null) ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th></th>
+            <th>Org Unit</th>
+           <th>Period</th>
+            <th>Date Committed</th>
+        </tr>
+        </tfoot>
+    </table>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+    $('.table').DataTable({
+    "order": [[3, "desc"]],
+        columnDefs: [ {
+            targets: [3],
+            render:  $.fn.dataTable.render.moment('h:mm:ss a, DD/MM/YYYY'),
+        } ],
+
+    });
+        $('[data-toggle=confirmation]').confirmation({
+            rootSelector: '[data-toggle=confirmation]',
+            // other options
+        });
+    });
+</script>
 <?php else : ?>
 
     <div class="col-md-6 col-sm-6 clearfix">
@@ -21,14 +81,14 @@
             $sel = 0;
         }
         ?>
-<div style="float:right">
-        <span style="padding-left:20px;width:auto;display:inline-block">&nbsp;Viewing as: &nbsp;</span>
-        <select style="width:auto;display:inline-block" id="emulate" class="form-control">
-            <?php foreach($em as $key=>$value): ?>
-                <option <?=($sel == $key)? 'selected' : '' ?> value="<?=$key;?>"><?=$value;?></option>
-            <?php endforeach;?>
-        </select>
-</div>
+        <div style="float:right">
+            <span style="padding-left:20px;width:auto;display:inline-block">&nbsp;Viewing as: &nbsp;</span>
+            <select style="width:auto;display:inline-block" id="emulate" class="form-control">
+                <?php foreach($em as $key=>$value): ?>
+                    <option <?=($sel == $key)? 'selected' : '' ?> value="<?=$key;?>"><?=$value;?></option>
+                <?php endforeach;?>
+            </select>
+        </div>
         <script type="text/javascript">
             $("#emulate").change(function(){
                 v = $("#emulate").val();
@@ -53,21 +113,21 @@
     </div>
 
 
-<div class="col-md-12 col-sm-12 clearfix">
+    <div class="col-md-12 col-sm-12 clearfix">
         <?php if (isset($_SESSION['emulated_name'])): ?>
             <h4>Dashboard report for: <?= urldecode($_SESSION['emulated_name']); ?></h4>
 
         <?php elseif($this->ion_auth->logged_in()): ?>
             <h4>Dashboard report for: <?= $this->ion_auth->user()->row()->orgunit_name; ?></h4>
-            <?php else: ?>
+        <?php else: ?>
             <h4>Dashboard report for: UTS Wide</h4>
 
         <?php endif; ?>
-    <?php if($utswide) :?>
-    <h6><?=$completed_proportion;?> Org Units have committed data for this period.</h6>
-    <?php endif; ?>
+        <?php if($utswide) :?>
+            <h6><?=$completed_proportion;?> Org Units have committed data for this period.</h6>
+        <?php endif; ?>
 
-</div>
+    </div>
 
 
     <div class="row">
@@ -80,16 +140,16 @@
 
                     <div class="col-lg-2">
                         <select id="year" name="year" class="form-control col-lg-2">
-                            
+
                             <option
-                                value="<?= date("Y"); ?>" <?= ($year == date("Y")) ? 'selected' : ''; ?> ><?= date("Y"); ?></option>
+                                    value="<?= date("Y"); ?>" <?= ($year == date("Y")) ? 'selected' : ''; ?> ><?= date("Y"); ?></option>
                             <option
-                                value="<?= date("Y", strtotime("-1 year")); ?>" <?= ($year == date("Y", strtotime("-1 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-1 year")); ?></option>
-							<option
-                                value="<?= date("Y", strtotime("-2 year")); ?>" <?= ($year == date("Y", strtotime("-2 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-2 year")); ?></option>
-							<option value="<?= date("Y", strtotime("-3 year")); ?>" <?= ($year == date("Y", strtotime("-3 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-3 year")); ?></option>
-								<!-- You can add more years to this if needed. Also update in enterdata and reports views -->
-							
+                                    value="<?= date("Y", strtotime("-1 year")); ?>" <?= ($year == date("Y", strtotime("-1 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-1 year")); ?></option>
+                            <option
+                                    value="<?= date("Y", strtotime("-2 year")); ?>" <?= ($year == date("Y", strtotime("-2 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-2 year")); ?></option>
+                            <option value="<?= date("Y", strtotime("-3 year")); ?>" <?= ($year == date("Y", strtotime("-3 year"))) ? 'selected' : ''; ?> ><?= date("Y", strtotime("-3 year")); ?></option>
+                            <!-- You can add more years to this if needed. Also update in enterdata and reports views -->
+
                         </select>
                     </div>
 
@@ -101,7 +161,7 @@
                             <?php
                             foreach ($periods as $key => $value): ?>
                                 <option
-                                    value="<?= $key; ?>" <?= ($key == $period) ? 'selected' : '';  ?>  ><?=$key;?> (<?= $value ?>) </option>
+                                        value="<?= $key; ?>" <?= ($key == $period) ? 'selected' : '';  ?>  ><?=$key;?> (<?= $value ?>) </option>
 
                             <?php endforeach; ?>
                         </select>
@@ -116,24 +176,24 @@
 
     <div class="row">
         <div class="col-sm-6">
-             <div class="panel panel-primary">
-                    <div class="panel-body with-table">
-                        <table class="table table-bordered table-responsive">
-                            <tr>
-                                <td><i class="badge badge-success">&nbsp;</i> &nbsp;On Track</td>
-                                <td><i class="entypo-up dashboard-icon btn-green">&nbsp;</i>&nbsp;Performance Improving</td>
-                            </tr>
-                            <tr>
-                                <td><i class="badge badge-warning">&nbsp;</i> &nbsp;Needs Improvement</td>
-								<td><i class="entypo-switch dashboard-icon btn-gold">&nbsp;</i>&nbsp;Performance Static</td>
-                            </tr>
-                            <tr>
-                                <td><i class="badge badge-danger">&nbsp;</i> &nbsp;Further Work Required</td>
-                                <td><i class="entypo-down dashboard-icon btn-red">&nbsp;</i>&nbsp;Performance Declining</td>
-                            </tr>
-                        </table>
-                    </div>
+            <div class="panel panel-primary">
+                <div class="panel-body with-table">
+                    <table class="table table-bordered table-responsive">
+                        <tr>
+                            <td><i class="badge badge-success">&nbsp;</i> &nbsp;On Track</td>
+                            <td><i class="entypo-up dashboard-icon btn-green">&nbsp;</i>&nbsp;Performance Improving</td>
+                        </tr>
+                        <tr>
+                            <td><i class="badge badge-warning">&nbsp;</i> &nbsp;Needs Improvement</td>
+                            <td><i class="entypo-switch dashboard-icon btn-gold">&nbsp;</i>&nbsp;Performance Static</td>
+                        </tr>
+                        <tr>
+                            <td><i class="badge badge-danger">&nbsp;</i> &nbsp;Further Work Required</td>
+                            <td><i class="entypo-down dashboard-icon btn-red">&nbsp;</i>&nbsp;Performance Declining</td>
+                        </tr>
+                    </table>
                 </div>
+            </div>
 
             <?php
             $counter = 1;
@@ -182,7 +242,7 @@
                         $indicator_threshold = $this->config->item('indicator_threshold');
                         $percent = '';
 
-                        if (round($row['current']) > round($row['previous'])) {    
+                        if (round($row['current']) > round($row['previous'])) {
                             $arrow = 'entypo-up';
                             $button = 'btn-green';
                         }
@@ -228,14 +288,14 @@
                                 $badge = 'badge-danger';
                             }
 
-							if($arrow == 'entypo-up'){
-								$arrow = 'entypo-down';
-								$button = 'btn-red';
-							}
-							elseif($arrow == 'entypo-down'){
-								$arrow = 'entypo-up';
-								$button = 'btn-green';
-							}
+                            if($arrow == 'entypo-up'){
+                                $arrow = 'entypo-down';
+                                $button = 'btn-red';
+                            }
+                            elseif($arrow == 'entypo-down'){
+                                $arrow = 'entypo-up';
+                                $button = 'btn-green';
+                            }
 
                         }
                         ?>
@@ -243,7 +303,7 @@
 
                             <td><?= $row['description']; ?></td>
                             <td><?= round($row['previous'],0) ?> <?= isset($row['previous']) ? $percent : ''; ?>
-                            <?=($row['type'] == 'Calculated' ? '(n='.$row['prevstaff'].')': '');?>
+                                <?=($row['type'] == 'Calculated' ? '(n='.$row['prevstaff'].')': '');?>
 
                             </td>
                             <td><?= round($row['current'],0) ?> <?= isset($row['current']) ? $percent : ''; ?>
@@ -331,22 +391,22 @@
 <?php endif; ?>
 
 <?php if(!$utswide && isset($date_committed)): ?>
-<div class="row">
-    <div class="col-sm-12">
-        <div class="panel panel-primary">
-            <div class="panel-body ">
-        Dashboard report for <?=$period_txt;?> <?=$year;?> committed on <?=date("g:i a d/m/Y", strtotime($date_committed)); ?>
-            </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-body ">
+                    Dashboard report for <?=$period_txt;?> <?=$year;?> committed on <?=date("g:i a d/m/Y", strtotime($date_committed)); ?>
+                </div>
             </div>
         </div>
     </div>
-    <?php endif;?>
+<?php endif;?>
 <?php if(!$utswide && isset($comments)): ?>
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-primary">
                 <div class="panel-body ">
-                   Comments:  <?=$comments;?>
+                    Comments:  <?=$comments;?>
                 </div>
             </div>
         </div>
@@ -358,7 +418,7 @@
         <div class="col-sm-12">
             <div class="panel panel-primary">
                 <div class="panel-body ">
-                   Entered by:  <?=$data_entered_by;?>
+                    Entered by:  <?=$data_entered_by;?>
                 </div>
             </div>
         </div>
@@ -368,5 +428,5 @@
 <script type="text/javascript">
     $( document ).ready(function() {
         $(".with-chart").hide();
-        });
+    });
 </script>

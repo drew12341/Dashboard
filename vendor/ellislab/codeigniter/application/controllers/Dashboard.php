@@ -117,9 +117,19 @@ class Dashboard extends CI_Controller
         return $data;
     }
 
+    function Uncommit($user, $period){
+        $this->Indicator_model->uncommit($user, $period);
+        redirect('Dashboard');
+    }
+
     function index($year = '', $period = '')
     {
         $data = $this->getDashData($year, $period);
+        //echo json_encode($data);
+        //pull extra data if admin
+        if($this->ion_auth->is_admin()){
+            $data['allMeasures'] = $this->Indicator_model->getEveryMeasure();
+        }
         $this->load->view('dashboard/index_view', $data);
     }
 

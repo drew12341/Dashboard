@@ -298,9 +298,26 @@ where indicatorid = $id and period <= '$period' order by period desc limit 6";
         $this->db->order_by('period', 'desc');
         $query = $this->db->get('indicator_measures');
         $results = $query->result_array();
-
-
         return $results;
+    }
+
+    public function getEveryMeasure(){
+        $this->db->select('indicator_measures.*, users.orgunit_name, users.first_name, users.last_name');
+        $this->db->join('users', 'users.id = indicator_measures.userid');
+        $this->db->group_by('period');
+        $this->db->order_by('period', 'desc');
+
+        $query = $this->db->get('indicator_measures');
+
+        $results = $query->result_array();
+        return $results;
+    }
+
+    public function uncommit($user, $period){
+        $this->db->set('committed', false);
+        $this->db->where('userid', $user);
+        $this->db->where('period', $period);
+        $this->db->update('indicator_measures');
     }
 
     public function upsertmeasure($measure){
