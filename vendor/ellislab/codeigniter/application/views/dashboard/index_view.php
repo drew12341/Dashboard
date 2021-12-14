@@ -69,6 +69,7 @@
         <?php
         //if($this->ion_auth->is_admin()):
         $em = $this->ion_auth->get_all_id();
+        //echo json_encode($em);
         if(isset($_SESSION['emulate'])) {
             $sel = $_SESSION['emulate'];
             //echo "EMULATING";
@@ -85,17 +86,18 @@
             <span style="padding-left:20px;width:auto;display:inline-block">&nbsp;Viewing as: &nbsp;</span>
             <select style="width:auto;display:inline-block" id="emulate" class="form-control">
                 <?php foreach($em as $key=>$value): ?>
-                    <option <?=($sel == $key)? 'selected' : '' ?> value="<?=$key;?>"><?=$value;?></option>
+                    <option <?=($sel == $key)? 'selected' : '' ?> value="<?=urlencode($key);?>"><?=$value;?></option>
                 <?php endforeach;?>
             </select>
         </div>
         <script type="text/javascript">
             $("#emulate").change(function(){
                 v = $("#emulate").val();
-                d = $("#emulate option:selected").text();
+                //d = $("#emulate option:selected").text();
+                //d= encodeURI(d);
                 //console.log(v);
                 jQuery.ajax({
-                    url: "<?php echo site_url('ajax'); ?>/setSession/"+v+"/"+d,
+                    url: "<?php echo site_url('ajax'); ?>/setSession/"+v,
                     type: 'GET',
                     dataType: 'json',
                     async: true,

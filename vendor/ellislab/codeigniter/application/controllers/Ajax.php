@@ -32,9 +32,10 @@ class Ajax extends CI_Controller
         echo json_encode($ret);
     }
 
-    function setSession($id, $desc){
+    function setSession($id){
         $_SESSION['emulate'] = $id;
-        $_SESSION['emulated_name'] = $desc;
+        $em = $this->ion_auth->get_all_id();
+        $_SESSION['emulated_name'] = $em[$id];
         echo json_encode(array('success'=>true));
     }
 
