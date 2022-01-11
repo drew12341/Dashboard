@@ -8,7 +8,6 @@
         <tr>
             <th></th>
             <th>Org Unit</th>
-    
             <th>Period</th>
             <th>Date Committed</th>
         </tr>

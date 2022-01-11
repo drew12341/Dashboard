@@ -304,7 +304,7 @@ where indicatorid = $id and period <= '$period' order by period desc limit 6";
     public function getEveryMeasure(){
         $this->db->select('indicator_measures.*, users.orgunit_name, users.first_name, users.last_name');
         $this->db->join('users', 'users.id = indicator_measures.userid');
-        $this->db->group_by('period');
+        $this->db->group_by('period, users.id');
         $this->db->order_by('period', 'desc');
 
         $query = $this->db->get('indicator_measures');

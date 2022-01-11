@@ -19,7 +19,6 @@ class Dashboard extends CI_Controller
             $types[$count++] = $w;
         }
 
-
         //echo $year.' '.$period.' '.date('n');
         $userid = 0;
         $utswide = false;
@@ -30,13 +29,9 @@ class Dashboard extends CI_Controller
             //Userid '0' is UTS Wide
             if ($userid == 0) {
                 $utswide = true;
-
-
             }
             //echo "<b>EMULATING".$userid."</b>";
-
         }
-
 
         if ($year == '' && $period == '') {
             //24 dec 2019 - default to the current month, regardless of when the
