@@ -49,3 +49,14 @@ tr.group{
 .input-group-addon{
     background-color:lightcyan;
 }
+
+.main-content .panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #2b303a;
+    border-color: #050505;
+    padding: 0;
+}
+
+.main-content .panel-primary > .panel-heading > .panel-options > a {
+    color: #fff;
+}

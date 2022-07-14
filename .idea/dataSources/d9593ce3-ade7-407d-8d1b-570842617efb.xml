@@ -25,7 +25,7 @@
     <table id="14" parent="2" name="users"/>
     <table id="15" parent="2" name="users_groups"/>
     <view id="16" parent="2" name="indicator_measures_aggregate">
-      <SourceTextLength>626</SourceTextLength>
+      <SourceTextLength>713</SourceTextLength>
     </view>
     <column id="17" parent="6" name="id">
       <Position>1</Position>
