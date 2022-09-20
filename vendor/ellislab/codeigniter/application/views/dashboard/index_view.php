@@ -325,12 +325,13 @@
 
                 <div id="<?= $key; ?>_chart" class="panel panel-primary panel-collapse collapse in">
 
-                    <div class="panel-heading">
+                    <div class="panel-heading" style="background-color:#767676">
                         <div class="panel-title"><?= $this->config->item($key) ?> Chart</div>
                         <div class="panel-options">
                             <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
                         </div>
                     </div>
+
                     <div class="panel-body with-chart">
 
                         <div style="height:150px" id="<?= preg_replace('/[0-9]+/', '', $key); ?>"></div>
