@@ -2278,6 +2278,7 @@ class Ion_auth_model extends CI_Model
 	}
 
 	public function get_all(){
+        $this->db->order_by('orgunit_name ASC');
         $query = $this->db->get('users');
 
         $results = $query->result_array();
