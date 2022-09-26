@@ -246,7 +246,7 @@ class User extends CI_Controller  {
 
         $data = array();
         $data['users'] = $this->ion_auth->get_all();
-
+        array_unshift($data['users'],'Select Org Unit');
         if ($this->form_validation->run() === FALSE)
         {
             $this->load->helper('form');

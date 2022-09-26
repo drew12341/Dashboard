@@ -41,7 +41,7 @@
                 array(
                     'id' => 'submit',
                     'label' => 'Log In',
-                    'type' => 'submit'
+                    'type' => 'submit',
                 )
 
             ));
@@ -61,4 +61,19 @@
 
 </div>
     </div>
-
+<script type="text/javascript">
+    function enableinputs() {
+        if ($('#username').val() == 0) {
+            $('#password').prop("disabled", true);
+            $('#remember').prop("disabled", true);
+            $("[name='submit']").prop("disabled", true);
+        }
+        else{
+            $('#password').prop("disabled", false);
+            $('#remember').prop("disabled", false);
+            $("[name='submit']").prop("disabled", false);
+        }
+    }
+    $( "#username" ).change(enableinputs);
+    $( document ).ready(enableinputs);
+</script>
