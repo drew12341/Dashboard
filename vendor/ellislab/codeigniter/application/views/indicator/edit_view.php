@@ -70,6 +70,13 @@
                 'label'=>'Target'
             );
         }
+        if($dataSet['type'] == 'Calculated'){
+            $items[] = array(
+                'id' => 'value',
+                'value'=>$dataSet['value'],
+                'label'=>'Target'
+            );
+        }
 
         $items[] = array(
             'id' => 'mandatory',
@@ -165,6 +172,10 @@
         }
         else if($( this ).val() == 'Absolute') {
             var input = $("<input/>").attr("id", 'value').attr("name", 'value').attr('class', 'valid form-control').attr('placeholder', 'Target:50');
+            $('#value').replaceWith(input);
+        }
+        else if($( this ).val() == 'Calculated') {
+            var input = $("<input/>").attr("id", 'value').attr("name", 'value').attr('class', 'valid form-control').attr('placeholder', 'Target:90');
             $('#value').replaceWith(input);
         }
     })
