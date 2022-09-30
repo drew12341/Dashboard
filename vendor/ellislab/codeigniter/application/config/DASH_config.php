@@ -16,5 +16,5 @@ $config['5_monitoring_reporting_and_verification']  = 'Monitoring, Reporting and
 
 $config['9_local_indicator']            = 'Local H&S Indicators';
 
-$config['indicator_headings'] = '1_minimise_injuries_maximise_wellbeing,2_safe_workplace,3_informed_and_engaged,4_proactive_approach';
+$config['indicator_headings'] = '1_management_commitment_and_leadership,2_consultation_and_communication,3_information_and_training,4_risk_management,5_monitoring_reporting_and_verification';
 

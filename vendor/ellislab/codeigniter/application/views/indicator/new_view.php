@@ -138,6 +138,10 @@
             var input = $("<input/>").attr("id", 'value').attr("name", 'value').attr('class', 'valid form-control').attr('placeholder', 'Target:50');
             $('#value').replaceWith(input);
         }
+        else if($( this ).val() == 'Calculated') {
+            var input = $("<input/>").attr("id", 'value').attr("name", 'value').attr('class', 'valid form-control').attr('placeholder', 'Target:90');
+            $('#value').replaceWith(input);
+        }
     })
 
 </script>
