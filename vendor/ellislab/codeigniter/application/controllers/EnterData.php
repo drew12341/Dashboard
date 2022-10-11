@@ -115,8 +115,12 @@ class EnterData extends Auth_Controller
                 $measure['completions'] = $record['completions'][$key];
 
                 if($measure['completions'] > 0) {
-                    $measure['value'] = $measure['completions']/$measure['staff_in_group'];
+                    $measure['value'] = $measure['completions'] / $measure['staff_in_group'];
                     $measure['value'] = $measure['value'] * 100;
+                }
+                elseif ($measure['completions'] == 0 && $measure['staff_in_group'] == 0){
+                    //user entered 0/0, put this as 100% completion
+                    $measure['value'] = 100;
                 }
                 else{
                     $measure['value'] = $value;

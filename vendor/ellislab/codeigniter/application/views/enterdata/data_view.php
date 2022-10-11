@@ -255,9 +255,7 @@ function set_value_completions($field, $current_completion_values) {
             rootSelector: '[data-toggle=confirmation]',
             // other options
         });
-
-        //var validator = $("#mainform").validate();
-
+        
         jQuery.validator.addMethod("lessThan", function(value, e1) {
             var id = $(e1).data('reference');
             return parseInt($(e1).val(), 10) <= parseInt($('#'+id).val(), 10);
@@ -268,12 +266,6 @@ function set_value_completions($field, $current_completion_values) {
             lessThan: true,
         });
 
-        // $('.lessThanStaff').each(function(e) {
-        //     //console.log($(this).attr('id'));
-        //     $(this).rules('add', {
-        //         lessThan: true
-        //     });
-        // });
     });
 
 
