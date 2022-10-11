@@ -32,7 +32,7 @@ function set_value_completions($field, $current_completion_values) {
 
         <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
 
-        <form class="form-horizontal col-sm-12" autocomplete="on" method="post" accept-charset="utf-8">
+        <form class="form-horizontal col-sm-12" autocomplete="on" method="post" accept-charset="utf-8" >
             <div class="form-group">
                 <label class="col-lg-1 control-label" for="year">ID</label>
                 <span class="col-lg-2 label-value"><?= $id.'-'.$year.'-'.$period; ?></span>
@@ -131,22 +131,23 @@ function set_value_completions($field, $current_completion_values) {
                                             <span class="input-group-addon"><i class="entypo-chart-pie"><?= strval(set_value_completions($row['id'], $current_completion_values).'/'.strval(set_value_staff($row['id'], $current_staff_values))) ?></i></span>
 
                                         <?php else:?>
-                                        <input class="form-control" name="staff[<?=$row['id'];?>]"
+                                        <input class="form-control" name="staff[<?=$row['id'];?>]" id="staff_<?=$row['id'];?>"
                                                <?php if($row['mandatory']):?>
-                                                data-validate="required,number"
+                                                data-validate="required,number,min[0]"
                                                 data-message-required="Please provide a number"
                                                <?php endif ?>
-
 
                                                value="<?= set_value_staff($row['id'], $current_staff_values); ?>"
 
                                                type="text" placeholder="# of Staff in Group"/>
                                             <span class="input-group-addon"># Staff</span>
 
-                                        <input class="form-control" name="completions[<?=$row['id'];?>]"
+                                        <input class="form-control lessThan" name="completions[<?=$row['id'];?>]"
+                                               data-reference="staff_<?=$row['id'];?>"
                                             <?php if($row['mandatory']):?>
-                                                data-validate="required,number"
+                                                data-validate="required,number,min[0],lessThan"
                                                 data-message-required="Please provide a number"
+
                                             <?php endif ?>
                                             <?= ($status == 'Committed') ? 'readonly' : ''; ?>
                                                value="<?= set_value_completions($row['id'], $current_completion_values); ?>"
@@ -184,10 +185,8 @@ function set_value_completions($field, $current_completion_values) {
 
                         </tbody>
                     </table>
-
                 </div>
             </div>
-
         <?php endforeach; ?>
 
         <div class="row">
@@ -201,9 +200,11 @@ function set_value_completions($field, $current_completion_values) {
                     </thead>
                     <tbody>
                     <!-- comments section -->
-
-                    <tr><td><textarea rows="3" class="form-control" type="text" name="comments"><?=$comments;?></textarea></td></tr>
-
+                    <tr>
+                        <td>
+                            <textarea rows="3" class="form-control" type="text" name="comments"><?=$comments;?></textarea>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -212,12 +213,13 @@ function set_value_completions($field, $current_completion_values) {
                     <tr>
                         <th>Data Entered By</th>
                     </tr>
-
                     </thead>
                     <tbody>
-
-                    <tr><td><textarea rows="3" class="form-control" type="text" name="data_entered_by"><?=$data_entered_by;?></textarea></td></tr>
-
+                    <tr>
+                        <td>
+                            <textarea rows="3" class="form-control" type="text" name="data_entered_by"><?=$data_entered_by;?></textarea>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -245,13 +247,35 @@ function set_value_completions($field, $current_completion_values) {
 <script type="text/javascript">
     $("#draftbtn").click(function(){
         $("#committed").val(0);
-
         $("#mainform").unbind('submit').submit();
     });
+
     $(document).ready(function() {
         $('[data-toggle=confirmation]').confirmation({
             rootSelector: '[data-toggle=confirmation]',
             // other options
         });
+
+        //var validator = $("#mainform").validate();
+
+        jQuery.validator.addMethod("lessThan", function(value, e1) {
+            var id = $(e1).data('reference');
+            return parseInt($(e1).val(), 10) <= parseInt($('#'+id).val(), 10);
+        }, "Completions must be less than or equal to # Staff");
+
+        //Add class based validation rule for 'required' inputs
+        jQuery.validator.addClassRules("lessThan", {
+            lessThan: true,
+        });
+
+        // $('.lessThanStaff').each(function(e) {
+        //     //console.log($(this).attr('id'));
+        //     $(this).rules('add', {
+        //         lessThan: true
+        //     });
+        // });
     });
+
+
+
 </script>
