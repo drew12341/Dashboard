@@ -121,7 +121,20 @@ function set_value_completions($field, $current_completion_values) {
                                             <option value="1">True</option>
                                             <option value="0">False</option>
                                         </select>
-                                    <?php elseif ($row['type'] == 'Calculated'): ?>
+                                    <?php elseif ($row['type'] == 'Calculated'):
+                                        $placeholder_denominator = '# of Staff in Group';
+                                        $placeholder_numerator  = '# of Completions';
+                                        $label_denominator = '# Staff';
+                                        $label_numerator = '# Completions';
+
+                                        if ($row['description'] == $this->config->item('incidents_hazards_title')){
+                                            $placeholder_denominator = '# of Incident and Hazards reported';
+                                            $placeholder_numerator  = '# reported within 24 hours';
+                                            $label_denominator = '# Hazards';
+                                            $label_numerator = '# in last 24 hours';
+                                        }
+
+                                        ?>
                                         <?php if ($status == 'Committed'): ?>
 
                                             <input class="form-control" readonly
@@ -139,8 +152,10 @@ function set_value_completions($field, $current_completion_values) {
 
                                                value="<?= set_value_staff($row['id'], $current_staff_values); ?>"
 
-                                               type="text" placeholder="# of Staff in Group"/>
-                                            <span class="input-group-addon"># Staff</span>
+                                               type="text"
+                                               placeholder="<?=$placeholder_denominator;?>"
+                                        />
+                                            <span class="input-group-addon"><?=$label_denominator;?></span>
 
                                         <input class="form-control lessThan" name="completions[<?=$row['id'];?>]"
                                                data-reference="staff_<?=$row['id'];?>"
@@ -152,8 +167,8 @@ function set_value_completions($field, $current_completion_values) {
                                             <?= ($status == 'Committed') ? 'readonly' : ''; ?>
                                                value="<?= set_value_completions($row['id'], $current_completion_values); ?>"
 
-                                               type="text" placeholder="# of Completions"/>
-                                            <span class="input-group-addon"># Completions</span>
+                                               type="text" placeholder="<?=$placeholder_numerator;?>"/>
+                                            <span class="input-group-addon"><?=$label_numerator;?></span>
                                         <?php endif; ?>
                                     <?php endif; ?>
 
