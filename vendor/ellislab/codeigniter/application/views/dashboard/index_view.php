@@ -269,7 +269,7 @@
                         }
                         if ($row['type'] == 'Percentage' || $row['type'] == 'Calculated') {
                             $percent = '%';
-                            if ($row['current'] >= $row['value']) {
+                            if (($row['current']+0.5) >= $row['value']) {
                                 $badge = 'badge-success';
                             } else if ($row['current'] > $row['value'] - $indicator_threshold) {
                                 $badge = 'badge-warning';

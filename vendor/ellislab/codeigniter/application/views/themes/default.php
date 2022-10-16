@@ -161,7 +161,7 @@
             <!-- Footer -->
             <footer class="main">
 
-                Copyright &copy; 2017 <a target="_blank" href="http://www.uts.edu.au">uts.edu.au</a>
+                Copyright &copy; 2022 <a target="_blank" href="http://www.uts.edu.au">uts.edu.au</a>
             </footer>
         </div>
 
