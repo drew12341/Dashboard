@@ -232,7 +232,7 @@
                     }
                     if (!$current) : ?>
                         <tr>
-                            <td style="text-align: center;" colspan="5"><b>No data yet submitted for this period</b></td>
+                            <td colspan="5" style="text-align:center; color:red; font-weight:bold">No data yet submitted for this period</td>
                         </tr>
                     <?php endif; ?>
 
