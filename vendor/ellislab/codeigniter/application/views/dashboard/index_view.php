@@ -205,6 +205,19 @@
                 <div class="panel-heading">
                     <div class="panel-title"><?= $this->config->item($key) ?></div>
 
+
+					<!-- change colour of font if lag indicator ie monitoring etc -->
+                    <?php				
+							if ($this->config->item($key) == "Monitoring, Reporting and Verification") {
+								$lag = "#cc0099" ;
+							}
+							else {
+								$lag = "blue" ;
+							}
+					?>
+
+
+
                     <div class="panel-options">
                         <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
                     </div>
@@ -302,7 +315,11 @@
                         ?>
                         <tr>
 
-                            <td><?= $row['description']; ?></td>
+							<!-- where lag indicator Monitoring then change font colour-->
+                            <td style="color:<?= $lag; ?>"><?= $row['description']; ?></td>
+
+
+
                             <td><?= round($row['previous'],0) ?> <?= isset($row['previous']) ? $percent : ''; ?>
                                 <?=($row['type'] == 'Calculated' ? '(n='.$row['prevstaff'].')': '');?>
 
@@ -390,6 +407,8 @@
         });
     </script>
 
+<p>Lead indicators shown in <span style = "color:blue">blue</span>. Lag indicators shown in <span style = "color:#cc0099">purple</span>.</p>
+
 <?php endif; ?>
 
 <?php if(!$utswide && isset($date_committed)): ?>
@@ -426,6 +445,7 @@
         </div>
     </div>
 <?php endif; ?>
+
 
 <script type="text/javascript">
     $( document ).ready(function() {
