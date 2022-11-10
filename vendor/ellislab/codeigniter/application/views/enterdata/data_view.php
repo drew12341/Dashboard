@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <?php
 //echo json_encode($current_values);
+//echo $this->config->item('incidents_hazards_title') ;
 
 function set_value_AA($field, $current_values) {
     if (isset($_POST['data'][$field]))
@@ -274,7 +275,7 @@ function set_value_completions($field, $current_completion_values) {
         jQuery.validator.addMethod("lessThan", function(value, e1) {
             var id = $(e1).data('reference');
             return parseInt($(e1).val(), 10) <= parseInt($('#'+id).val(), 10);
-        }, "Completions must be less than or equal to # Staff");
+        }, "Percentage cannot be greater than 100");
 
         //Add class based validation rule for 'required' inputs
         jQuery.validator.addClassRules("lessThan", {
