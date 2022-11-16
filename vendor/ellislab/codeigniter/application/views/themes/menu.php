@@ -74,7 +74,7 @@
 
             <li id="defaulttab" class="">
                 <a href="https://studentutsedu.sharepoint.com/sites/safety-portal/SitePages/Monitoring-&-Continuous-Improvement.aspx#h-s-performance-reporting" target="_blank">
-                 <span class="title">Performance Measure Definitions</span>
+                 <span class="title">Performance Reporting Instructions</span>
                 </a>
             </li>
 			
