@@ -114,13 +114,27 @@ class EnterData extends Auth_Controller
 
                 $measure['completions'] = $record['completions'][$key];
 
-                if($measure['completions'] > 0) {
-                    $measure['value'] = $measure['completions'] / $measure['staff_in_group'];
-                    $measure['value'] = $measure['value'] * 100;
-                }
-                elseif ($measure['completions'] == 0 && $measure['staff_in_group'] == 0){
+				// need to capture case where 0/number, put as 0%
+               // if($measure['completions'] > 0) {
+               //     $measure['value'] = $measure['completions'] / $measure['staff_in_group'];
+               //     $measure['value'] = $measure['value'] * 100;
+               // }
+               // elseif ($measure['completions'] == 0 && $measure['staff_in_group'] == 0){
+                    //user entered 0/0, put this as 100% completion
+                //    $measure['value'] = 100;
+                //}
+
+                if ($measure['completions'] == 0 && $measure['staff_in_group'] == 0){
                     //user entered 0/0, put this as 100% completion
                     $measure['value'] = 100;
+                }
+                elseif ($measure['completions'] == 0 && $measure['staff_in_group'] > 0)) {
+					//user entered 0/number, put this as 0% completion
+                      $measure['value'] = 0;
+                }
+                elseif ($measure['completions'] > 0){
+					$measure['value'] = $measure['completions'] / $measure['staff_in_group'];
+                    $measure['value'] = $measure['value'] * 100;
                 }
                 else{
                     $measure['value'] = $value;
