@@ -128,7 +128,7 @@ class EnterData extends Auth_Controller
                     //user entered 0/0, put this as 100% completion
                     $measure['value'] = 100;
                 }
-                elseif ($measure['completions'] == 0 && $measure['staff_in_group'] > 0)) {
+                elseif ($measure['completions'] == 0 && $measure['staff_in_group'] > 0){
 					//user entered 0/number, put this as 0% completion
                       $measure['value'] = 0;
                 }
