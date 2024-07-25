@@ -11,7 +11,7 @@
 
                 </a>
                 <br/>
-                <h4 style="color:rgb(170, 171, 174)">WHS Dashboard</h4>
+                <h4 style="color:rgb(170, 171, 174)">HSW Dashboard</h4>
             </div>
 
 
@@ -73,7 +73,7 @@
             <?php endif; ?>
 
             <li id="defaulttab" class="">
-                <a href="https://studentutsedu.sharepoint.com/sites/safety-portal/SitePages/Monitoring-&-Continuous-Improvement.aspx#h-s-performance-reporting" target="_blank">
+                <a href="https://studentutsedu.sharepoint.com/sites/safety-portal/SitePages/Monitoring,%20Reporting%20&%20Verification.aspx#h-s-performance-reporting" target="_blank">
                  <span class="title">Performance Reporting Instructions</span>
                 </a>
             </li>
