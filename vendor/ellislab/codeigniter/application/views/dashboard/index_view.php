@@ -205,6 +205,19 @@
                 <div class="panel-heading">
                     <div class="panel-title"><?= $this->config->item($key) ?></div>
 
+
+					<!-- change colour of font if lag indicator ie monitoring etc -->
+                    <?php				
+							if ($this->config->item($key) == "Monitoring, Reporting and Verification") {
+								$lag = "#cc0099" ;
+							}
+							else {
+								$lag = "blue" ;
+							}
+					?>
+
+
+
                     <div class="panel-options">
                         <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
                     </div>
@@ -232,7 +245,7 @@
                     }
                     if (!$current) : ?>
                         <tr>
-                            <td style="text-align: center;" colspan="5"><b>No data yet submitted for this period</b></td>
+                            <td colspan="5" style="text-align:center; color:red; font-weight:bold">No data yet submitted for this period</td>
                         </tr>
                     <?php endif; ?>
 
@@ -269,7 +282,7 @@
                         }
                         if ($row['type'] == 'Percentage' || $row['type'] == 'Calculated') {
                             $percent = '%';
-                            if ($row['current'] >= $row['value']) {
+                            if (($row['current']+0.5) >= $row['value']) {
                                 $badge = 'badge-success';
                             } else if ($row['current'] > $row['value'] - $indicator_threshold) {
                                 $badge = 'badge-warning';
@@ -302,7 +315,11 @@
                         ?>
                         <tr>
 
-                            <td><?= $row['description']; ?></td>
+							<!-- where lag indicator Monitoring then change font colour-->
+                            <td style="color:<?= $lag; ?>"><?= $row['description']; ?></td>
+
+
+
                             <td><?= round($row['previous'],0) ?> <?= isset($row['previous']) ? $percent : ''; ?>
                                 <?=($row['type'] == 'Calculated' ? '(n='.$row['prevstaff'].')': '');?>
 
@@ -390,6 +407,8 @@
         });
     </script>
 
+<p>Lead indicators shown in <span style = "color:blue">blue</span>. Lag indicators shown in <span style = "color:#cc0099">purple</span>.</p>
+
 <?php endif; ?>
 
 <?php if(!$utswide && isset($date_committed)): ?>
@@ -426,6 +445,7 @@
         </div>
     </div>
 <?php endif; ?>
+
 
 <script type="text/javascript">
     $( document ).ready(function() {

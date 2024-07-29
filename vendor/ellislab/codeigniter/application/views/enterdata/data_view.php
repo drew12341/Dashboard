@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <?php
 //echo json_encode($current_values);
+//echo $this->config->item('incidents_hazards_title') ;
 
 function set_value_AA($field, $current_values) {
     if (isset($_POST['data'][$field]))
@@ -32,7 +33,7 @@ function set_value_completions($field, $current_completion_values) {
 
         <?php echo validation_errors('<div class="alert alert-danger">', '</div>'); ?>
 
-        <form class="form-horizontal col-sm-12" autocomplete="on" method="post" accept-charset="utf-8">
+        <form class="form-horizontal col-sm-12" autocomplete="on" method="post" accept-charset="utf-8" >
             <div class="form-group">
                 <label class="col-lg-1 control-label" for="year">ID</label>
                 <span class="col-lg-2 label-value"><?= $id.'-'.$year.'-'.$period; ?></span>
@@ -121,7 +122,20 @@ function set_value_completions($field, $current_completion_values) {
                                             <option value="1">True</option>
                                             <option value="0">False</option>
                                         </select>
-                                    <?php elseif ($row['type'] == 'Calculated'): ?>
+                                    <?php elseif ($row['type'] == 'Calculated'):
+                                        $placeholder_denominator = '# of Staff in Group';
+                                        $placeholder_numerator  = '# of Completions';
+                                        $label_denominator = '# Staff';
+                                        $label_numerator = '# Completions';
+
+                                        if ($row['description'] == $this->config->item('incidents_hazards_title')){
+                                            $placeholder_denominator = '# of Incident and Hazards reported';
+                                            $placeholder_numerator  = '# reported within 24 hours';
+                                            $label_denominator = '# Hazards';
+                                            $label_numerator = '# in last 24 hours';
+                                        }
+
+                                        ?>
                                         <?php if ($status == 'Committed'): ?>
 
                                             <input class="form-control" readonly
@@ -131,28 +145,31 @@ function set_value_completions($field, $current_completion_values) {
                                             <span class="input-group-addon"><i class="entypo-chart-pie"><?= strval(set_value_completions($row['id'], $current_completion_values).'/'.strval(set_value_staff($row['id'], $current_staff_values))) ?></i></span>
 
                                         <?php else:?>
-                                        <input class="form-control" name="staff[<?=$row['id'];?>]"
+                                        <input class="form-control" name="staff[<?=$row['id'];?>]" id="staff_<?=$row['id'];?>"
                                                <?php if($row['mandatory']):?>
-                                                data-validate="required,number"
+                                                data-validate="required,number,min[0]"
                                                 data-message-required="Please provide a number"
                                                <?php endif ?>
 
-
                                                value="<?= set_value_staff($row['id'], $current_staff_values); ?>"
 
-                                               type="text" placeholder="# of Staff in Group"/>
-                                            <span class="input-group-addon"># Staff</span>
+                                               type="text"
+                                               placeholder="<?=$placeholder_denominator;?>"
+                                        />
+                                            <span class="input-group-addon"><?=$label_denominator;?></span>
 
-                                        <input class="form-control" name="completions[<?=$row['id'];?>]"
+                                        <input class="form-control lessThan" name="completions[<?=$row['id'];?>]"
+                                               data-reference="staff_<?=$row['id'];?>"
                                             <?php if($row['mandatory']):?>
-                                                data-validate="required,number"
+                                                data-validate="required,number,min[0],lessThan"
                                                 data-message-required="Please provide a number"
+
                                             <?php endif ?>
                                             <?= ($status == 'Committed') ? 'readonly' : ''; ?>
                                                value="<?= set_value_completions($row['id'], $current_completion_values); ?>"
 
-                                               type="text" placeholder="# of Completions"/>
-                                            <span class="input-group-addon"># Completions</span>
+                                               type="text" placeholder="<?=$placeholder_numerator;?>"/>
+                                            <span class="input-group-addon"><?=$label_numerator;?></span>
                                         <?php endif; ?>
                                     <?php endif; ?>
 
@@ -184,10 +201,8 @@ function set_value_completions($field, $current_completion_values) {
 
                         </tbody>
                     </table>
-
                 </div>
             </div>
-
         <?php endforeach; ?>
 
         <div class="row">
@@ -201,9 +216,11 @@ function set_value_completions($field, $current_completion_values) {
                     </thead>
                     <tbody>
                     <!-- comments section -->
-
-                    <tr><td><textarea rows="3" class="form-control" type="text" name="comments"><?=$comments;?></textarea></td></tr>
-
+                    <tr>
+                        <td>
+                            <textarea rows="3" class="form-control" type="text" name="comments"><?=$comments;?></textarea>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -212,12 +229,13 @@ function set_value_completions($field, $current_completion_values) {
                     <tr>
                         <th>Data Entered By</th>
                     </tr>
-
                     </thead>
                     <tbody>
-
-                    <tr><td><textarea rows="3" class="form-control" type="text" name="data_entered_by"><?=$data_entered_by;?></textarea></td></tr>
-
+                    <tr>
+                        <td>
+                            <textarea rows="3" class="form-control" type="text" name="data_entered_by"><?=$data_entered_by;?></textarea>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -245,13 +263,27 @@ function set_value_completions($field, $current_completion_values) {
 <script type="text/javascript">
     $("#draftbtn").click(function(){
         $("#committed").val(0);
-
         $("#mainform").unbind('submit').submit();
     });
+
     $(document).ready(function() {
         $('[data-toggle=confirmation]').confirmation({
             rootSelector: '[data-toggle=confirmation]',
             // other options
         });
+        
+        jQuery.validator.addMethod("lessThan", function(value, e1) {
+            var id = $(e1).data('reference');
+            return parseInt($(e1).val(), 10) <= parseInt($('#'+id).val(), 10);
+        }, "Percentage cannot be greater than 100");
+
+        //Add class based validation rule for 'required' inputs
+        jQuery.validator.addClassRules("lessThan", {
+            lessThan: true,
+        });
+
     });
+
+
+
 </script>
