@@ -1,6 +1,6 @@
 **Dashboard App**
 
-Codeigniter/PHP5.3/Bootstrap
+Codeigniter/PHP8.1/Bootstrap
 
 Installation:
 - Pull down files from GitHub
