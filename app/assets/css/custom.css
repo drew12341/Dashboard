@@ -1,0 +1,62 @@
+/**
+ *
+ * Apply Here your Custom CSS
+ *
+*/
+
+body {
+
+}
+
+.dashboard-icon{
+    -webkit-border-radius: 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 3px;
+    -moz-background-clip: padding;
+    border-radius: 3px;
+    background-clip: padding-box;
+    width: 28px;
+    height: 24px;
+    text-align: center;
+    color:white;
+    padding: 5px;
+
+    line-height: 14px;
+}
+
+.yKeyButton{
+    padding-left:20px;
+    float: left;
+    clear: left;
+}
+
+.panel > .panel-body.with-chart {
+
+    position: relative;
+    padding: 0;
+    padding-bottom: 5px;
+    margin: -1px;
+    border: 0;
+}
+
+tr.group{
+    background-color: #c9c9c9 !important;
+}
+.group td {
+    border: 1px solid black;
+    font-weight: bold;
+}
+.input-group-addon{
+    background-color:lightcyan;
+}
+
+.main-content .panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #050505;
+    border-color: #050505;
+    padding: 0;
+}
+
+.main-content .panel-primary > .panel-heading > .panel-options > a {
+    color: #fff;
+}

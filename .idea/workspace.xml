@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2a461d49-3ad2-4ee4-b40c-00f1227c924c" name="Default" comment="Php8 upgrade step 3: get app running, DB connections, models in PHP8" />
+    <list id="18994217-6f3c-4738-b993-d7f2e367ddfa" name="a" comment="" />
+    <list id="80dcd45e-2724-4741-9c17-3eb2620e100d" name="New changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <phar pharPath="$PROJECT_DIR$/composer.phar" interpreterId="591797ed-61dc-4cda-969e-86f3106afa3f" />
+    </execution>
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "drew12341"
+  }
+}]]></component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+      </list>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/drew12341/Dashboard.git",
+    "accountId": "64510b9e-06be-4a1b-984d-c03ad0e44382"
+  }
+}]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/vendor/ellislab/codeigniter/application/config/DASH_config.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/vendor/ellislab/codeigniter/application/controllers/EnterData.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/vendor/ellislab/codeigniter/application/controllers/Indicator.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/vendor/ellislab/codeigniter/application/database/migrations/create views.sql" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/vendor/ellislab/codeigniter/application/views/dashboard/index_view.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/vendor/ellislab/codeigniter/application/views/emails/item_assigned_ap.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/vendor/ellislab/codeigniter/application/views/enterdata/data_view.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/vendor/ellislab/codeigniter/application/views/indicator/edit_view.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/vendor/ellislab/codeigniter/application/views/indicator/new_view.php" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/vendor/ellislab/codeigniter/assets/css/custom.css" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpServers">
+    <servers>
+      <server host="localhost" id="ade0f6b0-2132-4cf5-9581-134f418c46b5" name="localhost" port="1024" />
+    </servers>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/ellislab/codeigniter" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/twbs/bootstrap" />
+      <path value="$PROJECT_DIR$/vendor/mikehaertl/php-shellcommand" />
+      <path value="$PROJECT_DIR$/vendor/mikehaertl/php-tmpfile" />
+      <path value="$PROJECT_DIR$/vendor/mikehaertl/phpwkhtmltopdf" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+    </include_path>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
+    <option name="width" value="1920" />
+    <option name="height" value="1057" />
+  </component>
+  <component name="ProjectId" id="1qDdBacZ9VCkdUqff6WMPZ5AZ0K" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "PHP Built-in Web Server.Default.executor": "Run",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "php8upgrade",
+    "last_opened_file_path": "/Users/johnhummer/PhpstormProjects/Dashboard/application",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/application" />
+      <recent name="$PROJECT_DIR$/vendor/ellislab/codeigniter/assets/images" />
+      <recent name="$PROJECT_DIR$/vendor/ellislab/codeigniter/application/helpers" />
+      <recent name="$PROJECT_DIR$/vendor/ellislab/codeigniter/application/helpers/tcpdf" />
+      <recent name="$PROJECT_DIR$/vendor/ellislab/codeigniter/assets/js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/application/language/english" />
+      <recent name="$PROJECT_DIR$/app/application/core" />
+      <recent name="$PROJECT_DIR$/app/application/views/errors/cli" />
+      <recent name="$PROJECT_DIR$/app/application/views/errors/html" />
+      <recent name="$PROJECT_DIR$/app/application/views" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Default" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$/app" port="1024">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PS-241.18034.69" />
+        <option value="bundled-php-predefined-ba97393d7c68-48a1a656d44e-com.jetbrains.php.sharedIndexes-PS-241.18034.69" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2a461d49-3ad2-4ee4-b40c-00f1227c924c" name="Default" comment="" />
+      <changelist id="80dcd45e-2724-4741-9c17-3eb2620e100d" name="New changelist" comment="" />
+      <changelist id="18994217-6f3c-4738-b993-d7f2e367ddfa" name="a" comment="" />
+      <created>1508288462552</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1508288462552</updated>
+      <workItem from="1508288463822" duration="9614000" />
+      <workItem from="1508308871269" duration="5380000" />
+      <workItem from="1509492641032" duration="22981000" />
+      <workItem from="1509582452289" duration="58007000" />
+      <workItem from="1510524830902" duration="103750000" />
+      <workItem from="1511138529023" duration="4435000" />
+      <workItem from="1511142992426" duration="16000" />
+      <workItem from="1511160891938" duration="1103000" />
+      <workItem from="1511215812112" duration="159000" />
+      <workItem from="1511297442487" duration="1336000" />
+      <workItem from="1511335028205" duration="3582000" />
+      <workItem from="1511416994759" duration="7315000" />
+      <workItem from="1512430968558" duration="23000" />
+      <workItem from="1512508544149" duration="7351000" />
+      <workItem from="1512519701158" duration="1469000" />
+      <workItem from="1512540073557" duration="6011000" />
+      <workItem from="1512595517633" duration="1910000" />
+      <workItem from="1512614125276" duration="10328000" />
+      <workItem from="1512935492773" duration="9588000" />
+      <workItem from="1512972214024" duration="5964000" />
+      <workItem from="1513042454144" duration="1138000" />
+      <workItem from="1513109462395" duration="5736000" />
+      <workItem from="1513123710446" duration="535000" />
+      <workItem from="1513144409950" duration="460000" />
+      <workItem from="1513222943966" duration="3775000" />
+      <workItem from="1513235816476" duration="951000" />
+      <workItem from="1513299796051" duration="46000" />
+      <workItem from="1520888971560" duration="14647000" />
+      <workItem from="1521665208644" duration="5437000" />
+      <workItem from="1521679872792" duration="288000" />
+      <workItem from="1521681077415" duration="894000" />
+      <workItem from="1521764498956" duration="4343000" />
+      <workItem from="1522193125774" duration="17000" />
+      <workItem from="1525756154393" duration="96176000" />
+      <workItem from="1526516545430" duration="172000" />
+      <workItem from="1526518954903" duration="5965000" />
+      <workItem from="1526542066321" duration="957000" />
+      <workItem from="1530065089435" duration="680000" />
+      <workItem from="1530084273233" duration="4000000" />
+      <workItem from="1530164249436" duration="2380000" />
+      <workItem from="1530238500895" duration="7106000" />
+      <workItem from="1530591789081" duration="6000" />
+      <workItem from="1530661896820" duration="648000" />
+      <workItem from="1530666256051" duration="630000" />
+      <workItem from="1530832010076" duration="16000" />
+      <workItem from="1531453008010" duration="573000" />
+      <workItem from="1531801186086" duration="597000" />
+      <workItem from="1531871666735" duration="8000" />
+      <workItem from="1531962773322" duration="9617000" />
+      <workItem from="1531985791847" duration="1060000" />
+      <workItem from="1532047181438" duration="6282000" />
+      <workItem from="1532998201490" duration="27000" />
+      <workItem from="1534827300606" duration="562000" />
+      <workItem from="1535607104359" duration="90000" />
+      <workItem from="1537401761778" duration="2875000" />
+      <workItem from="1554849874097" duration="36000" />
+      <workItem from="1554849942537" duration="7298000" />
+      <workItem from="1556763229796" duration="116000" />
+      <workItem from="1558575929037" duration="421000" />
+      <workItem from="1558577584150" duration="389000" />
+      <workItem from="1558652355439" duration="2000" />
+      <workItem from="1616617961344" duration="1000000" />
+      <workItem from="1616619317585" duration="127000" />
+      <workItem from="1616619669035" duration="2862000" />
+      <workItem from="1617066670863" duration="1891000" />
+      <workItem from="1617140929524" duration="13330000" />
+      <workItem from="1621476738963" duration="2748000" />
+      <workItem from="1641882367174" duration="2386000" />
+      <workItem from="1646260052005" duration="7000" />
+      <workItem from="1657745609169" duration="4637000" />
+      <workItem from="1657836661761" duration="3520000" />
+      <workItem from="1658219645249" duration="1197000" />
+      <workItem from="1663711427256" duration="8808000" />
+      <workItem from="1665448399667" duration="24552000" />
+      <workItem from="1673302324680" duration="625000" />
+      <workItem from="1673340776391" duration="633000" />
+      <workItem from="1673388476711" duration="18000" />
+      <workItem from="1722206070519" duration="10785000" />
+    </task>
+    <task id="LOCAL-00040" summary="Updates to filter for local indicators">
+      <created>1513226513353</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1513226513353</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Had accidentally removed the join to aggregate..">
+      <created>1513236586688</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1513236586688</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Added the 'view as' feature for anyone">
+      <created>1520891766127</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1520891766127</updated>
+    </task>
+    <task id="LOCAL-00043" summary="emulating glitch">
+      <created>1520893761570</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1520893761570</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Save as draft - bypass validation">
+      <created>1520896688378</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1520896688378</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Omit from 'EnterData' if the 'Visible' checkbox is deselected">
+      <created>1520896968971</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1520896968971</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Updates for Report titles">
+      <created>1520897835162</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1520897835162</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Collapsed charts on load">
+      <created>1520898515610</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1520898515610</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Traffic light reversal (requires DB migration)">
+      <created>1520905256204</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1520905256204</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Updates to the rounding for the model/presentation">
+      <created>1520909088727</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1520909088727</updated>
+    </task>
+    <task id="LOCAL-00050" summary="No data for period dashboard message">
+      <created>1521666880576</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1521666880576</updated>
+    </task>
+    <task id="LOCAL-00051" summary="No data for period dashboard message">
+      <created>1521666926833</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1521666926833</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Default to most recent measures">
+      <created>1521668930156</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1521668930156</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Display count of org units that have completed">
+      <created>1521671006574</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1521671006574</updated>
+    </task>
+    <task id="LOCAL-00054" summary="No data for this period fix">
+      <created>1521765267494</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1521765267495</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Float right for 'Viewing As'">
+      <created>1521765820346</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1521765820346</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Remove data that is 'not visible'">
+      <created>1521767535394</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1521767535395</updated>
+    </task>
+    <task id="LOCAL-00057" summary="uts wide fix">
+      <created>1521767862468</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1521767862468</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Dashboard view - meeting pack report">
+      <created>1525766567044</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1525766567044</updated>
+    </task>
+    <task id="LOCAL-00059" summary="PDF fun">
+      <created>1525936585228</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1525936585228</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Updates for the new field, and also the commit message">
+      <created>1526009822681</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1526009822681</updated>
+    </task>
+    <task id="LOCAL-00061" summary="PDF finally working, all images translated to base64, etc">
+      <created>1526279780245</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1526279780245</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Updates to page layout for PDF">
+      <created>1526521885389</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1526521885391</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Updates to page layout for PDF">
+      <created>1526521930205</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1526521930205</updated>
+    </task>
+    <task id="LOCAL-00064" summary="More updates to page layouts">
+      <created>1526529011467</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1526529011467</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Fix for navigation">
+      <created>1526530215786</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1526530215786</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Traffic light reverse fix">
+      <created>1526542366697</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1526542366698</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Dashboard updates">
+      <created>1531972662609</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1531972662610</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Why are these missing?  Whats going on with this infernal IDE">
+      <created>1531978268596</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1531978268597</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Find and squish bug with icons on page">
+      <created>1532056564808</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1532056564809</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Throw the baby out with the bathwater">
+      <created>1532072765607</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1532072765607</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Updates to switch to a 12-month period from a 6 month one">
+      <created>1554855063565</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1554855063566</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Admin report generation">
+      <created>1558576114277</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1558576114278</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Oop">
+      <created>1558577938631</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1558577938632</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Updates for splitting percentage field into numerator/denominator">
+      <created>1617171615432</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1617171615433</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Updates for splitting percentage field into numerator/denominator">
+      <created>1617855269905</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1617855269905</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Updates for splitting percentage field into numerator/denominator">
+      <created>1617858638644</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1617858638644</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Update for Calculated field on meeting pack report (took a while to find!)">
+      <created>1621482344662</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1621482344663</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Fix the Manage Committed Data functions">
+      <created>1641883416984</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1641883416985</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Updates for Dashboard2022">
+      <created>1657840470482</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1657840470486</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Updates for Dashboard2022">
+      <created>1657840543218</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1657840543218</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Add 'Select Org Unit' on auth dropdown">
+      <created>1664228095008</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1664228095008</updated>
+    </task>
+    <task id="LOCAL-00082" summary="Order by">
+      <created>1664228461725</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1664228461725</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Fix headings on indicator edit">
+      <created>1664228989992</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1664228989992</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Add ability to adjust target on Calculated">
+      <created>1664309053875</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1664309053875</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Add ability to adjust target on Calculated">
+      <created>1664310003011</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1664310003011</updated>
+    </task>
+    <task id="LOCAL-00086" summary="This was waay more fiddly than I thought it would be!!!">
+      <created>1665470827863</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1665470827864</updated>
+    </task>
+    <task id="LOCAL-00087" summary="0/0 now represents as 100% for calculated measures">
+      <created>1665522817348</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1665522817348</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Updates labels for the metric 'Incidents in the last 24 hours'.&#10;&#10;Run the query to convert the mteric type:&#10;&#10;update indicator_measures set type = 'Calculated' where description = 'Incidents and hazards reported within 24 hours - LAG'">
+      <created>1665537229994</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1665537229994</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="Updates to page layout for PDF" />
+    <MESSAGE value="More updates to page layouts" />
+    <MESSAGE value="Fix for navigation" />
+    <MESSAGE value="Traffic light reverse fix" />
+    <MESSAGE value="Dashboard updates" />
+    <MESSAGE value="Why are these missing?  Whats going on with this infernal IDE" />
+    <MESSAGE value="Find and squish bug with icons on page" />
+    <MESSAGE value="Throw the baby out with the bathwater" />
+    <MESSAGE value="Updates to switch to a 12-month period from a 6 month one" />
+    <MESSAGE value="Admin report generation" />
+    <MESSAGE value="Oop" />
+    <MESSAGE value="Updates for splitting percentage field into numerator/denominator" />
+    <MESSAGE value="Update for Calculated field on meeting pack report (took a while to find!)" />
+    <MESSAGE value="Fix the Manage Committed Data functions" />
+    <MESSAGE value="Updates for Dashboard2022" />
+    <MESSAGE value="Add 'Select Org Unit' on auth dropdown" />
+    <MESSAGE value="Order by" />
+    <MESSAGE value="Fix headings on indicator edit" />
+    <MESSAGE value="Add ability to adjust target on Calculated" />
+    <MESSAGE value="This was waay more fiddly than I thought it would be!!!" />
+    <MESSAGE value="0/0 now represents as 100% for calculated measures" />
+    <MESSAGE value="Updates labels for the metric 'Incidents in the last 24 hours'.&#10;&#10;Run the query to convert the mteric type:&#10;&#10;update indicator_measures set type = 'Calculated' where description = 'Incidents and hazards reported within 24 hours - LAG'" />
+    <MESSAGE value="PHP8 Upgrade step 1: rework folders, update dependencies" />
+    <MESSAGE value="Php8 upgrade step 2: add files back from repo" />
+    <MESSAGE value="Php8 upgrade step 3: get app running, DB connections, models in PHP8" />
+    <option name="LAST_COMMIT_MESSAGE" value="Php8 upgrade step 3: get app running, DB connections, models in PHP8" />
+  </component>
+</project>
