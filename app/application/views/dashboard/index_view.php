@@ -27,7 +27,7 @@
                            value="Uncommit">Uncommit</a>
 
                     <?php else:?>
-                    Draft
+                        Draft
                     <?php endif;?>
                 </td>
                 <td><?=$row['orgunit_name'];?></td>
@@ -40,28 +40,28 @@
         <tr>
             <th></th>
             <th>Org Unit</th>
-           <th>Period</th>
+            <th>Period</th>
             <th>Date Committed</th>
         </tr>
         </tfoot>
     </table>
-<script type="text/javascript">
-    $(document).ready(function() {
+    <script type="text/javascript">
+        $(document).ready(function() {
 
-    $('.table').DataTable({
-    "order": [[3, "desc"]],
-        columnDefs: [ {
-            targets: [3],
-            render:  $.fn.dataTable.render.moment('h:mm:ss a, DD/MM/YYYY'),
-        } ],
+            $('.table').DataTable({
+                "order": [[3, "desc"]],
+                columnDefs: [ {
+                    targets: [3],
+                    render:  $.fn.dataTable.render.moment('h:mm:ss a, DD/MM/YYYY'),
+                } ],
 
-    });
-        $('[data-toggle=confirmation]').confirmation({
-            rootSelector: '[data-toggle=confirmation]',
-            // other options
+            });
+            $('[data-toggle=confirmation]').confirmation({
+                rootSelector: '[data-toggle=confirmation]',
+                // other options
+            });
         });
-    });
-</script>
+    </script>
 <?php else : ?>
 
     <div class="col-md-6 col-sm-6 clearfix">
@@ -206,15 +206,15 @@
                     <div class="panel-title"><?= $this->config->item($key) ?></div>
 
 
-					<!-- change colour of font if lag indicator ie monitoring etc -->
-                    <?php				
-							if ($this->config->item($key) == "Monitoring, Reporting and Verification") {
-								$lag = "#cc0099" ;
-							}
-							else {
-								$lag = "blue" ;
-							}
-					?>
+                    <!-- change colour of font if lag indicator ie monitoring etc -->
+                    <?php
+                    if ($this->config->item($key) == "Monitoring, Reporting and Verification") {
+                        $lag = "#cc0099" ;
+                    }
+                    else {
+                        $lag = "blue" ;
+                    }
+                    ?>
 
 
 
@@ -315,7 +315,7 @@
                         ?>
                         <tr>
 
-							<!-- where lag indicator Monitoring then change font colour-->
+                            <!-- where lag indicator Monitoring then change font colour-->
                             <td style="color:<?= $lag; ?>"><?= $row['description']; ?></td>
 
 
@@ -409,7 +409,7 @@
         });
     </script>
 
-<p>Lead indicators shown in <span style = "color:blue">blue</span>. Lag indicators shown in <span style = "color:#cc0099">purple</span>.</p>
+    <p>Lead indicators shown in <span style = "color:blue">blue</span>. Lag indicators shown in <span style = "color:#cc0099">purple</span>.</p>
 
 <?php endif; ?>
 
