@@ -6,7 +6,7 @@ class Tools extends CI_Controller {
         parent::__construct();
 
         // can only be called from the command line
-        if (!$this->input->is_cli_request()) {
+        if (!is_cli()) {
             //exit('Direct access is not allowed. This is a command line tool, use the terminal');
         }
 
@@ -16,6 +16,9 @@ class Tools extends CI_Controller {
         $this->faker = Faker\Factory::create();
     }
 
+    function is_cli() {
+        return (php_sapi_name() === 'cli' || defined('STDIN'));
+    }
 
     function cronTasks(){
         //$this->load->model('task_model');
