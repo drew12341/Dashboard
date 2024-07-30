@@ -1,5 +1,5 @@
 <?php
-
+#[\AllowDynamicProperties]
 class Indicator_model extends CI_Model
 {
 
