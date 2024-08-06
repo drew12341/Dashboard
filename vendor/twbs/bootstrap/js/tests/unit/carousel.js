@@ -50,7 +50,7 @@ $(function () {
   QUnit.test('should reset when slide is prevented', function (assert) {
     assert.expect(6)
     var carouselHTML = '<div id="carousel-example-generic" class="carousel slide">'
-        + '<ol class="carousel-indicator">'
+        + '<ol class="carousel-indicators">'
         + '<li data-target="#carousel-example-generic" data-slide-to="0" class="active"/>'
         + '<li data-target="#carousel-example-generic" data-slide-to="1"/>'
         + '<li data-target="#carousel-example-generic" data-slide-to="2"/>'
@@ -77,16 +77,16 @@ $(function () {
         e.preventDefault()
         setTimeout(function () {
           assert.ok($carousel.find('.item:eq(0)').is('.active'), 'first item still active')
-          assert.ok($carousel.find('.carousel-indicator li:eq(0)').is('.active'), 'first indicator still active')
+          assert.ok($carousel.find('.carousel-indicators li:eq(0)').is('.active'), 'first indicator still active')
           $carousel.bootstrapCarousel('next')
         }, 0)
       })
       .one('slid.bs.carousel', function () {
         setTimeout(function () {
           assert.ok(!$carousel.find('.item:eq(0)').is('.active'), 'first item still active')
-          assert.ok(!$carousel.find('.carousel-indicator li:eq(0)').is('.active'), 'first indicator still active')
+          assert.ok(!$carousel.find('.carousel-indicators li:eq(0)').is('.active'), 'first indicator still active')
           assert.ok($carousel.find('.item:eq(1)').is('.active'), 'second item active')
-          assert.ok($carousel.find('.carousel-indicator li:eq(1)').is('.active'), 'second indicator active')
+          assert.ok($carousel.find('.carousel-indicators li:eq(1)').is('.active'), 'second indicator active')
           done()
         }, 0)
       })
@@ -562,7 +562,7 @@ $(function () {
   QUnit.test('should wrap around from end to start when wrap option is true', function (assert) {
     assert.expect(3)
     var carouselHTML = '<div id="carousel-example-generic" class="carousel slide" data-wrap="true">'
-        + '<ol class="carousel-indicator">'
+        + '<ol class="carousel-indicators">'
         + '<li data-target="#carousel-example-generic" data-slide-to="0" class="active"/>'
         + '<li data-target="#carousel-example-generic" data-slide-to="1"/>'
         + '<li data-target="#carousel-example-generic" data-slide-to="2"/>'
@@ -607,7 +607,7 @@ $(function () {
   QUnit.test('should wrap around from start to end when wrap option is true', function (assert) {
     assert.expect(1)
     var carouselHTML = '<div id="carousel-example-generic" class="carousel slide" data-wrap="true">'
-        + '<ol class="carousel-indicator">'
+        + '<ol class="carousel-indicators">'
         + '<li data-target="#carousel-example-generic" data-slide-to="0" class="active"/>'
         + '<li data-target="#carousel-example-generic" data-slide-to="1"/>'
         + '<li data-target="#carousel-example-generic" data-slide-to="2"/>'
@@ -641,7 +641,7 @@ $(function () {
   QUnit.test('should stay at the end when the next method is called and wrap is false', function (assert) {
     assert.expect(3)
     var carouselHTML = '<div id="carousel-example-generic" class="carousel slide" data-wrap="false">'
-        + '<ol class="carousel-indicator">'
+        + '<ol class="carousel-indicators">'
         + '<li data-target="#carousel-example-generic" data-slide-to="0" class="active"/>'
         + '<li data-target="#carousel-example-generic" data-slide-to="1"/>'
         + '<li data-target="#carousel-example-generic" data-slide-to="2"/>'
@@ -687,7 +687,7 @@ $(function () {
   QUnit.test('should stay at the start when the prev method is called and wrap is false', function (assert) {
     assert.expect(1)
     var carouselHTML = '<div id="carousel-example-generic" class="carousel slide" data-wrap="false">'
-        + '<ol class="carousel-indicator">'
+        + '<ol class="carousel-indicators">'
         + '<li data-target="#carousel-example-generic" data-slide-to="0" class="active"/>'
         + '<li data-target="#carousel-example-generic" data-slide-to="1"/>'
         + '<li data-target="#carousel-example-generic" data-slide-to="2"/>'

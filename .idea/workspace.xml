@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a461d49-3ad2-4ee4-b40c-00f1227c924c" name="Default" comment="remove logs">
-      <change afterPath="$PROJECT_DIR$/app/application/database/migrations/20240731094811_new_indicators1.php" afterDir="false" />
+    <list default="true" id="2a461d49-3ad2-4ee4-b40c-00f1227c924c" name="Default" comment="Updated config, additional migrations to adjust sorting.  Updated logic for lead/lag indicators.  Updated instructions for setup to cater for new folder structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/application/views/dashboard/index_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/application/views/dashboard/index_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
     </list>
     <list id="18994217-6f3c-4738-b993-d7f2e367ddfa" name="a" comment="" />
     <list id="80dcd45e-2724-4741-9c17-3eb2620e100d" name="New changelist" comment="" />
@@ -266,7 +265,7 @@
       <workItem from="1673302324680" duration="625000" />
       <workItem from="1673340776391" duration="633000" />
       <workItem from="1673388476711" duration="18000" />
-      <workItem from="1722206070519" duration="14222000" />
+      <workItem from="1722206070519" duration="18222000" />
     </task>
     <task id="LOCAL-00040" summary="Updates to filter for local indicators">
       <created>1513226513353</created>
@@ -611,7 +610,7 @@
       <option name="project" value="LOCAL" />
       <updated>1665537229994</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -627,8 +626,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Dashboard updates" />
-    <MESSAGE value="Why are these missing?  Whats going on with this infernal IDE" />
     <MESSAGE value="Find and squish bug with icons on page" />
     <MESSAGE value="Throw the baby out with the bathwater" />
     <MESSAGE value="Updates to switch to a 12-month period from a 6 month one" />
@@ -652,6 +649,8 @@
     <MESSAGE value="Remaining functionality to PHP8, testing" />
     <MESSAGE value="remove DB" />
     <MESSAGE value="remove logs" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove logs" />
+    <MESSAGE value="Additional migration for indicators, update index_view.php" />
+    <MESSAGE value="Updated config, additional migrations to adjust sorting.  Updated logic for lead/lag indicators.  Updated instructions for setup to cater for new folder structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated config, additional migrations to adjust sorting.  Updated logic for lead/lag indicators.  Updated instructions for setup to cater for new folder structure" />
   </component>
 </project>

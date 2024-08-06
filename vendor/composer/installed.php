@@ -3,7 +3,7 @@
         'name' => 'uts/dashboard',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '01890dcca3ea5edbd20d5bffa599166c14f14670',
+        'reference' => 'a06b117d0e60aec2d280603a7946d3b3eb016f39',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -152,9 +152,9 @@
             'dev_requirement' => false,
         ),
         'twbs/bootstrap' => array(
-            'pretty_version' => 'v3.3.7',
-            'version' => '3.3.7.0',
-            'reference' => '0b9c4a4007c44201dce9a6cc1a38407005c26c86',
+            'pretty_version' => 'v3.4.1',
+            'version' => '3.4.1.0',
+            'reference' => '68b0d231a13201eb14acd3dc84e51543d16e5f7e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../twbs/bootstrap',
             'aliases' => array(),
@@ -163,13 +163,13 @@
         'twitter/bootstrap' => array(
             'dev_requirement' => false,
             'replaced' => array(
-                0 => 'v3.3.7',
+                0 => 'v3.4.1',
             ),
         ),
         'uts/dashboard' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '01890dcca3ea5edbd20d5bffa599166c14f14670',
+            'reference' => 'a06b117d0e60aec2d280603a7946d3b3eb016f39',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
