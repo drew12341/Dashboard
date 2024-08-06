@@ -197,26 +197,13 @@
             </div>
 
             <?php
-            $counter = 1;
+            $counter = 0;
             foreach ($sections as $key => $value) : ?>
 
 
             <div id="<?= $key; ?>_panel" class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="panel-title"><?= $this->config->item($key) ?></div>
-
-
-                    <!-- change colour of font if lag indicator ie monitoring etc -->
-                    <?php
-                    if ($this->config->item($key) == "Monitoring, Reporting and Verification") {
-                        $lag = "#cc0099" ;
-                    }
-                    else {
-                        $lag = "blue" ;
-                    }
-                    ?>
-
-
 
                     <div class="panel-options">
                         <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
@@ -310,15 +297,17 @@
                                 $arrow = 'entypo-up';
                                 $button = 'btn-green';
                             }
-
                         }
                         ?>
                         <tr>
 
+                            <!-- change colour of font if lag indicator ie monitoring etc -->
+                            <?php
+                            $col = $row['lead'] ? "blue" : "#cc0099";
+
+                            ?>
                             <!-- where lag indicator Monitoring then change font colour-->
-                            <td style="color:<?= $lag; ?>"><?= $row['description']; ?></td>
-
-
+                            <td style="color:<?= $col; ?>"><?= $row['description']; ?></td>
 
 
                             <td><?= round((float)$row['previous'],0) ?>

@@ -10,8 +10,8 @@ $config['dash_periods']     = 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec';
 
 $config['1_management_commitment_and_leadership']   = 'Management Commitment and Leadership';
 $config['2_consultation_and_communication']         = 'Consultation and Communication';
-$config['3_information_and_training']               = 'Information and Training';
-$config['4_risk_management']                        = 'Risk Management';
+$config['3_risk_management']                        = 'Risk Management';
+$config['4_information_and_training']               = 'Information and Training';
 $config['5_monitoring_reporting_and_verification']  = 'Monitoring, Reporting and Verification';
 
 $config['9_local_indicator']            = 'Local H&S Indicators';

@@ -171,7 +171,7 @@ class Indicator_model extends CI_Model
                 $SQL = "
                     select curr.period as currentperiod, prev.period as previousperiod, prev.value as previous, curr.value as current, 
                                  prev.staff_in_group as prevstaff, curr.staff_in_group as currstaff,
-                      curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light, ind.traffic_light_reverse
+                      curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light, ind.traffic_light_reverse, ind.lead
                     from indicators ind
                       left outer join indicator_measures curr on ind.id = curr.indicatorid and curr.userid = $user and curr.period = '$thisperiod' and curr.committed = 1
                       left outer join indicator_measures prev on ind.id = prev.indicatorid and prev.userid = $user and prev.period = '$previousperiod' and prev.committed = 1
@@ -182,7 +182,7 @@ class Indicator_model extends CI_Model
                 $SQL = "
                     select curr.period as currentperiod, prev.period as previousperiod, round(prev.value, 2) as previous, round(curr.value,2 ) as current,
                                  prev.staff_in_group as prevstaff, curr.staff_in_group as currstaff,
-                      curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light, ind.traffic_light_reverse
+                      curr.userid , ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light, ind.traffic_light_reverse, ind.lead
                     from indicators ind
                       left outer join indicator_measures curr on ind.id = curr.indicatorid and curr.userid = $user and curr.period = '$thisperiod' and curr.committed = 1
                       left outer join indicator_measures prev on ind.id = prev.indicatorid and prev.userid = $user and prev.period = '$previousperiod' and prev.committed = 1
@@ -196,7 +196,7 @@ class Indicator_model extends CI_Model
                 $SQL = "select curr.period as currentperiod, prev.period as previousperiod, round(prev.value, 2) as previous, 
        round(curr.value,2) as current,
        prev.staff_in_group as prevstaff, curr.staff_in_group as currstaff,
-   ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light, ind.traffic_light_reverse
+   ind.description, ind.type, ind.heading, ind.sort_order, ind.value, ind.traffic_light, ind.traffic_light_reverse, ind.lead
 from indicators ind
   left outer join indicator_measures_aggregate curr on ind.id = curr.indicatorid and curr.period = '$thisperiod' 
   left outer join indicator_measures_aggregate prev on ind.id = prev.indicatorid and prev.period = '$previousperiod' 
