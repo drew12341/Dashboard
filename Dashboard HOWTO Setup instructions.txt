@@ -16,9 +16,9 @@ Dashboard SETUP INSTRUCTIONS FOR UTS
 
 7) Open IIS manager
 - In Application Pools add new application pool 
-8) Under Sites folder, add new virtual directory with physical path .../inetpub/..../ellislab/codeigniter
+8) Under Sites folder, add new virtual directory with physical path .../inetpub/..../app
 
-8) Change security of /vendor/ellislab/codeigniter for IIS_IUSRS to write/modify
+8) Change security of /app for IIS_IUSRS to write/modify
 
 
 
@@ -26,7 +26,7 @@ Dashboard SETUP INSTRUCTIONS FOR UTS
 CREATE DATABASE
 ===============
 
-you can create a ‘new’ DB by running the migration scripts. System uses SQLite, to set up tables navigate to webroot and run:
+you can create a ï¿½newï¿½ DB by running the migration scripts. System uses SQLite, to set up tables navigate to webroot and run:
 php index.php tools migrate or alternatively, hit the URL: [baseurl]/tools/migrate
 
 
@@ -78,19 +78,19 @@ EMAIL CONFIGURATION
 
 
 **Email content**
-\codeigniter\application\views\auth\email
+\app\application\views\auth\email
 
 
 **Email sender and title**
-\codeigniter\application\config\ion_auth.php
+\app\application\config\ion_auth.php
 
 
 **Email wording**
-\codeigniter\application\language\english
+\app\application\language\english
 
 
 **Email settings**
-\codeigniter\application\config\email.php.
+\app\application\config\email.php.
 Only changes to default are:
 $config['smtp_host'] = 'postoffice.uts.edu.au';
 $config['smtp_port'] = 25;
@@ -98,10 +98,10 @@ $config['smtp_port'] = 25;
 
 
 **NO LONGER USED FOR EMAIL SETTINGS**
-\codeigniter\application\views\emails
+\app\application\views\emails
 
 **UTS mailserver settings**
-\codeigniter\application\models\Mail_model.php
+\app\application\models\Mail_model.php
 
 
 
