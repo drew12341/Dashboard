@@ -15,7 +15,7 @@
     "ellislab/codeigniter": "3.1.13",
     "twbs/bootstrap": "3.4.1",
     "fakerphp/faker": "^1.19",
-    "guzzlehttp/guzzle": "6.5.8",
+    "guzzlehttp/guzzle": "7.15.1",
     "mikehaertl/phpwkhtmltopdf":"2.3.1"
   }
 }
